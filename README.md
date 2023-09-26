@@ -20,6 +20,9 @@
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
 ​
+## 実装機能リスト
+- https://docs.google.com/spreadsheets/d/1MV5c7m1U9HmHB_SD5y4FWfgBjrNt957ezQNzIIth8ik/edit?usp=sharing
+ 
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
