@@ -1,0 +1,2 @@
+class HotSpring < ApplicationRecord
+end
