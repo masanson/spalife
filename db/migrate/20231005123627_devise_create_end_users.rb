@@ -17,6 +17,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
       t.string :first_name, null: false
       t.string :last_name_kana, null: false
       t.string :first_name_kana, null: false
+      t.string :user_name, null: false
       t.integer :sex, null: false
       t.string :postal_code, null: false
       t.string :address, null: false
