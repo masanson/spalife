@@ -39,6 +39,7 @@
 
 - イラスト作成として以下を使用
   - イラストAC (https://www.ac-illust.com/)
+  - いらすとや (https://www.irasutoya.com/)
 
 - フォント素材として以下を使用
   - Font Free (https://fontfree.me/)
