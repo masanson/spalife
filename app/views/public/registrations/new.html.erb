@@ -1,36 +1,32 @@
 
 <div class="container">
-  <div class="row justify-content-center m-5">
+  <div class="row justify-content-center p-0 m-5">
     <%= form_with model: @end_user, url: end_user_registration_path do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
     <div class="row">
-      <div class="col-3">氏名</div>
-      <div class="col-1"><%= f.label :last_name, "(姓)" %></div>
-      <div class="col-3"><%= f.text_field :last_name %></div>
-      <div class="col-1"><%= f.label :first_name, "(名)" %></div>
-      <div class="col-3"><%= f.text_field :first_name %></div>
+      <div class="col-2 px-0 py-2">氏名</div>
+      <div class="col-5 px-0 py-2">(性)<%= f.text_field :last_name %></div>
+      <div class="col-5 px-0 py-2">(名)<%= f.text_field :first_name %></div>
     </div>
 
     <div class="row">
-      <div class="col-3">フリガナ</div>
-      <div class="col-1"><%= f.label :last_name_kana, "(セイ)" %></div>
-      <div class="col-3"><%= f.text_field :last_name_kana %></div>
-      <div class="col-1"><%= f.label :first_name_kana, "(メイ)" %></div>
-      <div class="col-3"><%= f.text_field :first_name_kana %></div>
+      <div class="col-2 px-0">フリガナ</div>
+      <div class="col-5 px-0">(セイ)<%= f.text_field :last_name_kana %></div>
+      <div class="col-5 px-0">(メイ)<%= f.text_field :first_name_kana %></div>
     </div>
 
-    <div class="row">
-      <div class="col-3"><%= f.label :user_name, "ユーザー名" %></div>
+    <div class="row py-2">
+      <div class="col-5"><%= f.label :user_name, "ユーザー名" %></div>
       <div class="col-3"><%= f.text_field :user_name %></div>
     </div>
 
     <div class="row">
-      <div class="col-3"><%= f.label :sex, "性別" %></div>
-      <div class="col-3">
+      <div class="col-4"><%= f.label :sex, "性別" %></div>
+      <div class="col-2">
         <%= f.radio_button :sex, EndUser.sexes.key(0) %>
         <%= f.label :sex, EndUser.sexes_i18n[:male] %>
       </div>
-      <div class="col-3">
+      <div class="col-2">
         <%= f.radio_button :sex, EndUser.sexes.key(1) %>
         <%= f.label :sex, EndUser.sexes_i18n[:female] %>
       </div>
@@ -41,49 +37,47 @@
     </div>
 
     <div class="row">
-      <div class="col-3"><%= f.label :email, "メールアドレス" %></div>
+      <div class="col-5"><%= f.label :email, "メールアドレス" %></div>
       <div class="col-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
     </div>
 
     <div class="row">
-      <div class="col-3"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></div>
+      <div class="col-5"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></div>
       <div class="col-3"><%= f.text_field :postal_code %></div>
     </div>
 
     <div class="row">
-      <div class="col-3"><%= f.label :address, "住所" %></div>
+      <div class="col-5"><%= f.label :address, "住所" %></div>
       <div class="col-3"><%= f.text_field :address %></div>
     </div>
 
     <div class="row">
-      <div class="col-3"><%= f.label :telephone_number, "電話番号(ハイフンなし)" %></div>
+      <div class="col-5"><%= f.label :telephone_number, "電話番号(ハイフンなし)" %></div>
       <div class="col-3"><%= f.telephone_field :telephone_number %></div>
     </div>
 
     <div class="row">
-      <div class="col-3"><%= f.label :password, "パスワード(６文字以上)" %></div>
+      <div class="col-5"><%= f.label :password, "パスワード(６文字以上)" %></div>
       <div class="col-5">
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-3"><%= f.label :password_confirmation, "パスワード(確認用)" %></div>
+      <div class="col-5"><%= f.label :password_confirmation, "パスワード(確認用)" %></div>
       <div class="col-5"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
     </div>
 
-    <div class="row">
-      <div class="col-2"><%= f.submit "新規登録", class:"btn btn-success" %></div>
-    </div>
-    <% end %>
   </div>
 
   <div class="row justify-content-center">
-      <div class="col-3">既に登録済の方</div>
-      <div class="col-5"><%= render "public/shared/links" %>からログインしてください</div>
+    <div class="col-2"><%= f.submit "新規登録", class:"btn btn-success" %></div>
+  </div>
+  <% end %>
+  <div class="row justify-content-start m-3">既に登録済の方</div>
+  <div class="row justify-content-center">
+      <a class="col-1 px-0"><%= render "public/shared/links" %></a>
+      <p class="col-3 px-0">からログインしてください</p>
   </div>
 
 </div>
