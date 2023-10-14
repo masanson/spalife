@@ -4,6 +4,16 @@ class Public::EndUsersController < ApplicationController
   end
 
   def edit
+    @end_user =EndUser.find(params[:id])
+  end
+
+  def update
+    @end_user =EndUser.find(params[:id])
+    if @end_user.update(end_user_params)
+      redirect_to public_end_user_path(@end_user.id)
+    else
+      render :edit
+    end
   end
 
   def withdrawal
