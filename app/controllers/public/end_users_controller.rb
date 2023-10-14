@@ -17,6 +17,14 @@ class Public::EndUsersController < ApplicationController
   end
 
   def withdrawal
+    @end_user =EndUser.find(params[:id])
+  end
+  
+  def update_withdrawal
+    @end_user =EndUser.find(params[:id])
+    @end_user.update(is_active: false)
+    reset_session
+    redirect_to root_path
   end
   
   private
