@@ -11,26 +11,31 @@
   </head>
 
   <body>
+    <div class="row">
+      <div class="col-2 justify-content-center bg-dark "><%= render 'layouts/sidebar'%></div>
+      <div class="col-9">
         <header>
-        <div class="container">
-          <div class="row justify-content-center">
-            <h1 class="col-5">
-              <%= link_to root_path do%>
-                SPALIFE
-              <% end %>
-            </h1>
+          <div class="container">
+            <div class="row justify-content-center">
+              <h1 class="col-5">
+                <%= link_to root_path do%>
+                  SPALIFE
+                <% end %>
+              </h1>
+            </div>
           </div>
-        </div>
-    </header>
+        </header>
 
-    <main><%= yield %></main>
+        <main><%= yield %></main>
 
-    <footer>
-      <div class="container mt-5">
-        <div class="row">
-          <div class="mx-auto"></div>
-        </div>
+        <footer>
+          <div class="container mt-5">
+            <div class="row">
+              <div class="mx-auto"></div>
+            </div>
+          </div>
+        </footer>
       </div>
-    </footer>
+    </div>
   </body>
 </html>

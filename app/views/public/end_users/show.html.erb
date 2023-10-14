@@ -5,11 +5,11 @@
   <div class="row justify-content-center m-3">
    <div class="row">
      <div class="col-3">
-       <%= image_tag @end_user.get_user_image(200, 100) %>
+       <%= image_tag @end_user.get_user_image(100, 100) %>
      </div>
      <div class="col-8">
         <p><%= @end_user.user_name %></p>
-        <p><%= @end_user.user_name %></p>
+        <p><%= @end_user.sex_i18n %></p>
         <% if @end_user == current_end_user %>
           <p><%= @end_user.address %></p>
           <p><%= @end_user.postal_code %></p>

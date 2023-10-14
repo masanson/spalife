@@ -21,7 +21,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
       t.integer :sex, null: false
       t.string :postal_code, null: false
       t.string :address, null: false
-      t.string :terephone_number, null: false
+      t.string :telephone_number, null: false
       t.boolean :is_active, null: false, default: true
 
       ## Trackable

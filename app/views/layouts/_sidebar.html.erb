@@ -1,0 +1,28 @@
+<div class="listings">
+  <div class="listings_channels">
+    <h2 class="listings_header col">
+      <%= link_to root_path do%>
+        SPALIFE
+      <% end %>
+    </h2>
+    <ul class="channels_list", style="list-style: none;">
+      <% if admin_signed_in? %>
+        <%= link_to "会員一覧", admin_top_path, class:"btn btn-default" %>
+        <%= link_to "投稿一覧", admin_posts_path, class:"btn btn-default" %>
+        <%= link_to "温泉一覧", admin_hot_springs_path, class:"btn btn-default" %>
+        <%= link_to "投稿ジャンル一覧", admin_genres_path, class:"btn btn-default" %>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-default" %>
+      <% elsif end_user_signed_in? %>
+        <%= link_to "マイページ", public_end_user_path(current_end_user.id), class:"btn btn-default" %>
+        <%= link_to "投稿一覧", public_posts_path, class:"btn btn-default" %>
+        <%= link_to "温泉一覧", public_hot_springs_path, class:"btn btn-default" %>
+        <%= link_to "新規投稿", new_public_post_path, class:"btn btn-default" %>
+        <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class:"btn btn-default" %>
+      <% else %>
+        <li class="col py-1"><%= link_to "About", about_path, class:"nav-link #{active_if('about')} btn btn-info" %></li>
+        <li class="col py-1"><%= link_to "新規登録", new_end_user_registration_path, class:"nav-link #{active_if('public/registrations')} btn btn-primary" %></li>
+        <li class="col py-1"><%= link_to "ログイン", new_end_user_session_path, class:"nav-link #{active_if('public/sessions')} btn btn-success" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
