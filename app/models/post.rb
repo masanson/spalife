@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  belongs_to :
   has_many :notifications, dependent: :destroy
   
   has_one_attached :post_image

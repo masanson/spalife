@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :posts, only:[:index, :show, :destroy]
     resources :hot_springs, only:[:index, :show, :create, :edit, :update, :destroy]
     resources :posts, only:[:index, :edit, :update]
-    resources :genres, only:[:index, :create, :edit, :update, :destroy]
+    resources :genres, only:[:index, :create, :edit, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
