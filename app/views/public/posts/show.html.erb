@@ -1,2 +1,10 @@
 <h1>Public::Posts#show</h1>
 <p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <% if @post.post_image.attached? %>
+    <div class="row"><%= image_tag @post.get_post_image(150, 150) %></div>
+  <% end %>
+  <div class="row"><%= @post.title %></div>
+  <div class="row"><%= @post.genre.name %></div>
+  <div class="row"><%= @post.body %></div>
+</div>

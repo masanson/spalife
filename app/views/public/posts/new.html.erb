@@ -1,2 +1,24 @@
 <h1>Public::Posts#new</h1>
 <p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <h3 class="row">新規投稿</h3>
+  <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+  <div class="row">
+    <div class="col">タイトル</div>
+    <div class="col"><%= f.text_field :title %></div>
+  </div>
+  <div class="row">
+    <div class="col">本文</div>
+    <div class="col"><%= f.text_area :body, class:"form-control item_body" %></div>
+  </div>
+  <div class="row">
+    <div class="col">ジャンル</div>
+    <div class="col"><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), class:"form-control genre_id" %></div>
+  </div>
+  <div class="row">
+    <div class="col">画像</div>
+    <div class="col"><%= f.file_field :post_image, placeholder: "post_image", accept: "image/*", class:"form-control-file item_image" %></div>
+  </div>
+  <div class="row justify-content-center"><%= f.submit '新規登録', class:"btn btn-success" %></div>
+  <% end %>
+</div>

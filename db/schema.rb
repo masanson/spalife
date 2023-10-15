@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2023_10_09_110119) do
     t.integer "genre_id", null: false
     t.integer "hot_spring_id"
     t.string "title", null: false
-    t.text "boby", null: false
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

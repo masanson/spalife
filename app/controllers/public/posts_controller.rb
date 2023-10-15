@@ -1,19 +1,44 @@
 class Public::PostsController < ApplicationController
   def index
+    @posts = Post.all
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    @post.end_user_id = current_end_user.id
+    if @post.save
+      redirect_to public_post_path(@post.id)
+    else
+      render :new
+    end
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+  
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to public_post_path(@post.id)
+    end
+  end
+  
+  def destroy
+    
   end
   
   private
   
   def post_params
-    params.require(:po).permit(:user_image, :last_name, :first_name, :last_name_kana, :first_name_kana, :user_name, :sex, :email, :postal_code, :address, :telephone_number)
+    params.require(:post).permit(:post_image, :title, :body, :end_user_id, :genre_id, :hot_spring_id)
   end
 end
