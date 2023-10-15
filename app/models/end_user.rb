@@ -11,6 +11,22 @@ class EndUser < ApplicationRecord
   
   has_one_attached :user_image
   
+  def name
+    last_name + ' ' + first_name
+  end
+  
+  def name_kana
+    last_name_kana + ' ' + firstt_name_kana
+  end
+  
+  def is_active_status
+    if is_active == true
+      "有効"
+    else
+      "退会"
+    end
+  end
+  
   def get_user_image(width, height)
     unless user_image.attached?
       file_path = Rails.root.join('app/assets/images/user_default_image.jpg')

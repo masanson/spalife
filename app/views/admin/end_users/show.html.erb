@@ -1,2 +1,33 @@
 <h1>Admin::EndUsers#show</h1>
 <p>Find me in app/views/admin/end_users/show.html.erb</p>
+<div class="container">
+  <div class="row m-1">
+     <div class="col-5">
+       <%= image_tag @end_user.get_user_image(200, 200) %>
+     </div>
+     <div class="col-7">
+        <p><%= @end_user.user_name %></p>
+        <p><%= @end_user.sex_i18n %></p>
+        <p><%= @end_user.address %></p>
+        <p><%= @end_user.postal_code %></p>
+        <p><%= @end_user.telephone_number %></p>
+     </div>
+  </div>
+  <div class="row justify-content-center">
+      <%= link_to "マイページ編集", edit_admin_end_user_path, class:"btn btn-success" %>
+  </div>
+  <div class="row">
+    <div class="row">
+      <div class="col">投稿タイトル</div>
+    </div>
+    <div class="row">
+      <% @posts.each do |post| %>
+      <div class="col">
+        <%= link_to public_post_path(post.id) do %>
+          <%= post.title %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
