@@ -7,4 +7,8 @@
   <div class="row"><%= @post.title %></div>
   <div class="row"><%= @post.genre.name %></div>
   <div class="row"><%= @post.body %></div>
+  <div class="row justify-content-between">
+    <div class="col"><%= link_to "編集する", edit_public_post_path(@post.id), class:"btn btn-success" %></div>
+    <div class="col"><%= link_to "削除する", public_post_path(@post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></div>
+  </div>
 </div>
