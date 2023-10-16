@@ -26,9 +26,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get '' => 'homes#top', as: 'top'
     resources :end_users, only:[:show, :edit, :update]
-    resources :posts, only:[:index, :show, :destroy]
     resources :hot_springs, only:[:index, :show, :create, :edit, :update, :destroy]
-    resources :posts, only:[:index, :edit, :update]
+    resources :posts, only:[:index, :show, :edit, :update, :destroy]
     resources :genres, only:[:index, :create, :edit, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

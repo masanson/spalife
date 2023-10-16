@@ -1,2 +1,14 @@
 <h1>Admin::Posts#show</h1>
 <p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <% if @post.post_image.attached? %>
+    <div class="row"><%= image_tag @post.get_post_image(150, 150) %></div>
+  <% end %>
+  <div class="row"><%= @post.title %></div>
+  <div class="row"><%= @post.genre.name %></div>
+  <div class="row"><%= @post.body %></div>
+  <div class="row justify-content-between">
+    <div class="col"><%= link_to "編集する", edit_admin_post_path(@post.id), class:"btn btn-success" %></div>
+    <div class="col"><%= link_to "削除する", admin_post_path(@post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></div>
+  </div>
+</div>
