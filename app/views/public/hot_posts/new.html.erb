@@ -1,6 +1,8 @@
+<h1>Public::HotPosts#new</h1>
+<p>Find me in app/views/public/hot_posts/new.html.erb</p>
 <div class="container">
   <h3 class="row">新規投稿</h3>
-  <%= form_with model: @post, url: admin_post_path, method: :patch do |f| %>
+  <%= form_with model: @hot_post, url: public_hot_posts_path, method: :post do |f| %>
   <div class="row">
     <div class="col">タイトル</div>
     <div class="col"><%= f.text_field :title %></div>
@@ -15,8 +17,8 @@
   </div>
   <div class="row">
     <div class="col">画像</div>
-    <div class="col"><%= f.file_field :post_image, placeholder: "post_image", accept: "image/*", class:"form-control-file item_image" %></div>
+    <div class="col"><%= f.file_field :hot_post_image, placeholder: "hot_post_image", accept: "image/*", class:"form-control-file item_image" %></div>
   </div>
-  <div class="row justify-content-center"><%= f.submit '編集完了', class:"btn btn-success" %></div>
+  <div class="row justify-content-center"><%= f.submit '新規投稿', class:"btn btn-success" %></div>
   <% end %>
 </div>

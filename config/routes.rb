@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   }
   
   namespace :public do
-    resources :posts
+    resources :hot_posts
     resources :hot_springs, only: [:index, :show]
     resource :favorite, only: [:create, :destroy]
     resources :end_users, only: [:show, :edit, :update] do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get '' => 'homes#top', as: 'top'
     resources :end_users, only: [:show, :edit, :update]
     resources :hot_springs, only: [:index, :show, :create, :edit, :update, :destroy]
-    resources :posts, only: [:index, :show, :edit, :update, :destroy]
+    resources :hot_posts, only: [:index, :show, :edit, :update, :destroy]
     resources :genres, only: [:index, :create, :edit, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

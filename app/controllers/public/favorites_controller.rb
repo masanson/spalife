@@ -1,6 +1,6 @@
 class Public::FavoritesController < ApplicationController
   def create
-    post = Post.find(params[:post_id])
+    hot_post = HotPost.find(params[:hot_post_id])
   end
   
   def destroy

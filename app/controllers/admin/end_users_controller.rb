@@ -1,7 +1,7 @@
 class Admin::EndUsersController < ApplicationController
   def show
     @end_user = EndUser.find(params[:id])
-    @posts = @end_user.posts
+    @hot_posts = @end_user.hot_posts
   end
 
   def edit

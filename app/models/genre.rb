@@ -1,3 +1,3 @@
 class Genre < ApplicationRecord
-  has_many :posts, dependent: :destroy
+  has_many :hot_posts, dependent: :destroy
 end

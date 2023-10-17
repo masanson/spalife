@@ -1,6 +1,6 @@
 class Notification < ApplicationRecord
   default_scope -> { order(create_at: :desc) }
-  belongs_to :post, optional: true
+  belongs_to :hot_post, optional: true
   belongs_to :comment, optional: true
   
   belongs_to :visitor, class_name: 'EndUser', foreign_key: 'visitor_id', optional: true

@@ -1,0 +1,12 @@
+<div class="container">
+  <% if @hot_post.hot_post_image.attached? %>
+    <div class="row"><%= image_tag @hot_post.get_hot_post_image(150, 150) %></div>
+  <% end %>
+  <div class="row"><%= @hot_post.title %></div>
+  <div class="row"><%= @hot_post.genre.name %></div>
+  <div class="row"><%= @hot_post.body %></div>
+  <div class="row justify-content-between">
+    <div class="col"><%= link_to "編集する", edit_admin_hot_post_path(@hot_post.id), class:"btn btn-success" %></div>
+    <div class="col"><%= link_to "削除する", admin_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></div>
+  </div>
+</div>

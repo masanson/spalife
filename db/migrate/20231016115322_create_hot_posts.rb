@@ -1,6 +1,6 @@
-class CreatePosts < ActiveRecord::Migration[6.1]
+class CreateHotPosts < ActiveRecord::Migration[6.1]
   def change
-    create_table :posts do |t|
+    create_table :hot_posts do |t|
 
       t.integer :end_user_id, null: false
       t.integer :genre_id, null: false
@@ -11,3 +11,4 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     end
   end
 end
+

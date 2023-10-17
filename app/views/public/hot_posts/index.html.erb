@@ -1,0 +1,20 @@
+<h1>Public::HotPosts#index</h1>
+<p>Find me in app/views/public/hot_posts/index.html.erb</p>
+<div class="container">
+  <div class="row justify-content-between">
+    <h3 class="col">投稿一覧</h3>
+    <div class="col"><%= link_to "新規投稿", new_public_hot_post_path, class:"btn btn-success" %></div>
+  </div>
+  <div class="row">
+    <div class="col">投稿タイトル</div>
+  </div>
+  <div class="row">
+    <% @hot_posts.each do |hot_post| %>
+    <div class="col">
+      <%= link_to public_hot_post_path(hot_post.id) do %>
+        <%= hot_post.title %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
