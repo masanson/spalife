@@ -5,6 +5,7 @@ class Public::HotPostsController < ApplicationController
 
   def show
     @hot_post = HotPost.find(params[:id])
+    @end_user = @hot_post.end_user
   end
 
   def new

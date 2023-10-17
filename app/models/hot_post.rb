@@ -6,9 +6,8 @@ class HotPost < ApplicationRecord
 
   has_one_attached :hot_post_image
   
-  
-  def favorited_by?(end_user)
-    favorite.exist?(end_user_id: end_user.id)
+  def favorited?(end_user)
+    favorites.where(end_user_id: end_user.id).exists?
   end
   
   def get_hot_post_image(width, height)
