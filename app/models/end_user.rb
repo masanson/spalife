@@ -7,6 +7,7 @@ class EndUser < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_many :hot_posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   enum sex: { male: 0, female: 1, not_applicable: 2 }
   

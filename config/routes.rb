@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :hot_posts do
       resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy] 
     end
     resources :hot_springs, only: [:index, :show]
     resources :end_users, only: [:show, :edit, :update] do
