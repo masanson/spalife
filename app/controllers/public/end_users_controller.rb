@@ -2,6 +2,8 @@ class Public::EndUsersController < ApplicationController
   def show
     @end_user =EndUser.find(params[:id])
     @hot_posts = @end_user.hot_posts
+    favorites = Favorite.where(end_user_id: @end_user.id).pluck(:hot_post_id)
+    @favorite_posts = HotPost.find(favorites)
   end
 
   def edit

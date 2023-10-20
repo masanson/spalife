@@ -33,4 +33,18 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="row">
+      <div class="col">いいねした投稿</div>
+    </div>
+    <div class="row">
+      <% @favorite_posts.each do |favorite_post| %>
+      <div class="col">
+        <%= link_to public_hot_post_path(favorite_post.id) do %>
+          <%= favorite_post.title %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
