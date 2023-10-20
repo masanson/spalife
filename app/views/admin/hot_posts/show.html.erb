@@ -9,4 +9,12 @@
     <div class="col"><%= link_to "編集する", edit_admin_hot_post_path(@hot_post.id), class:"btn btn-success" %></div>
     <div class="col"><%= link_to "削除する", admin_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></div>
   </div>
+  <div class="row">
+      <% @comments.each do |comment| %>
+        <%= comment.end_user.user_name %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+        <%= comment.content %>
+        <%= link_to "削除する", admin_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+      <% end %>
+    </div>
 </div>

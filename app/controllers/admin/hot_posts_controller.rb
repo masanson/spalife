@@ -5,6 +5,7 @@ class Admin::HotPostsController < ApplicationController
 
   def show
     @hot_post = HotPost.find(params[:id])
+    @comments =@hot_post.comments
   end
 
   def edit
@@ -14,7 +15,7 @@ class Admin::HotPostsController < ApplicationController
   def update
     @hot_post = HotPost.find(params[:id])
     if @hot_post.update(hot_post_params)
-      redirect_to public_hot_post_path(@hot_post.id)
+      redirect_tadmin_hot_post_path(@hot_post.id)
     else
       render :edit
     end
@@ -23,7 +24,7 @@ class Admin::HotPostsController < ApplicationController
   def destroy
     @hot_post = HotPost.find(params[:id])
     @hot_post.destroy
-    redirect_to public_hot_posts_path
+    redirect_to admin_hot_posts_path
   end
   
   private

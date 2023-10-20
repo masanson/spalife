@@ -30,7 +30,9 @@ Rails.application.routes.draw do
     get '' => 'homes#top', as: 'top'
     resources :end_users, only: [:show, :edit, :update]
     resources :hot_springs, only: [:index, :show, :create, :edit, :update, :destroy]
-    resources :hot_posts, only: [:index, :show, :edit, :update, :destroy]
+    resources :hot_posts, only: [:index, :show, :edit, :update, :destroy] do
+      resources :comments, only: [:destroy]
+    end
     resources :genres, only: [:index, :create, :edit, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

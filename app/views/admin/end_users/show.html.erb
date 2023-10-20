@@ -24,7 +24,7 @@
     <div class="row">
       <% @hot_posts.each do |hot_post| %>
       <div class="col">
-        <%= link_to public_hot_post_path(hot_post.id) do %>
+        <%= link_to admin_hot_post_path(hot_post.id) do %>
           <%= hot_post.title %>
         <% end %>
       </div>
