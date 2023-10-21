@@ -1,6 +1,12 @@
 <h1>Public::HotPosts#index</h1>
 <p>Find me in app/views/public/hot_posts/index.html.erb</p>
 <div class="container">
+  <div class="row">
+    <%= form_with url: public_hot_posts_path, method: :get do |f| %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, { class:"form-control genre_id" } %>
+      <%= f.submit 'ジャンル選択', name: nil, class:"btn btn-success" %>
+    <% end %>
+  </div>
   <div class="row justify-content-between">
     <h3 class="col">投稿一覧</h3>
     <div class="col"><%= link_to "新規投稿", new_public_hot_post_path, class:"btn btn-success" %></div>
