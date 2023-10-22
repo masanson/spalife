@@ -2,6 +2,7 @@ class Public::HotPostsController < ApplicationController
   def index
     @hot_posts = HotPost.all
     @hot_posts = @hot_posts.where(genre_id: params[:genre_id]) if params[:genre_id].present?
+    @hot_posts = @hot_posts.where('title LIKE ?', "%#{params[:search]}%") if params[:search].present?
   end
 
   def show
