@@ -1,8 +1,11 @@
 class Public::CommentsController < ApplicationController
   def create
-    @hot_post = HotPost.find_by(params[:hot_post_id])
     @comment = Comment.new(comment_params)
-    @comment.save
+    @hot_post = @comment.hot_post
+    if @comment.save
+      @hot_post.create_notification_comment!(current_end_user, @comment.id)
+      respond_to :js
+    end
     redirect_to public_hot_post_path(@hot_post.id)
   end
   
