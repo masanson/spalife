@@ -4,7 +4,6 @@ class Public::CommentsController < ApplicationController
     @hot_post = @comment.hot_post
     if @comment.save
       @hot_post.create_notification_comment!(current_end_user, @comment.id)
-      respond_to :js
     end
     redirect_to public_hot_post_path(@hot_post.id)
   end

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy] 
     end
+    resources :notifications, only: [:index]
     resources :hot_springs, only: [:index, :show]
     resources :end_users, only: [:show, :edit, :update] do
       member do

@@ -1,0 +1,34 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="col-6 mx-auto">
+  <div class="form-inline">
+    <span>
+      <%= link_to end_user_path(visitor) do %>
+        <strong><%= visitor.name %></strong>
+      <% end %>
+      <%= 'さんが' %>
+      <% case notification.action %>
+      <% when 'favorite' then %>
+        <%= link_to 'あなたの投稿', notification.hot_post, style:"font-weight: bold;"%>
+        <%= "にいいねしました" %>
+      <% when 'favorite' then %>
+        <% if notification.post.end_user_id == visited.id %>
+          <%= link_to 'あなたの投稿', notification.hot_post, style:"font-weight: bold;"%>
+        <% else %>
+          <span>
+            <%= link_to hot_post_path(visitor) do %>
+              <strong><%= visitor.name %></strong>
+            <% end %>
+          </span>
+        <%= "にコメントしました" %>
+      <% end %>
+      <p class="text-muted.mb-0">
+        <%= Comment.find_by(id: notification.comment_id)%.content %>
+      </p>
+    </span>
+  </div>
+  <div class="small.text-muted.text_right">
+    <%= time_ago_in_words(notification.created_at).upcase %> 
+  </div>
+  <hr>
+</div>
