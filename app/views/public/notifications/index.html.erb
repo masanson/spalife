@@ -4,8 +4,8 @@
   <div class="row">
     <% notifications = @notifications.where.not(visitor_id: current_end_user.id) %>
     <% if notifications.exists? %>
-      <%= render 'public/notifications/notification' %>
-      <%= paginate @notifications %>
+      <%= render notifications %>
+      <%= paginate notifications %>
     <% end %>
   </div>
 </div>

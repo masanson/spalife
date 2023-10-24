@@ -6,7 +6,7 @@ class HotPost < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_one_attached :hot_post_image
-  
+
   def create_notification_favorite!(current_end_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and hot_post_id = ? and action = ?", current_end_user.id, end_user_id, id, 'favorite'])
     if temp.blank?
@@ -21,7 +21,7 @@ class HotPost < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  
+
   def create_notification_comment!(current_end_user, comment_id)
     temp_ids = Comment.select(:end_user_id).where(hot_post_id: id).where.not(end_user_id: current_end_user.id).distinct
     temp_ids.each do |temp_id|
@@ -29,7 +29,7 @@ class HotPost < ApplicationRecord
     end
     save_notification_comment!(current_end_user, comment_id, end_user_id) if temp_ids.blank?
   end
-  
+
   def save_notification_comment!(current_end_user, comment_id, visited_id)
     notification = current_end_user.active_notifications.new(
       hot_post_id: id,
@@ -42,11 +42,11 @@ class HotPost < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-  
+
   def favorited?(end_user)
     favorites.where(end_user_id: end_user.id).exists?
   end
-  
+
   def get_hot_post_image(width, height)
     hot_post_image.variant(resize_to_limit: [width, height]).processed
   end
