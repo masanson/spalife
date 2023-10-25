@@ -17,7 +17,9 @@
      </div>
   </div>
   <div class="row justify-content-center">
+    <% if @end_user.id == current_end_user.id %>
       <%= link_to "マイページ編集", edit_public_end_user_path, class:"btn btn-success" %>
+    <% end %>
   </div>
   <div class="row">
     <div class="row">
