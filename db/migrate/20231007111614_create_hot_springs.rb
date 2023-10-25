@@ -4,7 +4,7 @@ class CreateHotSprings < ActiveRecord::Migration[6.1]
 
       t.integer :prefecture_id, null: false
       t.string :name, null: false
-      t.text :introductiion, null: false
+      t.text :introduction, null: false
       t.string :postal_code, null: false
       t.string :address, null: false
       t.string :telephone_number, null: false
