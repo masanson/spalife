@@ -1,2 +1,20 @@
 <h1>Admin::HotSprings#show</h1>
 <p>Find me in app/views/admin/hot_springs/show.html.erb</p>
+<div class="container">
+  <div class="row m-1">
+     <div class="col-5">
+       <%= image_tag @hot_spring.get_hot_spring_image(200, 200) %>
+     </div>
+     <div class="col-7">
+        <p><%= @hot_spring.name %></p>
+        <p><%= @hot_spring.introduction %></p>
+        <p><%= @hot_spring.postal_code %></p>
+        <p><%= @hot_spring.address_full %></p>
+        <p><%= @hot_spring.telephone_number %></p>
+        <p><%= @hot_spring.access %></p>
+     </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= link_to "温泉地編集", edit_admin_hot_spring_path, class:"btn btn-success" %>
+  </div>
+</div>
