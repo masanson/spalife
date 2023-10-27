@@ -5,7 +5,7 @@ class HotSpring < ApplicationRecord
   has_one_attached :hot_spring_image
   
   def address_full
-    @hot_spring.prefecture.name + '' + address
+    '@hot_spring.find_by(Prefecture.name: :prefecture_id)'+' '+ address
   end
   
   def get_hot_spring_image(width, height)

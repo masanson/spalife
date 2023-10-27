@@ -13,10 +13,10 @@
   </div>
   <div class="row">
     <div class="col">本文</div>
-    <div class="col"><%= f.text_area :introductiion, class:"form-control" %></div>
+    <div class="col"><%= f.text_area :introduction, class:"form-control" %></div>
   </div>
   <div class="row">
-    <div class="col">住民(県名)</div>
+    <div class="col">住所(県名)</div>
     <div class="col"><%= f.select :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name), class:"form-control prefecture_id" %></div>
   </div>
   <div class="row">
@@ -37,11 +37,11 @@
   </div>
   <div class="row justify-content-center"><%= f.submit '新規登録', class:"btn btn-success" %></div>
   <% end %>
-  
+
   <div class="row">
     <% @hot_springs.each do |hot_spring| %>
     <div class="col">
-      <%= link_to public_hot_spring_path(hot_spring.id) do %>
+      <%= link_to admin_hot_spring_path(hot_spring.id) do %>
         <%= hot_spring.name %>
       <% end %>
     </div>
