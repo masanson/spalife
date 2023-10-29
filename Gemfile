@@ -62,3 +62,7 @@ gem 'enum_help'
 gem 'kaminari'
 
 gem 'active_hash'
+
+gem 'geocoder'
+
+gem 'dotenv-rails'

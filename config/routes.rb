@@ -30,7 +30,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get '' => 'homes#top', as: 'top'
     resources :end_users, only: [:show, :edit, :update]
-    resources :hot_springs, only: [:index, :show, :create, :edit, :update, :destroy]
+    resources :hot_springs, only: [:index, :show, :create, :edit, :update, :destroy] do
+      member do
+        get 'map', as: 'admin_map_request'
+      end
+    end
     resources :hot_posts, only: [:index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:destroy]
     end

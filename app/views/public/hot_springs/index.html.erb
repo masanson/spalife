@@ -1,22 +1,2 @@
 <h1>Public::HotSprings#index</h1>
 <p>Find me in app/views/public/hot_springs/index.html.erb</p>
-
-
-  <div class="row" id='map'></div>
-  <style>
-    #map{
-      width: 300px;
-      height: 300px;
-    }
-  </style>
-
-  <script>
-    function initMap(){
-      let map = new google.maps.Map(document.getElementById('map'),{
-      center: {lat: 35, lng: 135},
-      zoom: 10
-      });
-    }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQG3wxh6TsoG62gAzFCEEXh0OXhZwVTXw&callback=initMap" async defer></script>
-

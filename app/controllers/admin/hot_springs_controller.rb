@@ -15,6 +15,9 @@ class Admin::HotSpringsController < ApplicationController
 
   def show
     @hot_spring = HotSpring.find(params[:id])
+    search_address = (@hot_spring.address_full).gsub(/[\d-]+/, '')
+    results = Geocoder.search(search_address)
+    @latlng = results.first.coordinates
   end
 
   def edit

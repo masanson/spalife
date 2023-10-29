@@ -23,14 +23,16 @@
   </style>
 
   <script>
+    console.log(<%= @latlng %>)
+
     function initMap(){
-      let map = new google.maps.Map(document.getElementById('map'),{
-      center: {lat: 35, lng: 135},
-      zoom: 10
+      mapInstance = new google.maps.Map(document.getElementById('map'),{
+      center: {lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %> },
+      zoom: 18
       });
     }
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQG3wxh6TsoG62gAzFCEEXh0OXhZwVTXw&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLEMAP']%>&callback=initMap" async defer></script>
   <div class="row justify-content-center">
     <%= link_to "温泉地編集", edit_admin_hot_spring_path, class:"btn btn-success" %>
   </div>
