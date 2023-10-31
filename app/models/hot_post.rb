@@ -5,6 +5,8 @@ class HotPost < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  enum status: { published: 0, draft: 1, unpublished: 2 }
+
   has_one_attached :hot_post_image
 
   def create_notification_favorite!(current_end_user)

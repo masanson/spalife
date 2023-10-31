@@ -7,6 +7,7 @@ class CreateHotPosts < ActiveRecord::Migration[6.1]
       t.integer :hot_spring_id
       t.string :title, null: false
       t.text :body, null: false
+      t.integer :status, default: 0, null:false
       t.timestamps
     end
   end

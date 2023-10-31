@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2023_10_16_115322) do
     t.integer "hot_spring_id"
     t.string "title", null: false
     t.text "body", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
