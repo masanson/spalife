@@ -18,10 +18,25 @@ class Public::HotPostsController < ApplicationController
 
   def create
     @hot_post = HotPost.new(hot_post_params)
+    @end_user = current_end_user
     @hot_post.end_user_id = current_end_user.id
-    if @hot_post.save
-      redirect_to public_hot_post_path(@hot_post.id)
+    
+    if params[:draft].present?
+      @hot_post.status = :draft
     else
+      @hot_post.status = :published
+    end
+    
+    if @hot_post.save
+      if @hot_post.draft?
+        flash[:notice] = "下書きが保存されました"
+        redirect_to public_end_user_path(@end_user.id)
+      else
+        flash[:notice] = "投稿に成功しました！"
+        redirect_to public_hot_post_path(@hot_post.id)
+      end
+    else
+      flash.now[:alert] = "投稿・保存が失敗しました"
       render :new
     end
   end
@@ -31,10 +46,29 @@ class Public::HotPostsController < ApplicationController
   end
   
   def update
+    @end_user = current_end_user
     @hot_post = HotPost.find(params[:id])
-    if @hot_post.update(hot_post_params)
-      redirect_to public_hot_post_path(@hot_post.id)
+    @hot_post.assign_attributes(hot_post_params)
+    
+    if params[:draft].present?
+      @hot_post.status = :draft
+      notice_message = "下書きが保存されました"
+      redirect_path = public_end_user_path(@end_user.id)
+    elsif params[:unpublished].present?
+      @hot_post.status = :unpublished
+      notice_message = "投稿を非公開にしました"
+      redirect_path = public_end_user_path(@end_user.id)
     else
+      @hot_post.status = :published
+      notice_message = "投稿を公開しました！"
+      redirect_path = public_hot_post_path(@hot_post.id)
+    end
+    
+    if @hot_post.update(hot_post_params)
+      flash[:notice] = notice_message
+      redirect_to redirect_path
+    else
+      flash.now[:alert] = "投稿の更新が失敗しました"
       render :edit
     end
   end
@@ -48,6 +82,6 @@ class Public::HotPostsController < ApplicationController
   private
   
   def hot_post_params
-    params.require(:hot_post).permit(:hot_post_image, :title, :body, :end_user_id, :genre_id, :hot_spring_id)
+    params.require(:hot_post).permit(:hot_post_image, :title, :body, :status, :end_user_id, :genre_id, :hot_spring_id)
   end
 end

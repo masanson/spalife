@@ -17,11 +17,15 @@
         <header>
           <div class="container">
             <div class="row justify-content-center">
-              <h1 class="col-5">
+              <h1 class="col-4">
                 <%= link_to root_path do %>
                   SPALIFE
                 <% end %>
               </h1>
+              <p>
+                <%= flash[:notice] %>
+                <%= flash.now[:alert] %>
+              </p>
             </div>
           </div>
         </header>
