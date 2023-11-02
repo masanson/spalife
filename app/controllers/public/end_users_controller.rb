@@ -4,6 +4,7 @@ class Public::EndUsersController < ApplicationController
     @hot_posts = @end_user.hot_posts
     favorites = Favorite.where(end_user_id: @end_user.id).pluck(:hot_post_id)
     @favorite_posts = HotPost.find(favorites)
+    # @draft_posts = HotPost.find_by(status: "draft")
   end
 
   def edit

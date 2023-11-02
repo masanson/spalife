@@ -1,6 +1,6 @@
 class Public::HotPostsController < ApplicationController
   def index
-    @hot_posts = HotPost.all
+    @hot_posts = HotPost.published.order(created_at: :desc).page(params[:page]).per(5)
     @hot_posts = @hot_posts.where(genre_id: params[:genre_id]) if params[:genre_id].present?
     @hot_posts = @hot_posts.where('title LIKE ?', "%#{params[:search]}%") if params[:search].present?
   end
@@ -28,7 +28,7 @@ class Public::HotPostsController < ApplicationController
     end
     
     if @hot_post.save
-      if @hot_post.draft?
+      if @hot_post.status = "draft"
         flash[:notice] = "下書きが保存されました"
         redirect_to public_end_user_path(@end_user.id)
       else

@@ -19,6 +19,24 @@
     <div class="col">画像</div>
     <div class="col"><%= f.file_field :hot_post_image, placeholder: "hot_post_image", accept: "image/*", class:"form-control-file" %></div>
   </div>
-  <div class="row justify-content-center"><%= f.submit '新規投稿', class:"btn btn-success" %></div>
+
+  <div class="row">
+    <div class="col">
+      <%= f.radio_button :status, HotPost.statuses.key(0), {:checked => true} %>
+      <%= f.label :status, "公開" %>
+    </div>
+    <div class="col">
+      <%= f.radio_button :status, HotPost.statuses.key(1) %>
+      <%= f.label :status, "下書き保存" %>
+    </div>
+    <div class="col">
+      <%= f.radio_button :status, HotPost.statuses.key(2) %>
+      <%= f.label :status, "非公開" %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col"><%= f.submit '新規投稿/保存', class:"btn btn-success" %></div>
+  </div>
   <% end %>
 </div>
