@@ -5,6 +5,9 @@ class HotPost < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :title, presence: { message: "タイトルが無記入です。" }
+  validates :body, presence: { message: "本文が無記入です。" }
+
   enum status: { published: 0, draft: 1, unpublished: 2 }
 
   has_one_attached :hot_post_image

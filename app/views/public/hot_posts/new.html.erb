@@ -1,6 +1,16 @@
 <h1>Public::HotPosts#new</h1>
 <p>Find me in app/views/public/hot_posts/new.html.erb</p>
 <div class="container">
+  <div class="row">
+    <% if @hot_post.errors.any? %>
+      <%= @hot_post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @hot_post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
   <h3 class="row">新規投稿</h3>
   <%= form_with model: @hot_post, url: public_hot_posts_path, method: :post do |f| %>
   <div class="row">
@@ -36,7 +46,10 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col"><%= f.submit '新規投稿/保存', class:"btn btn-success" %></div>
+    <div class="col">
+      <%= f.hidden_field :status, :value => @hot_post.status %>
+      <%= f.submit '新規投稿/保存', class:"btn btn-success" %>
+    </div>
   </div>
   <% end %>
 </div>

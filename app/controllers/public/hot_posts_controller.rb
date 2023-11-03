@@ -21,18 +21,21 @@ class Public::HotPostsController < ApplicationController
     @end_user = current_end_user
     @hot_post.end_user_id = current_end_user.id
     
-    if params[:draft].present?
-      @hot_post.status = :draft
-    else
-      @hot_post.status = :published
-    end
+    # if params[:status].present?
+    #   @hot_post.status = :draft
+    # else
+    #   @hot_post.status = :published
+    # end
     
     if @hot_post.save
       if @hot_post.status = "draft"
         flash[:notice] = "下書きが保存されました"
         redirect_to public_end_user_path(@end_user.id)
+      elsif @hot_post.status = "unpublished"
+        flash[:notice] = "非公開の投稿を作成しました"
+        redirect_to public_end_user_path(@end_user.id)
       else
-        flash[:notice] = "投稿に成功しました！"
+        flash[:notice] = "投稿が成功しました！"
         redirect_to public_hot_post_path(@hot_post.id)
       end
     else
@@ -48,18 +51,15 @@ class Public::HotPostsController < ApplicationController
   def update
     @end_user = current_end_user
     @hot_post = HotPost.find(params[:id])
-    @hot_post.assign_attributes(hot_post_params)
+    # @hot_post.assign_attributes(hot_post_params)
     
-    if params[:draft].present?
-      @hot_post.status = :draft
+    if @hot_post.status = "draft"
       notice_message = "下書きが保存されました"
       redirect_path = public_end_user_path(@end_user.id)
-    elsif params[:unpublished].present?
-      @hot_post.status = :unpublished
+    elsif @hot_post.status = "unpublished"
       notice_message = "投稿を非公開にしました"
       redirect_path = public_end_user_path(@end_user.id)
     else
-      @hot_post.status = :published
       notice_message = "投稿を公開しました！"
       redirect_path = public_hot_post_path(@hot_post.id)
     end

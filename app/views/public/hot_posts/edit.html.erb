@@ -26,11 +26,18 @@
       <%= f.label :status, "公開" %>
     </div>
     <div class="col">
+      <%= f.radio_button :status, HotPost.statuses.key(1) %>
+      <%= f.label :status, "下書き保存" %>
+    </div>
+    <div class="col">
       <%= f.radio_button :status, HotPost.statuses.key(2) %>
       <%= f.label :status, "非公開" %>
     </div>
   </div>
   
-  <div class="row justify-content-center"><%= f.submit '編集完了', class:"btn btn-success" %></div>
+  <div class="row justify-content-center">
+    <%= f.hidden_field :status, :value => @hot_post.status %>
+    <%= f.submit '編集完了', class:"btn btn-success" %>
+  </div>
   <% end %>
 </div>
