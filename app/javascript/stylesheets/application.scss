@@ -1,1 +1,18 @@
 @use '~bootstrap/scss/bootstrap';
+
+.notification-icon {
+  position: relative;
+  
+  &__image {
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+  &__text {
+    top: 1;
+    left: 4;
+    position: absolute;
+    font-size: 60%;
+  }
+}
+
