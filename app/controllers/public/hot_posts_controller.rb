@@ -20,18 +20,11 @@ class Public::HotPostsController < ApplicationController
     @hot_post = HotPost.new(hot_post_params)
     @end_user = current_end_user
     @hot_post.end_user_id = current_end_user.id
-    
-    # if params[:status].present?
-    #   @hot_post.status = :draft
-    # else
-    #   @hot_post.status = :published
-    # end
-    
     if @hot_post.save
-      if @hot_post.status = "draft"
+      if @hot_post.status == "draft"
         flash[:notice] = "下書きが保存されました"
         redirect_to public_end_user_path(@end_user.id)
-      elsif @hot_post.status = "unpublished"
+      elsif @hot_post.status == "unpublished"
         flash[:notice] = "非公開の投稿を作成しました"
         redirect_to public_end_user_path(@end_user.id)
       else
@@ -51,20 +44,17 @@ class Public::HotPostsController < ApplicationController
   def update
     @end_user = current_end_user
     @hot_post = HotPost.find(params[:id])
-    # @hot_post.assign_attributes(hot_post_params)
-    
-    if @hot_post.status = "draft"
-      notice_message = "下書きが保存されました"
-      redirect_path = public_end_user_path(@end_user.id)
-    elsif @hot_post.status = "unpublished"
-      notice_message = "投稿を非公開にしました"
-      redirect_path = public_end_user_path(@end_user.id)
-    else
-      notice_message = "投稿を公開しました！"
-      redirect_path = public_hot_post_path(@hot_post.id)
-    end
-    
     if @hot_post.update(hot_post_params)
+      if @hot_post.status =="draft"
+        notice_message = "下書きが保存されました"
+        redirect_path = public_end_user_path(@end_user.id)
+      elsif @hot_post.status == "unpublished"
+        notice_message = "投稿を非公開にしました"
+        redirect_path = public_end_user_path(@end_user.id)
+      else
+        notice_message = "投稿を公開しました！"
+        redirect_path = public_hot_post_path(@hot_post.id)
+      end
       flash[:notice] = notice_message
       redirect_to redirect_path
     else
@@ -72,15 +62,15 @@ class Public::HotPostsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @hot_post = HotPost.find(params[:id])
     @hot_post.destroy
     redirect_to public_hot_posts_path
   end
-  
+
   private
-  
+
   def hot_post_params
     params.require(:hot_post).permit(:hot_post_image, :title, :body, :status, :end_user_id, :genre_id, :hot_spring_id)
   end
