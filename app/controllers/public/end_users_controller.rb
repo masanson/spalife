@@ -2,9 +2,11 @@ class Public::EndUsersController < ApplicationController
   def show
     @end_user =EndUser.find(params[:id])
     @hot_posts = @end_user.hot_posts
+    @published_posts =@hot_posts.where(status: "published")
+    @draft_posts = @hot_posts.where(status: "draft")
+    @unpublished_posts = @hot_posts.where(status: "unpublished")
     favorites = Favorite.where(end_user_id: @end_user.id).pluck(:hot_post_id)
     @favorite_posts = HotPost.find(favorites)
-    # @draft_posts = HotPost.find_by(status: "draft")
   end
 
   def edit
