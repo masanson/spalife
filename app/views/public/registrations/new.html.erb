@@ -1,16 +1,16 @@
 <div class="container">
-  <div class="row justify-content-center p-0 m-5">
+  <div class="row justify-content-center d-md-flex p-md-0 m-md-1">
     <%= form_with model: @end_user, url: end_user_registration_path do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
       <div class="row">
-        <div class="col-2 px-0 py-2">氏名</div>
-        <div class="col-5 px-0 py-2">(姓)<%= f.text_field :last_name %></div>
-        <div class="col-5 px-0 py-2">(名)<%= f.text_field :first_name %></div>
+        <div class="col-md-2 px-0 py-2">氏名</div>
+        <div class="col-md-5 px-0 py-2">(姓)<%= f.text_field :last_name %></div>
+        <div class="col-md-5 px-0 py-2">(名)<%= f.text_field :first_name %></div>
       </div>
       <div class="row">
-        <div class="col-2 px-0">フリガナ</div>
-        <div class="col-5 px-0">(セイ)<%= f.text_field :last_name_kana %></div>
-        <div class="col-5 px-0">(メイ)<%= f.text_field :first_name_kana %></div>
+        <div class="col-md-2 px-0 py-2">フリガナ</div>
+        <div class="col-md-5 px-0 py-2">(ｾｲ)<%= f.text_field :last_name_kana %></div>
+        <div class="col-md-5 px-0 py-2">(ﾒｲ)<%= f.text_field :first_name_kana %></div>
       </div>
       <div class="row py-2">
         <div class="col-5"><%= f.label :user_name, "ユーザー名" %></div>

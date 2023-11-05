@@ -1,5 +1,5 @@
 <div class="pos-f-t">
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark bg-dark justify-content-center">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,9 +32,9 @@
         <li class="col py-1"><%= link_to "新規投稿", new_public_hot_post_path, class:"nav-link #{active_if('public/hot_posts')} btn btn-success" %></li>
         <li class="col py-1"><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class:"nav-link #{active_if('public/sessions')} btn btn-danger" %></li>
       <% else %>
-        <li class="col py-1"><%= link_to "About", about_path, class:"nav-link #{active_if('about')} btn btn-info" %></li>
-        <li class="col py-1"><%= link_to "新規登録", new_end_user_registration_path, class:"nav-link #{active_if('public/registrations')} btn btn-primary" %></li>
-        <li class="col py-1"><%= link_to "ログイン", new_end_user_session_path, class:"nav-link #{active_if('public/sessions')} btn btn-success" %></li>
+        <li class="col-md py-1"><%= link_to "About", about_path, class:"nav-link #{active_if('about')} btn btn-info" %></li>
+        <li class="col-md py-1"><%= link_to "新規登録", new_end_user_registration_path, class:"nav-link #{active_if('public/registrations')} btn btn-primary" %></li>
+        <li class="col-md py-1"><%= link_to "ログイン", new_end_user_session_path, class:"nav-link #{active_if('public/sessions')} btn btn-success" %></li>
       <% end %>
     </ul>
     </div>

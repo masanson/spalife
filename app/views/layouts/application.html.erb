@@ -13,12 +13,12 @@
 
   <body>
     <div class="row">
-      <div class="col-2 justify-content-center bg-dark "><%= render 'layouts/sidebar'%></div>
-      <div class="col-9">
+      <div class="col-md-2 justify-content-center bg-dark p-md-1"><%= render 'layouts/sidebar'%></div>
+      <div class="col-md-10 p-md-0">
         <header>
           <div class="container">
             <div class="row justify-content-center">
-              <h1 class="col-4">
+              <h1 class="col-md-4">
                 <%= link_to root_path do %>
                   SPALIFE
                 <% end %>
@@ -33,14 +33,12 @@
 
         <main><%= yield %></main>
 
-        <footer>
-          <div class="container mt-5">
-            <div class="row p-md-">
-              <div class="mx-auto"></div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
+    <footer class="row bg-secondary">
+      <div class="container mt-4 color:#fafad2;">
+        <div class="row p-md-3"></div>
+      </div>
+    </footer>
   </body>
 </html>
