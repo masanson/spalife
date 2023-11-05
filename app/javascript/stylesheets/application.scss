@@ -2,15 +2,15 @@
 
 .notification-icon {
   position: relative;
-  
+
   &__image {
-    top: 0;
-    left: 0;
+    top: 12px;
+    left: 4px;
     position: absolute;
   }
   &__text {
-    top: 1;
-    left: 4;
+    top: 15px;
+    left: 7px;
     position: absolute;
     font-size: 60%;
   }

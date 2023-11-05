@@ -1,11 +1,15 @@
-<div class="listings">
-  <div class="listings_channels">
-    <h2 class="listings_header col">
-      <%= link_to root_path do%>
-        SPALIFE
-      <% end %>
-    </h2>
-    <ul class="channels_list", style="list-style: none;">
+<div class="pos-f-t">
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark">
+    <%= link_to root_path do%>
+      <h2 class="listings_header col">SPALIFE</h2>
+    <% end %>
+    <ul class="channels_lis p-md-2", style="list-style: none;">
       <% if admin_signed_in? %>
         <li class="col py-1"><%= link_to "会員一覧", admin_top_path, class:"nav-link #{active_if('admin/top')} btn btn-info" %></li>
         <li class="col py-1"><%= link_to "投稿一覧", admin_hot_posts_path, class:"nav-link #{active_if('admin/hot_posts')} btn btn-info" %></li>
@@ -17,14 +21,12 @@
         <li class="col py-1"><%= link_to "投稿一覧", public_hot_posts_path, class:"nav-link #{active_if('public/hot_posts')} btn btn-info" %></li>
         <li class="col py-1"><%= link_to "温泉一覧", public_hot_springs_path, class:"nav-link #{active_if('public/hot_springs')} btn btn-info" %></li>
         <li class="col py-1">
-          <%= link_to public_notifications_path, class:"nav-link #{active_if('public/notifications')} btn btn-info" do %>
-            <span>通知一覧</span>
+          <%= link_to public_notifications_path, class:"notification-icon nav-link #{active_if('public/notifications')} btn btn-info" do %>
             <% if current_end_user.passive_notifications.where(checked: false).exists? %>
-              <span class="notification-icon">
-                <i class="notification-icon__image fa-solid fa-clipboard" style="color: #f1f524;"></i>
-                <span class="notification-icon__text"><%= current_end_user.passive_notifications.where(checked: false).count %></span>
-              </span>
+              <i class="notification-icon__image fa-solid fa-clipboard" style="color: #ffa500;"></i>
+              <span class="notification-icon__text"><%= current_end_user.passive_notifications.where(checked: false).count %></span>
             <% end %>
+            <span>通知一覧</span>
           <% end %>
         </li>
         <li class="col py-1"><%= link_to "新規投稿", new_public_hot_post_path, class:"nav-link #{active_if('public/hot_posts')} btn btn-success" %></li>
@@ -35,5 +37,6 @@
         <li class="col py-1"><%= link_to "ログイン", new_end_user_session_path, class:"nav-link #{active_if('public/sessions')} btn btn-success" %></li>
       <% end %>
     </ul>
+    </div>
   </div>
 </div>
