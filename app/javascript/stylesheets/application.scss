@@ -1,5 +1,17 @@
 @use '~bootstrap/scss/bootstrap';
 @use 'registration.scss';
+@use 'session.scss';
+@use 'end_user.scss';
+@use 'hot_post.scss';
+@use 'hot_spring.scss';
+
+.main{
+  height: 600px;
+}
+
+.sidebar_field{
+  height: 100%;
+}
 
 .notification-icon {
   position: relative;

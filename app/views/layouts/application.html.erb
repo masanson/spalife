@@ -13,7 +13,7 @@
 
   <body>
     <div class="row">
-      <div class="col-md-2 justify-content-center bg-dark p-md-1"><%= render 'layouts/sidebar'%></div>
+      <div class="col-md-auto justify-content-center p-md-1"><%= render 'layouts/sidebar'%></div>
       <div class="col-md-10 p-md-0">
         <header>
           <div class="container">
@@ -31,7 +31,7 @@
           </div>
         </header>
 
-        <main><%= yield %></main>
+        <main class="main"><%= yield %></main>
 
       </div>
     </div>
