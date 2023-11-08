@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row justify-contents-center">
+  <div class="row justify-content-center py-md-5">
     <h2 class="bg-light text-dark">ログイン</h2>
   </div>
   <%= form_with model: @end_user, url: end_user_session_path, class:"session_form" do |f| %>
@@ -21,7 +21,7 @@
       <div class="col-md-auto"><%= f.submit "ログイン", class:"btn btn-success" %></div>
     </div>
   <% end %>
-  <div class="row justify-content-center my-3">既に登録済の方</div>
+  <h4 class="row justify-content-center my-md-3">既に登録済の方</h4>
   <div class="row justify-content-center">
       <a class="col-md-auto px-0"><%= render "public/shared/links" %></a>
       <p class="col-md-auto px-0">からログインしてください</p>

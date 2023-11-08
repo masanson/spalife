@@ -1,37 +1,14 @@
-<div class="mt-auto">
-  <div class="listings_channels">
-    <h2 class="listings_header col">
-      <%= link_to root_path do%>
-        SPALIFE
-      <% end %>
-    </h2>
-    <ul class="channels_list", style="list-style: none;">
-      <% if admin_signed_in? %>
-        <li class="col py-1"><%= link_to "会員一覧", admin_top_path, class:"nav-link #{active_if('admin/top')} btn btn-info" %></li>
-        <li class="col py-1"><%= link_to "投稿一覧", admin_hot_posts_path, class:"nav-link #{active_if('admin/hot_posts')} btn btn-info" %></li>
-        <li class="col py-1"><%= link_to "温泉一覧", admin_hot_springs_path, class:"nav-link #{active_if('admin/hot_springs')} btn btn-info" %></li>
-        <li class="col py-1"><%= link_to "投稿ジャンル一覧", admin_genres_path, class:"nav-link #{active_if('admin/genres')} btn btn-info" %></li>
-        <li class="col py-1"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link #{active_if('admin/sessions')} btn btn-danger" %></li>
-      <% elsif end_user_signed_in? %>
-        <li class="col py-1"><%= link_to "マイページ", public_end_user_path(current_end_user.id), class:"nav-link #{active_if('public/posts')} btn btn-light" %></li>
-        <li class="col py-1"><%= link_to "投稿一覧", public_hot_posts_path, class:"nav-link #{active_if('public/hot_posts')} btn btn-info" %></li>
-        <li class="col py-1"><%= link_to "温泉一覧", public_hot_springs_path, class:"nav-link #{active_if('public/hot_springs')} btn btn-info" %></li>
-        <li class="col py-1">
-          <%= link_to public_notifications_path, class:"notification-icon nav-link #{active_if('public/notifications')} btn btn-info" do %>
-            <% if current_end_user.passive_notifications.where(checked: false).exists? %>
-              <i class="notification-icon__image fa-solid fa-clipboard" style="color: #ffa500;"></i>
-              <span class="notification-icon__text"><%= current_end_user.passive_notifications.where(checked: false).count %></span>
-            <% end %>
-            <span>通知一覧</span>
-          <% end %>
-        </li>
-        <li class="col py-1"><%= link_to "新規投稿", new_public_hot_post_path, class:"nav-link #{active_if('public/hot_posts')} btn btn-success" %></li>
-        <li class="col py-1"><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class:"nav-link #{active_if('public/sessions')} btn btn-danger" %></li>
-      <% else %>
-        <li class="col py-1"><%= link_to "About", about_path, class:"nav-link #{active_if('about')} btn btn-info" %></li>
-        <li class="col py-1"><%= link_to "新規登録", new_end_user_registration_path, class:"nav-link #{active_if('public/registrations')} btn btn-primary" %></li>
-        <li class="col py-1"><%= link_to "ログイン", new_end_user_session_path, class:"nav-link #{active_if('public/sessions')} btn btn-success" %></li>
-      <% end %>
-    </ul>
+<div class="container">
+  <div class="row m-md-5 justify-content-center">
+    <div class="col-md-8 my-md-2">
+      <h1 class="row justify-content-center">SPALIFE</h1>
+      <div class="row m-md-4 justify-content-center">
+        <p>SPALIFEは温泉好きが情報を共有し合うコミュニティサイトです。</p></br>
+        <p>あなたの知ってる温泉を語ってみませんか？</p></br>
+        <p></p></br>
+        <p></p></br>
+        <p></p>
+      </div>
+    </div>
   </div>
 </div>

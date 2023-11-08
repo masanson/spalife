@@ -23,9 +23,17 @@
   <div class="row">
     <% @hot_posts.each do |hot_post| %>
     <div class="col">
-      <%= link_to public_hot_post_path(hot_post.id) do %>
-        <%= hot_post.title %>
-      <% end %>
+      <div>
+        <%= link_to public_hot_post_path(hot_post.id) do %>
+          <%= hot_post.title %>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to public_end_user_path(hot_post.end_user.id) do%>
+          <%= hot_post.end_user.user_name %>
+        <% end %>
+      </div>
+      <div><%= hot_post.genre.name %></div>
     </div>
     <% end %>
   </div>
