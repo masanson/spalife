@@ -42,4 +42,15 @@
       <%= f.submit 'コメントする', class:"btn btn-success" %>
     <% end %>
   </div>
+  
+  <div class="row justify-content-center">
+    <h4 class="col-md-10 d-block p-2 bg-primary text-white border border-dark" style="margin-bottom: 0px;"><%= @hot_post.title %></h4>
+    <% if @hot_post.hot_post_image.attached? %>
+      <div class="col-md-10 d-block border border-dark"><%= image_tag @hot_post.get_hot_post_image(150, 150) %></div>
+    <% end %>
+    <p class=" col-md-10 d-block p-2 bg-dark text-white border border-dark"><%= @hot_post.body %></p>
+  </div>
+  
 </div>
+
+

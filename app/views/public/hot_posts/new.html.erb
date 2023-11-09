@@ -26,6 +26,10 @@
     <div class="col"><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), class:"form-control genre_id" %></div>
   </div>
   <div class="row">
+    <div class="col">投稿に関連する温泉地</div>
+    <div class="col"><%= f.collection_select :hot_spring_id, HotSpring.all, :id, :name, { prompt: '選択してください' }, { class:"form-control hot_spring_id" } %></div>
+  </div>
+  <div class="row">
     <div class="col">画像</div>
     <div class="col"><%= f.file_field :hot_post_image, placeholder: "hot_post_image", accept: "image/*", class:"form-control-file" %></div>
   </div>
