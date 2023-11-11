@@ -1,58 +1,70 @@
-<h1>Public::HotPosts#show</h1>
-<p>Find me in app/views/public/hot_posts/show.html.erb</p>
 <div class="container">
-  <div class="row justify-content-center post_item">
-    <h4 class="col-md-8 d-block p-2 post_item__head border border-dark" style="margin-bottom: 0px;"><%= @hot_post.title %></h4>
-    <% if @hot_post.hot_post_image.attached? %>
-      <div class="col-md-8 d-block post_item__image border border-dark"><%= image_tag @hot_post.get_hot_post_image(700, 300) %></div>
-    <% end %>
-    <p class="col-md-8 d-block p-2 post_item__body border border-dark"><%= @hot_post.body %></p>
-    <p class="col-md-8 d-block post_item__body2"><%= @hot_post.genre.name %></p>
-    <% if @hot_post.hot_spring_id %>
-      <a class="col-md-8 d-block post_item__body2"><%= @hot_post.hot_spring_id.name %></a>
-    <% end %>
-    <div class="col-md-8 d-block post_item__body2">
-      <% if @hot_post.favorited?(current_end_user) %>
-        <%= link_to public_hot_post_favorites_path(@hot_post.id), method: :delete do %>
-          <span style="color:red;">♥<%= @hot_post.favorites.count %></span>
-        <% end%>
-      <% else %>
-        <%= link_to public_hot_post_favorites_path(@hot_post.id), method: :post do %>
-          <span>♥<%= @hot_post.favorites.count %></span>
-        <% end%>
+  <div class="row">
+    <div class="col-md-7 post_item">
+      <h4 class="d-block p-2 post_item__head" style="margin-bottom: 0px;"><%= @hot_post.title %></h4>
+      <% if @hot_post.hot_post_image.attached? %>
+        <div class="d-block post_item__image"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
+      <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
+      <p class="d-block post_item__body2">ジャンル <%= @hot_post.genre.name %></p>
+      <% if @hot_post.hot_spring_id %>
+        <a class="d-block post_item__body2"><%= @hot_post.hot_spring_id.name %></a>
+      <% end %>
+      <div class="d-block post_item__body2">
+        <% if @hot_post.favorited?(current_end_user) %>
+          <%= link_to public_hot_post_favorites_path(@hot_post.id), method: :delete do %>
+            <span style="color:red;">♥<%= @hot_post.favorites.count %></span>
+          <% end%>
+        <% else %>
+          <%= link_to public_hot_post_favorites_path(@hot_post.id), method: :post do %>
+            <span>♥<%= @hot_post.favorites.count %></span>
+          <% end%>
+        <% end %>
+      </div>
+      <div class="d-block justify-content-around">
+        <% if @end_user == current_end_user %>
+          <%= link_to "編集する", edit_public_hot_post_path(@hot_post.id), class:"btn btn-success" %>
+          <%= link_to "削除する", public_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <h5 class="col-md-7">コメントフォーム</h5>
+        <%= form_with model: [@hot_post, @comment], url: public_hot_post_comments_path(@hot_post.id) do |f| %>
+          <div class="col-md-auto py-2"><%= f.text_area :content, class:"form-control comment_content" %></div>
+          <%= f.hidden_field :hot_post_id, :value => @hot_post.id %>
+          <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
+          <div class="col-md-7"><%= f.submit 'コメントする', class:"btn btn-success" %></div>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <% @comments.each do |comment| %>
+          <div class="col-md-auto">
+            <div class="d-block my-2 border-top border-dark">
+              <%= comment.end_user.user_name %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <% if comment.end_user == current_end_user %>
+                <%= link_to "削除する", public_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+              <% end%>
+            </div>
+            <div class="d-block my-1 border-bottom border-dark">
+              <%= comment.content %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="row justify-content-between">
-    <% if @end_user == current_end_user %>
-      <div class="col"><%= link_to "編集する", edit_public_hot_post_path(@hot_post.id), class:"btn btn-success" %></div>
-      <div class="col"><%= link_to "削除する", public_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></div>
-    <% end %>
-  </div>
-  
-  
-  <div class="row">
-    <% @comments.each do |comment| %>
-      <%= comment.end_user.user_name %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %>
-      <%= comment.content %>
-      <% if comment.end_user == current_end_user %>
-        <%= link_to "削除する", public_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
-      <% end%>
-    <% end %>
-  </div>
-  
-  <div class="row">
-    <%= form_with model: [@hot_post, @comment], url: public_hot_post_comments_path(@hot_post.id) do |f| %>
-      <%= f.text_area :content, class:"form-control comment_content" %>
-      <%= f.hidden_field :hot_post_id, :value => @hot_post.id %>
-      <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
-      <%= f.submit 'コメントする', class:"btn btn-success" %>
-    <% end %>
-  </div>
 
- 
-  
+
+
+
+
+
+
+
 </div>
 
 
