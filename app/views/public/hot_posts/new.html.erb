@@ -1,58 +1,54 @@
-<h1>Public::HotPosts#new</h1>
-<p>Find me in app/views/public/hot_posts/new.html.erb</p>
 <div class="container">
-  <div class="row">
+  <div class="row d-flex flex-column">
     <% if @hot_post.errors.any? %>
-      <%= @hot_post.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @hot_post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+      <p class="p-0"><%= @hot_post.errors.count %>件のエラーが発生しました。</p>
+      <% @hot_post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     <% end %>
   </div>
   <h3 class="row">新規投稿</h3>
   <%= form_with model: @hot_post, url: public_hot_posts_path, method: :post do |f| %>
-  <div class="row">
-    <div class="col">タイトル</div>
-    <div class="col"><%= f.text_field :title %></div>
+  <div class="row justify-content-center py-2">
+    <div class="col-md-3">タイトル</div>
+    <div class="col-md-6"><%= f.text_field :title %></div>
   </div>
-  <div class="row">
-    <div class="col">本文</div>
-    <div class="col"><%= f.text_area :body, class:"form-control" %></div>
+  <div class="row justify-content-center py-2">
+    <div class="col-md-3">本文</div>
+    <div class="col-md-6"><%= f.text_area :body, class:"form-control" %></div>
   </div>
-  <div class="row">
-    <div class="col">ジャンル</div>
-    <div class="col"><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), class:"form-control genre_id" %></div>
+  <div class="row justify-content-center py-2">
+    <div class="col-md-3">ジャンル</div>
+    <div class="col-md-6">
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, { class:"form-control genre_id" } %>
+    </div>
   </div>
-  <div class="row">
-    <div class="col">投稿に関連する温泉地</div>
-    <div class="col"><%= f.collection_select :hot_spring_id, HotSpring.all, :id, :name, { prompt: '選択してください' }, { class:"form-control hot_spring_id" } %></div>
+  <div class="row justify-content-center py-2">
+    <div class="col-md-3">投稿に関連する温泉地</div>
+    <div class="col-md-6"><%= f.collection_select :hot_spring_id, HotSpring.all, :id, :name, { prompt: '選択してください' }, { class:"form-control hot_spring_id" } %></div>
   </div>
-  <div class="row">
-    <div class="col">画像</div>
-    <div class="col"><%= f.file_field :hot_post_image, placeholder: "hot_post_image", accept: "image/*", class:"form-control-file" %></div>
+  <div class="row justify-content-center py-2">
+    <div class="col-md-3">画像</div>
+    <div class="col-md-6"><%= f.file_field :hot_post_image, placeholder: "hot_post_image", accept: "image/*", class:"form-control-file" %></div>
   </div>
 
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-center py-2">
+    <div class="col-md-2">
       <%= f.radio_button :status, HotPost.statuses.key(0) %>
       <%= f.label :status, "公開" %>
     </div>
-    <div class="col">
+    <div class="col-md-2">
       <%= f.radio_button :status, HotPost.statuses.key(1) %>
       <%= f.label :status, "下書き保存" %>
     </div>
-    <div class="col">
+    <div class="col-md-2">
       <%= f.radio_button :status, HotPost.statuses.key(2) %>
       <%= f.label :status, "非公開" %>
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col">
-      <%= f.submit '新規投稿/保存', class:"btn btn-success" %>
-    </div>
+  <div class="row justify-content-center py-2">
+    <%= f.submit '新規投稿/保存', class:"btn btn-success" %>
   </div>
   <% end %>
 </div>

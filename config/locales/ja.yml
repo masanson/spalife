@@ -6,6 +6,11 @@ ja:
         female: "女性"
         not_applicable: "その他"
   activerecord:
+    attributes:
+      hot_post:
+        title: 'タイトル'
+        body: '本文'
+        genre: 'ジャンル'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
