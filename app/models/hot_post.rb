@@ -1,6 +1,7 @@
 class HotPost < ApplicationRecord
   belongs_to :genre
   belongs_to :end_user
+  belongs_to :hot_spring, optional: true
   has_many :notifications, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy

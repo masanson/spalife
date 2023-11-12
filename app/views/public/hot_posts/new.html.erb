@@ -25,7 +25,7 @@
   </div>
   <div class="row justify-content-center py-2">
     <div class="col-md-3">投稿に関連する温泉地</div>
-    <div class="col-md-6"><%= f.collection_select :hot_spring_id, HotSpring.all, :id, :name, { prompt: '選択してください' }, { class:"form-control hot_spring_id" } %></div>
+    <div class="col-md-6"><%= f.collection_select :hot_spring_id, HotSpring.all, :id, :name, { include_blank: "無し" }, { class:"form-control hot_spring_id" } %></div>
   </div>
   <div class="row justify-content-center py-2">
     <div class="col-md-3">画像</div>

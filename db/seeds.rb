@@ -9,3 +9,8 @@ Admin.create!(
   email: 'awsedrftg153@mail.com',
   password: 'awsedrftg153'
 )
+
+Genre.create!(
+  id: 0,
+  name: "その他"
+)
