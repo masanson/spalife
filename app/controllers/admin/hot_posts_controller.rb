@@ -1,11 +1,14 @@
 class Admin::HotPostsController < ApplicationController
   def index
-    @hot_posts = HotPost.all
+    @hot_posts = HotPost.published.order(created_at: :desc).page(params[:page]).per(10)
+    @hot_posts = @hot_posts.where(genre_id: params[:genre_id]) if params[:genre_id].present?
+    @hot_posts = @hot_posts.where('title LIKE ?', "%#{params[:search]}%") if params[:search].present?
   end
 
   def show
     @hot_post = HotPost.find(params[:id])
-    @comments =@hot_post.comments
+    @hot_spring = @hot_post.hot_spring_id
+    @comments =@hot_post.comments.page(params[:page]).per(4).order(created_at: :desc)
   end
 
   def edit

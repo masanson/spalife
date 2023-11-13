@@ -1,17 +1,42 @@
 <div class="container">
-  <div class="row justify-content-between">
-    <h3 class="col">投稿一覧</h3>
-  </div>
-  <div class="row">
-    <div class="col">投稿タイトル</div>
-  </div>
-  <div class="row">
-    <% @hot_posts.each do |hot_post| %>
-    <div class="col">
-      <%= link_to admin_hot_post_path(hot_post.id) do %>
-        <%= hot_post.title %>
-      <% end %>
-    </div>
+  <div class="row search_post">
+    <h3>投稿検索</h3>
+    <%= form_with url: admin_hot_posts_path, method: :get, local: true, class:"row justify-content-around py-2 search_post_form" do |f| %>
+      <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
+      <div class="col-md-auto">ジャンル <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, { class:"ser-form-control genre_id" } %></div>
+      <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
     <% end %>
   </div>
+  <div class="row my-2 justify-content-between">
+    <h3 class="col-md-auto">投稿一覧</h3>
+  </div>
+  <div class="col-md-auto">
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th>投稿タイトル</th>
+          <th>投稿者</th>
+          <th>ジャンル</th>
+        </tr>
+      </thead>
+      <% @hot_posts.each do |hot_post| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to admin_hot_post_path(hot_post.id) do %>
+                <%= hot_post.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to admin_end_user_path(hot_post.end_user.id) do%>
+                <%= hot_post.end_user.user_name %>
+              <% end %>
+            </td>
+            <td><%= hot_post.genre.name %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+  <div class="row justify-content-center"><%= paginate @hot_posts %></div>
 </div>

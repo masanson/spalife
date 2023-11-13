@@ -1,20 +1,42 @@
 <div class="container">
-  <% if @hot_post.hot_post_image.attached? %>
-    <div class="row"><%= image_tag @hot_post.get_hot_post_image(150, 150) %></div>
-  <% end %>
-  <div class="row"><%= @hot_post.title %></div>
-  <div class="row"><%= @hot_post.genre.name %></div>
-  <div class="row"><%= @hot_post.body %></div>
-  <div class="row justify-content-between">
-    <div class="col"><%= link_to "編集する", edit_admin_hot_post_path(@hot_post.id), class:"btn btn-success" %></div>
-    <div class="col"><%= link_to "削除する", admin_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></div>
-  </div>
   <div class="row">
-      <% @comments.each do |comment| %>
-        <%= comment.end_user.user_name %>
-        <%= comment.created_at.strftime('%Y/%m/%d') %>
-        <%= comment.content %>
-        <%= link_to "削除する", admin_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+    <div class="col-md-7 post_item">
+      <h3 class="d-block p-2 post_item__head" style="margin-bottom: 0px;"><%= @hot_post.title %></h3>
+      <% if @hot_post.hot_post_image.attached? %>
+        <div class="d-block post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
+      <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
+      <p class="d-block post_item__body2">ジャンル <%= @hot_post.genre.name %></p>
+        <% if @hot_post.hot_spring_id.present? %>
+          <%= link_to admin_hot_spring_path(@hot_spring) do %>
+            <p class="d-block post_item__body2"><%= @hot_post.hot_spring.name %></p>
+          <% end %>
+        <% end %>
+      <div class="d-flex justify-content-around">
+        <%= link_to "編集する", edit_admin_hot_post_path(@hot_post.id), class:"btn btn-success" %>
+        <%= link_to "削除する", admin_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+      </div>
     </div>
+
+    <div class="col-md-5">
+      <div class="row justify-content-center">
+        <h5 class="col-md-7">コメント一覧</h5>
+      </div>
+      <div class="row justify-content-center">
+        <% @comments.each do |comment| %>
+          <div class="col-md-auto comment_item">
+            <div class="d-block my-1 border-top border-dark">
+              <%= comment.end_user.user_name %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <%= link_to "削除する", admin_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+            </div>
+            <div class="d-block my-1 border-bottom border-dark comment_item_body">
+              <%= comment.content %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="row justify-content-center"><%= paginate @comments %></div>
+    </div>
+  </div>
 </div>
