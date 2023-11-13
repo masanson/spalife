@@ -1,6 +1,3 @@
-<h1>Public::EndUsers#show</h1>
-<p>Find me in app/views/public/end_users/show.html.erb</p>
-
 <div class="container">
   <div class="row m-1">
      <div class="col-5">
@@ -27,7 +24,7 @@
     <div class="row">
       <div class="col">公開済み投稿</div>
     </div>
-    <div class="row">
+    <div class="row border border-dark rounded">
       <% @published_posts.each do |published_post| %>
       <div class="col">
         <%= link_to public_hot_post_path(published_post.id) do %>
@@ -81,8 +78,52 @@
           <%= favorite_post.title %>
         <% end %>
       </div>
+      <div class="col">
+        <%= link_to public_hot_post_path(favorite_post.id) do %>
+          <%= favorite_post.title %>
+        <% end %>
+      </div>
       <% end %>
     </div>
   </div>
   
+</div>
+
+<div class="tabs">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#published">公開中</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#draft">下書き</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#unpublished">非公開</a>
+    </li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="published" class="tab-pane fade show active">
+      <% @published_posts.each do |published_post| %>
+        <div class="row my-1 border border-dark rounded">
+          <div class="col">
+            <%= link_to public_hot_post_path(published_post.id) do %>
+              <%= published_post.title %>
+            <% end %>
+          </div>
+          <div class="col"><%= published_post.genre.name %></div>
+          <div class="col">
+            <p class="m-0">作成日時:<%= published_post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+            <p class="m-0">更新日時:<%= published_post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id="draft" class="tab-pane fade">
+      <p>セクション2のコンテンツが表示されます。</p>
+    </div>
+    <div id="unpublished" class="tab-pane fade">
+      <p>セクション3のコンテンツが表示されます。</p>
+    </div>
+  </div>
 </div>

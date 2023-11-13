@@ -8,6 +8,7 @@ class EndUser < ApplicationRecord
   has_many :hot_posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :genres, through: :hot_posts
   
   enum sex: { male: 0, female: 1, not_applicable: 2 }
   

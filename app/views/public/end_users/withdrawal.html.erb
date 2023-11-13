@@ -1,14 +1,11 @@
 <div class="container">
   <h3 class="row justify-content-center m-md-5">本当に退会しますか？</h3>
-  <div class="row justify-content-center m-md-5">
-        <p>退会すると、会員登録情報や</p></br>
-        <p>これまでの購入履歴が閲覧できなくなります。</p></br>
-        <p>退会する場合は、「退会する」をクリックしてください。</p>
+  <div class="row justify-content-center m-md-3 withdrawal_body">
+    <p class="d-block">退会すると会員登録情報や、これまでの購入履歴が閲覧できなくなります。</p></br>
+    <p class="d-block">退会する場合は、「退会する」をクリックしてください。</p>
   </div>
-  <%= form_with model: @end_user, url: update_withdrawal_public_end_user_path, method: :patch do |f| %>
-    <div class="row justify-content-center">
-      <div class="col-4 p-3"><%= link_to "退会しない", public_end_user_path(@end_user.id), class:"btn btn-primary" %></div>
-      <div class="col-4 p-3"><%= f.submit "退会する", class:"btn btn-danger", "data-confirm" => "本当に退会しますか?" %></div>
-    </div>
+  <%= form_with model: @end_user, url: update_withdrawal_public_end_user_path, method: :patch, class:"row justify-content-center" do |f| %>
+    <div class="col-md-auto p-3"><%= link_to "退会しない", public_end_user_path(@end_user.id), class:"btn btn-primary" %></div>
+    <div class="col-md-auto p-3"><%= f.submit "退会する", class:"btn btn-danger", "data-confirm" => "本当に退会しますか?" %></div>
   <% end %>
 </div>
