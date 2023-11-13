@@ -11,24 +11,33 @@
     <h3 class="col-md-auto">投稿一覧</h3>
     <div class="col-md-auto"><%= link_to "新規投稿", new_public_hot_post_path, class:"btn btn-success" %></div>
   </div>
-  <div class="row">
-    <div class="col">投稿タイトル</div>
+  <div class="col-md-auto">
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th>投稿タイトル</th>
+          <th>投稿者</th>
+          <th>ジャンル</th>
+        </tr>
+      </thead>
+      <% @hot_posts.each do |hot_post| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to public_hot_post_path(hot_post.id) do %>
+                <%= hot_post.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to public_end_user_path(hot_post.end_user.id) do%>
+                <%= hot_post.end_user.user_name %>
+              <% end %>
+            </td>
+            <td><%= hot_post.genre.name %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
   </div>
-  <div class="row">
-    <% @hot_posts.each do |hot_post| %>
-    <div class="col">
-      <div>
-        <%= link_to public_hot_post_path(hot_post.id) do %>
-          <%= hot_post.title %>
-        <% end %>
-      </div>
-      <div>
-        <%= link_to public_end_user_path(hot_post.end_user.id) do%>
-          <%= hot_post.end_user.user_name %>
-        <% end %>
-      </div>
-      <div><%= hot_post.genre.name %></div>
-    </div>
-    <% end %>
-  </div>
+  <div class="row justify-content-center"><%= paginate @hot_posts %></div>
 </div>
