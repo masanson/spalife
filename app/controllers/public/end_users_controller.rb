@@ -2,11 +2,12 @@ class Public::EndUsersController < ApplicationController
   def show
     @end_user =EndUser.find(params[:id])
     @hot_posts = @end_user.hot_posts
-    @published_posts =@hot_posts.where(status: "published")
-    @draft_posts = @hot_posts.where(status: "draft")
-    @unpublished_posts = @hot_posts.where(status: "unpublished")
+    @published_posts =@hot_posts.where(status: "published").order(created_at: :desc).page(params[:page]).per(5)
+    @draft_posts = @hot_posts.where(status: "draft").order(created_at: :desc).page(params[:page]).per(5)
+    @unpublished_posts = @hot_posts.where(status: "unpublished").order(created_at: :desc).page(params[:page]).per(5)
     favorites = Favorite.where(end_user_id: @end_user.id).pluck(:hot_post_id)
     @favorite_posts = HotPost.find(favorites)
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(5)
   end
 
   def edit

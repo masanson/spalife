@@ -20,110 +20,102 @@
     <% end %>
   </div>
   
-  <div class="row">
-    <div class="row">
-      <div class="col">公開済み投稿</div>
-    </div>
-    <div class="row border border-dark rounded">
-      <% @published_posts.each do |published_post| %>
-      <div class="col">
-        <%= link_to public_hot_post_path(published_post.id) do %>
-          <%= published_post.title %>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="row">
-      <div class="col">下書き保存</div>
-    </div>
-    <div class="row">
-      <% @draft_posts.each do |draft_post| %>
-      <div class="col">
-        <%= link_to public_hot_post_path(draft_post.id) do %>
-          <%= draft_post.title %>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
-  </div>
-  
-  
-  <div class="row">
-    <div class="row">
-      <div class="col">非公開投稿</div>
-    </div>
-    <div class="row">
-      <% @unpublished_posts.each do |unpublished_post| %>
-      <div class="col">
-        <%= link_to public_hot_post_path(unpublished_post.id) do %>
-          <%= unpublished_post.title %>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
-  </div>
-
-  
-  <div class="row">
-    <div class="row">
-      <div class="col">いいねした投稿</div>
-    </div>
-    <div class="row">
-      <% @favorite_posts.each do |favorite_post| %>
-      <div class="col">
-        <%= link_to public_hot_post_path(favorite_post.id) do %>
-          <%= favorite_post.title %>
-        <% end %>
-      </div>
-      <div class="col">
-        <%= link_to public_hot_post_path(favorite_post.id) do %>
-          <%= favorite_post.title %>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
-  </div>
-  
-</div>
-
-<div class="tabs">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#published">公開中</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#draft">下書き</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#unpublished">非公開</a>
-    </li>
-  </ul>
-  
-  <div class="tab-content">
-    <div id="published" class="tab-pane fade show active">
-      <% @published_posts.each do |published_post| %>
-        <div class="row my-1 border border-dark rounded">
-          <div class="col">
-            <%= link_to public_hot_post_path(published_post.id) do %>
-              <%= published_post.title %>
+  <div class="row justify-content-center">
+    
+    <div class="col-md-11">
+      <div class="tabs">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#favorited">お気に入り</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#published">公開中</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#draft">下書き</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#unpublished">非公開</a>
+          </li>
+        </ul>
+        
+        <div class="tab-content">
+          <div id="favorited" class="tab-pane fade">
+            <% @favorite_posts.each do |favorite_post| %>
+              <div class="row my-1 border border-dark rounded justify-content-center">
+                <div class="col-md-3 ">
+                  <%= link_to public_hot_post_path(favorite_post.id) do %>
+                    <%= favorite_post.title %>
+                  <% end %>
+                </div>
+                <div class="col-md-3">
+                  ジャンル：<%= favorite_post.genre.name %>
+                </div>
+                <div class="col-md-4">
+                  <p class="m-0">
+                    投稿者：
+                    <%= link_to public_end_user_path(favorite_post.end_user.id) do %>
+                      <%= favorite_post.end_user.user_name %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
             <% end %>
+            <div class="row justify-content-center"><%= paginate @favorite_posts %></div>
           </div>
-          <div class="col"><%= published_post.genre.name %></div>
-          <div class="col">
-            <p class="m-0">作成日時:<%= published_post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
-            <p class="m-0">更新日時:<%= published_post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+          <div id="published" class="tab-pane fade show active">
+            <% @published_posts.each do |published_post| %>
+              <div class="row my-1 border border-dark rounded justify-content-center">
+                <div class="col-md-3 ">
+                  <%= link_to public_hot_post_path(published_post.id) do %>
+                    <%= published_post.title %>
+                  <% end %>
+                </div>
+                <div class="col-md-3">ジャンル：<%= published_post.genre.name %></div>
+                <div class="col-md-4">
+                  <p class="m-0">更新日時：<%= published_post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+                </div>
+              </div>
+            <% end %>
+            <div class="row justify-content-center"><%= paginate @published_posts %></div>
+          </div>
+          <div id="draft" class="tab-pane fade">
+            <% @draft_posts.each do |draft_post| %>
+              <div class="row my-1 border border-dark rounded justify-content-center">
+                <div class="col-md-3 ">
+                  <%= link_to public_hot_post_path(draft_post.id) do %>
+                    <%= draft_post.title %>
+                  <% end %>
+                </div>
+                <div class="col-md-3">ジャンル：<%= draft_post.genre.name %></div>
+                <div class="col-md-4">
+                  <p class="m-0">更新日時：<%= draft_post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+                </div>
+              </div>
+            <% end %>
+            <div class="row justify-content-center"><%= paginate @draft_posts %></div>
+          </div>
+          <div id="unpublished" class="tab-pane fade">
+            <% @unpublished_posts.each do |unpublished_post| %>
+              <div class="row my-1 border border-dark rounded justify-content-center">
+                <div class="col-md-3 ">
+                  <%= link_to public_hot_post_path(unpublished_post.id) do %>
+                    <%= unpublished_post.title %>
+                  <% end %>
+                </div>
+                <div class="col-md-3">ジャンル：<%= unpublished_post.genre.name %></div>
+                <div class="col-md-4">
+                  <p class="m-0">更新日時：<%= unpublished_post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+                </div>
+              </div>
+            <% end %>
+            <div class="row justify-content-center"><%= paginate @unpublished_posts %></div>
           </div>
         </div>
-      <% end %>
-    </div>
-    <div id="draft" class="tab-pane fade">
-      <p>セクション2のコンテンツが表示されます。</p>
-    </div>
-    <div id="unpublished" class="tab-pane fade">
-      <p>セクション3のコンテンツが表示されます。</p>
+      </div>
     </div>
   </div>
+  
+  
 </div>
+
