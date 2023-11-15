@@ -1,30 +1,42 @@
 <div class="container">
-  <div class="row m-1">
-     <div class="col-md-auto">
-       <%= image_tag @end_user.get_user_image(300, 300) %>
-     </div>
-     <div class="col-md-7">
-       <h4 class="row justify-content-center">
-         <%= @end_user.user_name %>
-       </h4>
-
-        <p><%= @end_user.sex_i18n %></p>
-        <% if @end_user == current_end_user %>
-          <p><%= @end_user.address %></p>
-          <p><%= @end_user.postal_code %></p>
-          <p><%= @end_user.telephone_number %></p>
-        <% end %>
-     </div>
-  </div>
-
-  <div class="row justify-content-center">
+  <div class="row">
+    <h2 class="row mx-3">マイページ</h2>
+    <div class="row m-1 end_user_item justify-content-around">
+       <div class="col-md-auto">
+         <%= image_tag @end_user.get_user_image(300, 300) %>
+       </div>
+       <div class="col-md-7">
+         <div class="row justify-content-around">
+           <h4 class="col-md-auto">
+             <%= @end_user.user_name %>
+           </h4>
+           <p class="col-md-auto">性別：<%= @end_user.sex_i18n %></p>
+         </div>
+         <div class="row end_user_item_intro border rounded border-dark">
+           <%= @end_user.introduction %>
+         </div>
+          <% if @end_user == current_end_user %>
+            <p></p>
+            <p></p>
+            
+          <% end %>
+       </div>
+    </div>
+    
     <% if @end_user.id == current_end_user.id %>
-      <%= link_to "マイページ編集", edit_public_end_user_path, class:"btn btn-success" %>
+    <div class="row end_user_info">
+      <h3 class="">個人情報</h3>
+      <div class="row">
+        <p class="col">住所：<%= @end_user.address %></p>
+        <p class="col">郵便番号：〒 <%= @end_user.postal_code %></p>
+        <p class="col">電話番号：<%= @end_user.telephone_number %></p>
+      </div>
+    </div>
     <% end %>
+    <div class="row"><%= link_to "マイページ編集", edit_public_end_user_path, class:"btn btn-success" %></div>
+    
   </div>
-
   <div class="row justify-content-center">
-
     <div class="col-md-11">
       <div class="tabs">
         <ul class="nav nav-tabs">
@@ -118,7 +130,4 @@
       </div>
     </div>
   </div>
-
-
 </div>
-
