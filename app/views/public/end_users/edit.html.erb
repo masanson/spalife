@@ -1,8 +1,30 @@
-<h1>Public::EndUsers#edit</h1>
-<p>Find me in app/views/public/end_users/edit.html.erb</p>
 <div class="container">
   <div class="row justify-content-center p-0 m-5">
     <%= form_with model: @end_user, url: public_end_user_path, method: :patch, class:"registration_form" do |f| %>
+     <div class="row py-2">
+        <div class="col-5"><%= f.label :user_name, "ユーザー名" %></div>
+        <div class="col-3"><%= f.text_field :user_name %></div>
+      </div>
+      <div class="row">
+        <div class="col-4"><%= f.label :sex, "性別" %></div>
+        <div class="col-2">
+          <%= f.radio_button :sex, EndUser.sexes.key(0) %>
+          <%= f.label :sex, EndUser.sexes_i18n[:male] %>
+        </div>
+        <div class="col-2">
+          <%= f.radio_button :sex, EndUser.sexes.key(1) %>
+          <%= f.label :sex, EndUser.sexes_i18n[:female] %>
+        </div>
+        <div class="col-3">
+          <%= f.radio_button :sex, EndUser.sexes.key(2) %>
+          <%= f.label :sex, EndUser.sexes_i18n[:not_applicable] %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-auto"><%= f.label :introduction, "自己紹介" %></div>
+        <div class="w-100"></div>
+        <div class="col-md-10"><%= f.text_area :introduction, class:"form-control"%></div>
+      </div>
       <div class="row">
         <div class="col-2 px-0 py-2">氏名</div>
         <div class="col-5 px-0 py-2">(姓)<%= f.text_field :last_name %></div>
