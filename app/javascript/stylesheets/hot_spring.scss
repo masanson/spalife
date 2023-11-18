@@ -1,0 +1,23 @@
+.new_spring_form{
+  background-color: #98fb98;
+}
+
+.search_spring{
+  background-color: #f0e68c;
+}
+
+.search_spring_form{
+  width: 100%;
+  
+  &ser-form-control{
+    min-width: 150px;
+  }
+}
+
+.table_spring{
+  
+  &_head{
+    background-color: #c0c0c0;
+    color: #000000
+  }
+}
