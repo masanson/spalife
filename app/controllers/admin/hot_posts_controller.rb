@@ -18,8 +18,10 @@ class Admin::HotPostsController < ApplicationController
   def update
     @hot_post = HotPost.find(params[:id])
     if @hot_post.update(hot_post_params)
+      flash[:notice] = "管理者権限で投稿の更新されました"
       redirect_tadmin_hot_post_path(@hot_post.id)
     else
+      flash.now[:alert] = "投稿の更新が失敗しました。"
       render :edit
     end
   end
@@ -27,6 +29,7 @@ class Admin::HotPostsController < ApplicationController
   def destroy
     @hot_post = HotPost.find(params[:id])
     @hot_post.destroy
+    flash[:notice] = "管理者権限で投稿を削除しました。"
     redirect_to admin_hot_posts_path
   end
   

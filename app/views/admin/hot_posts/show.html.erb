@@ -6,11 +6,11 @@
         <div class="d-block post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
       <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
-      <p class="d-block post_item__body2">ジャンル <%= @hot_post.genre.name %></p>
+      <p class="d-block post_item__body2">ジャンル：<%= @hot_post.genre.name %></p>
         <% if @hot_post.hot_spring_id.present? %>
-          <%= link_to admin_hot_spring_path(@hot_spring) do %>
-            <p class="d-block post_item__body2"><%= @hot_post.hot_spring.name %></p>
-          <% end %>
+          <p class="d-block post_item__body2">
+            温泉地：<%= link_to admin_hot_spring_path(@hot_spring) do %><%= @hot_post.hot_spring.name %><% end %>
+          </p>
         <% end %>
       <div class="d-flex justify-content-around">
         <%= link_to "編集する", edit_admin_hot_post_path(@hot_post.id), class:"btn btn-success" %>

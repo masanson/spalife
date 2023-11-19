@@ -1,6 +1,6 @@
 class Admin::HotSpringsController < ApplicationController
   def index
-    @hot_springs = HotSpring.order(created_at: :desc).page(params[:page]).per(8)
+    @hot_springs = HotSpring.order(created_at: :desc).page(params[:page]).per(5)
     @hot_springs = @hot_spring.where(genre_id: params[:prefecture_id]) if params[:prefecture_id].present?
     @hot_springs = @hot_spring.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
     @hot_spring = HotSpring.new

@@ -1,5 +1,3 @@
-<h1>Admin::HotSprings#show</h1>
-<p>Find me in app/views/admin/hot_springs/show.html.erb</p>
 <div class="container">
   <div class="row m-1">
      <div class="col-5">
@@ -42,5 +40,56 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer></script>
   <div class="row justify-content-center">
     <%= link_to "温泉地編集", edit_admin_hot_spring_path, class:"btn btn-success" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h2 class="d-block p-2 spring_item__head" style="margin-bottom: 0px;">温泉地詳細</h2>
+    <div class="col-md-7 spring_item">
+      <h3 class="d-block p-2 spring_item__head" style="margin-bottom: 0px;"><%= @hot_spring.name %></h3>
+      <div class="d-block spring_item__image d-flex justify-content-around"><%= image_tag  @hot_spring.get_hot_spring_image(200, 200) %></div>
+      <p class="d-block p-2 spring_item__body border rounded border-dark"><%= @hot_spring.introduction %></p>
+
+      <div class="row justify-content-center">
+        <h3 class="col-md-auto">温泉情報</h3>
+        <div class="w-100"></div>
+        <div class="row border rounded border-dark w-75">
+          <p class="col-md-auto">住所：<%= @hot_spring.address_full %></p>
+          <div class="w-100"></div>
+          <p class="col-md-auto">郵便番号：〒 <%= @hot_spring.postal_code %></p>
+          <div class="w-100"></div>
+          <p class="col-md-auto">電話番号：<%= @hot_spring.telephone_number %></p>
+          <div class="w-100"></div>
+          <p class="col-md-auto">アクセス：<%= @hot_spring.access %></p>
+        </div>  
+      </div>
+
+      <div class="d-flex justify-content-around">
+        <%= link_to "編集する", edit_admin_hot_spring_path(@hot_spring.id), class:"btn btn-success" %>
+        <%= link_to "削除する", admin_hot_spring_path(@hot_spring.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="row justify-content-center">
+        <h5 class="col-md-7">コメント一覧</h5>
+      </div>
+      <div class="row justify-content-center">
+        <% @comments.each do |comment| %>
+          <div class="col-md-auto comment_item">
+            <div class="d-block my-1 border-top border-dark">
+              <%= comment.end_user.user_name %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <%= link_to "削除する", admin_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+            </div>
+            <div class="d-block my-1 border-bottom border-dark comment_item_body">
+              <%= comment.content %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="row justify-content-center"><%= paginate @comments %></div>
+    </div>
   </div>
 </div>
