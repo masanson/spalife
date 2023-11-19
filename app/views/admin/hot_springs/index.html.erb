@@ -50,7 +50,7 @@
     <% end %>
   </div>
   
-  <div class="search_spring">
+  <div class="search_spring border rounded">
     <h3>温泉地検索</h3>
     <%= form_with url: public_hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
       <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>

@@ -13,21 +13,19 @@
 
   <body>
     <div class="row">
-      <div class="col-md-auto"><%= render 'layouts/sidebar'%></div>
-      <div class="col-md-10 min-vh-100">
-        <header>
-          <div class="container">
-            <div class="row justify-content-center" style="width: 100%;">
-              <h1 class="col-md-auto">
-                <%= link_to root_path do %>
-                  SPALIFE
-                <% end %>
-              </h1>
-              <p>
-                <%= flash[:notice] %>
-                <%= flash.now[:alert] %>
-              </p>
-            </div>
+      <div class="col-md-auto p-md-0"><%= render 'layouts/sidebar'%></div>
+      <div class="col-md p-md-0">
+        <header class="header">
+          <div class="row justify-content-center" >
+            <h1 class="col-md-auto">
+              <%= link_to root_path do %>
+                SPALIFE
+              <% end %>
+            </h1>
+            <p>
+              <%= flash[:notice] %>
+              <%= flash.now[:alert] %>
+            </p>
           </div>
         </header>
 
@@ -35,6 +33,6 @@
 
       </div>
     </div>
-    <footer class="row footer"></footer>
+    <footer class="row-md footer"></footer>
   </body>
 </html>
