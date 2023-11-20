@@ -17,6 +17,7 @@ class Admin::HotSpringsController < ApplicationController
 
   def show
     @hot_spring = HotSpring.find(params[:id])
+    @hot_posts = @hot_spring.hot_posts.page(params[:page]).per(4).order(created_at: :desc)
     search_address = (@hot_spring.address_full).gsub(/[\d-]+/, '')
     results = Geocoder.search(search_address)
     @latlng = results.first.coordinates
@@ -29,16 +30,24 @@ class Admin::HotSpringsController < ApplicationController
   def update
     @hot_spring = HotSpring.find(params[:id])
     if @hot_spring.update(hot_spring_params)
+      flash[:notice] = "温泉情報を更新しました。"
       redirect_to admin_hot_spring_path(@hot_spring.id)
     else
+      flash.now[:alert] = "温泉情報を更新が失敗しました"
       render :edit
     end
   end
 
   def destroy
     @hot_spring = HotSpring.find(params[:id])
-    @hot_spring.destroy
-    redirect_to admin_hot_springs_path
+    if @hot_spring.destroy
+      flash[:notice] = "温泉情報を削除しました。"
+      redirect_to admin_hot_springs_path
+    else
+      flash.now[:alert] = "削除が失敗しました。"
+      render :show
+    end
+    
   end
 
   private

@@ -1,40 +1,43 @@
-<h1>Admin::HotSprings#edit</h1>
-<p>Find me in app/views/admin/hot_springs/edit.html.erb</p>
 <div class="container">
-  <h3 class="row">新規温泉地</h3>
-  <%= form_with model: @hot_spring, url: admin_hot_spring_path, method: :patch do |f| %>
-  <div class="row">
-    <div class="col">温泉地画像</div>
-    <div class="col"><%= f.file_field :hot_spring_image, placeholder: "hot_spring_image", accept: "image/*", class:"form-control-file" %></div>
+  <div class="m-md-2 edit_spring_form border rounded">
+  <h3>温泉編集フォーム</h3>
+    <%= form_with model: @hot_spring, url: admin_hot_spring_path, method: :patch do |f| %>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">温泉名</div>
+        <div class="col-md-6"><%= f.text_field :name %></div>
+      </div>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">本文</div>
+        <div class="col-md-6"><%= f.text_area :introduction, class:"form-control" %></div>
+      </div>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">住所(県名)</div>
+        <div class="col-md-6">
+          <%= f.select :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name, { :selected => @hot_spring.prefecture_id }), class:"form-control prefecture_id" %>
+        </div>
+      </div>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">住所(市町村以降)</div>
+        <div class="col-md-6"><%= f.text_field :address %></div>
+      </div>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">郵便番号</div>
+        <div class="col-md-6"><%= f.text_field :postal_code %></div>
+      </div>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">電話番号</div>
+        <div class="col-md-6"><%= f.text_field :telephone_number %></div>
+      </div>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">アクセス</div>
+        <div class="col-md-6"><%= f.text_field :access %></div>
+      </div>
+      <div class="row justify-content-center py-1">
+        <div class="col-md-3">画像</div>
+        <div class="col-md-6"><%= f.file_field :hot_spring_image, placeholder: "hot_spring_image", accept: "image/*", class:"form-control-file" %></div>
+      </div>
+      <div class="row justify-content-center py-2">
+        <%= f.submit '変更', class:"btn btn-success" %>
+      </div>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col">温泉名</div>
-    <div class="col"><%= f.text_field :name %></div>
-  </div>
-  <div class="row">
-    <div class="col">本文</div>
-    <div class="col"><%= f.text_area :introductiion, class:"form-control" %></div>
-  </div>
-  <div class="row">
-    <div class="col">住民(県名)</div>
-    <div class="col"><%= f.select :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name), class:"form-control prefecture_id" %></div>
-  </div>
-  <div class="row">
-    <div class="col">住所(市町村から)</div>
-    <div class="col"><%= f.text_field :address %></div>
-  </div>
-  <div class="row">
-    <div class="col">郵便番号</div>
-    <div class="col"><%= f.text_field :postal_code %></div>
-  </div>
-  <div class="row">
-    <div class="col">電話番号</div>
-    <div class="col"><%= f.text_field :telephone_number %></div>
-  </div>
-  <div class="row">
-    <div class="col">アクセス</div>
-    <div class="col"><%= f.text_field :access %></div>
-  </div>
-  <div class="row justify-content-center"><%= f.submit '変更確認', class:"btn btn-success" %></div>
-  <% end %>
-</div>

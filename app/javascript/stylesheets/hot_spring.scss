@@ -2,6 +2,10 @@
   background-color: #98fb98;
 }
 
+.edit_spring_form{
+  background-color: #98fb98;
+}
+
 .search_spring{
   background-color: #f0e68c;
 }
@@ -29,11 +33,11 @@
   }
 
   &__image {
-    width: 100%;
+
   }
 
   &__body {
-    width: 100%;
+    width: 50%;
     height: 200px;
     padding: 0;
   }
@@ -41,5 +45,13 @@
   &__body2 {
     width: 100%;
     margin: 0;
+  }
+}
+
+.spring_table{
+  
+  &_head{
+    background-color: #c0c0c0;
+    color: #000000
   }
 }
