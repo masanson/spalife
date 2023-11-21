@@ -24,9 +24,15 @@
     background-color: #c0c0c0;
     color: #000000
   }
+  
+  &_body{
+    background-color: #ffffff;
+    color: #000000
+  }
 }
 
 .spring_item {
+  background-color: #ffffff;
 
   &__head {
     width: 100%;
@@ -54,4 +60,9 @@
     background-color: #c0c0c0;
     color: #000000
   }
+}
+
+.spring_post{
+  margin: 0 15px;
+  background-color: #ffffff;
 }

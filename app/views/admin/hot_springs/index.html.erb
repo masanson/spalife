@@ -65,19 +65,21 @@
     <table class="table table_spring table-hover table-inverse">
       <thead class="table_spring_head">
         <tr>
-          <th>都道府県</th>
-          <th>温泉地名</th>
+          <th scope="col-md">都道府県</th>
+          <th scope="col-md">温泉地名</th>
+          <th scope="col-md"></th>
         </tr>
       </thead>
       <% @hot_springs.each do |hot_spring| %>
-        <tbody>
-          <tr>
+        <tbody class="table_spring_body">
+          <tr scope="row">
             <td><%= hot_spring.prefecture.name %></td>
             <td>
               <%= link_to admin_hot_spring_path(hot_spring.id) do %>
                 <%= hot_spring.name %>
               <% end %>
             </td>
+            <td><%= link_to "削除する", admin_hot_spring_path(hot_spring.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></td>
           </tr>
         </tbody>
       <% end %>

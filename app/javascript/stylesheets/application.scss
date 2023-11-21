@@ -4,12 +4,17 @@
 @use 'end_user.scss';
 @use 'hot_post.scss';
 @use 'hot_spring.scss';
+@use 'genre.scss';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: #6c6b6b;
+}
+
+.main_body{
+  background-color: #fffaf0;
 }
 
 .header{

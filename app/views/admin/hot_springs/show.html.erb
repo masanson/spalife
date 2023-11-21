@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h2 class="d-block p-2 spring_item__head" style="margin-bottom: 0px;">温泉地詳細</h2>
-    <div class="col-md-9 spring_item">
+    <div class="col-md-auto spring_item">
       <h3 class="row p-2 spring_item__head" style="margin-bottom: 0px;"><%= @hot_spring.name %></h3>
       <div class="w-100"></div>
       <div class="row">
@@ -57,9 +57,10 @@
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 spring_post">
       <h5 class="row justify-content-center">温泉に関する投稿</h5>
       <div class="row justify-content-center">
+        <% if @hot_posts.exists? %>
         <table class="spring_table table-hover table-inverse">
             <thead class="spring_table_head">
               <tr>
@@ -80,6 +81,7 @@
               </tbody>
             <% end %>
           </table>
+          <% end %>
       </div>
       <div class="row justify-content-center"><%= paginate @hot_posts %></div>
     </div>
