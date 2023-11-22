@@ -1,0 +1,26 @@
+.ger-container{
+  height: 100vh;
+}
+
+.new_genre_form{
+  background-color: #98fb98;
+  margin-top: 50px;
+}
+
+.table_genre{
+
+  &_head{
+    background-color: #c0c0c0;
+    color: #000000
+  }
+
+  &_body{
+    background-color: #ffffff;
+    color: #000000
+  }
+}
+
+.edit_genre_form{
+  background-color: #98fb98;
+  margin-top: 100px;
+}

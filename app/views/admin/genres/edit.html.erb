@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container ger-container">
   <div class="row d-flex flex-column">
     <% if @genre.errors.any? %>
       <p class="p-0"><%= @genre.errors.count %>件のエラーが発生しました。</p>
@@ -7,12 +7,12 @@
       <% end %>
     <% end %>
   </div>
-  <div class="m-md-2 new_spring_form border rounded">
-  <h3>ジャンル編集フォーム</h3>
-    <%= form_with model: @hot_spring, url: admin_hot_springs_path, method: :patch do |f| %>
+  
+  <div class="edit_genre_form border rounded">
+    <h3>ジャンル編集フォーム</h3>
+    <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
       <div class="row justify-content-center py-1">
-        <div class="col-md-3">ジャンル名</div>
-        <div class="col-md-6"><%= f.text_field :name %></div>
+        <div class="col-md-auto">ジャンル名：<%= f.text_field :name %></div>
       </div>
       <div class="row justify-content-around py-2">
         <%= f.submit '編集完了', class:"btn btn-success" %>
