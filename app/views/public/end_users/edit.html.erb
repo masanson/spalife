@@ -1,7 +1,6 @@
 <div class="container">
   <h2 class="row">ユーザー情報編集</h2>
   <div class="row justify-content-center p-0 m-5">
-    <div></div>
     <%= form_with model: @end_user, url: public_end_user_path, method: :patch, class:"registration_form" do |f| %>
      <div class="row py-2 justify-content-center">
         <div class="col-md-2"><%= f.label :user_name, "ユーザー名" %></div>

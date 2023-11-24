@@ -17,8 +17,10 @@ class Public::EndUsersController < ApplicationController
   def update
     @end_user =EndUser.find(params[:id])
     if @end_user.update(end_user_params)
+      flash[:notice] = "ユーザー情報が更新されました。"
       redirect_to public_end_user_path(@end_user.id)
     else
+      flash.now[:alert] = "ユーザー情報の更新が失敗しました。"
       render :edit
     end
   end
@@ -29,9 +31,15 @@ class Public::EndUsersController < ApplicationController
   
   def update_withdrawal
     @end_user =EndUser.find(params[:id])
-    @end_user.update(is_active: false)
-    reset_session
-    redirect_to root_path
+    if @end_user.update(is_active: false)
+      flash[:notice] = "退会手続きが完了いたしました。"
+      reset_session
+      redirect_to root_path
+    else
+      flash.now[:alert] = "退会手続きが失敗しました。"
+      render :withdrawel
+    end
+    
   end
   
   private
