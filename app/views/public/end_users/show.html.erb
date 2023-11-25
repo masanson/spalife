@@ -1,6 +1,6 @@
-<div class="container">
-    <h2 class="row mx-3">マイページ</h2>
-    <div class="row m-2 end_user_item justify-content-around">
+<div class="container bg-white">
+    <h2 class="row pb-md-3">マイページ</h2>
+    <div class="row m-nd-2 end_user_item justify-content-around">
        <div class="col-md-auto">
          <%= image_tag @end_user.get_user_image(300, 300) %>
        </div>
@@ -18,7 +18,7 @@
           <% end %>
        </div>
     </div>
-    
+
     <% if @end_user.id == current_end_user.id %>
       <div class="row justify-content-center">
         <h3 class="col-md-auto">個人情報</h3>
@@ -31,13 +31,13 @@
           <p class="col-md-auto">郵便番号：〒 <%= @end_user.postal_code %></p>
           <div class="w-100"></div>
           <p class="col-md-auto">電話番号：<%= @end_user.telephone_number %></p>
-        </div>  
+        </div>
       </div>
       <div class="w-100"></div>
       <div class="row justify-content-center py-2"><%= link_to "マイページ編集", edit_public_end_user_path, class:"btn btn-success" %></div>
     <% end %>
   <div class="row justify-content-center">
-    <div class="col-md-11">
+    <div class="col-md-11 py-md-2">
       <div class="tabs">
         <ul class="nav nav-tabs">
           <li class="nav-item">

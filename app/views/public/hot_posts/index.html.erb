@@ -1,19 +1,20 @@
 <div class="container">
   <div class="row search_post">
-    <h3>投稿検索</h3>
+    <h3 class="pt-md-2 pl-md-2">投稿検索</h3>
     <%= form_with url: public_hot_posts_path, method: :get, local: true, class:"row justify-content-around py-2 search_post_form" do |f| %>
       <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
       <div class="col-md-auto">ジャンル <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, { class:"ser-form-control genre_id" } %></div>
       <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
     <% end %>
   </div>
-  <div class="row mt-3 justify-content-between">
-    <h3 class="col-md-auto">投稿一覧</h3>
-    <div class="col-md-auto"><%= link_to "新規投稿", new_public_hot_post_path, class:"btn btn-success" %></div>
-  </div>
-  <div class="col-md-auto">
-    <table class="table table-hover table-inverse">
-      <thead class="table_head">
+
+  <div class="col-md-auto mt-md-4 bg-white">
+    <div class="row p-md-3 justify-content-between">
+      <h3 class="col-md-auto">投稿一覧</h3>
+      <div class="col-md-auto"><%= link_to "新規投稿", new_public_hot_post_path, class:"btn btn-success" %></div>
+    </div>
+    <table class="table table-hover table-inverse post_table">
+      <thead class="post_table_head">
         <tr>
           <th>投稿タイトル</th>
           <th>投稿者</th>
@@ -38,6 +39,6 @@
         </tbody>
       <% end %>
     </table>
+    <div class="row py-md-1 justify-content-center"><%= paginate @hot_posts %></div>
   </div>
-  <div class="row justify-content-center"><%= paginate @hot_posts %></div>
 </div>
