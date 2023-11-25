@@ -1,9 +1,18 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-md-3 pb-md-5 bg-white">
     <div class="col-md-7 post_item">
-      <h3 class="d-block p-2 post_item__head" style="margin-bottom: 0px;"><%= @hot_post.title %></h3>
+      <div class="row py-md-2 pl-md-1 post_item__head justify-content-between">
+        <h3 class="col-md-auto" style="margin-bottom: 0px;"><%= @hot_post.title %></h3>
+        <p class="col-md-auto" style="margin-bottom: 0px;">
+          投稿者：
+          <%= link_to public_end_user_path(@end_user.id), class:"text-dark text-align-center" do %>
+            <%=@end_user.user_name%>
+          <% end %>
+        </p>
+      </div>
+      
       <% if @hot_post.hot_post_image.attached? %>
-        <div class="d-block post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
+        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
       <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
       <div class="d-block post_item__body2">
