@@ -1,80 +1,14 @@
-<div class="container">
-  <div class="row justify-content-center p-0 m-5">
-    <%= form_with model: @end_user, url: admin_end_user_path, method: :patch do |f| %>
-      <div class="row">
-        <div class="col-2 px-0 py-2">氏名</div>
-        <div class="col-5 px-0 py-2">(姓)<%= f.text_field :last_name %></div>
-        <div class="col-5 px-0 py-2">(名)<%= f.text_field :first_name %></div>
-      </div>
-      <div class="row">
-        <div class="col-2 px-0">フリガナ</div>
-        <div class="col-5 px-0">(セイ)<%= f.text_field :last_name_kana %></div>
-        <div class="col-5 px-0">(メイ)<%= f.text_field :first_name_kana %></div>
-      </div>
-      <div class="row py-2">
-        <div class="col-5"><%= f.label :user_name, "ユーザー名" %></div>
-        <div class="col-3"><%= f.text_field :user_name %></div>
-      </div>
-      <div class="row">
-        <div class="col-4"><%= f.label :sex, "性別" %></div>
-        <div class="col-2">
-          <%= f.radio_button :sex, EndUser.sexes.key(0) %>
-          <%= f.label :sex, EndUser.sexes_i18n[:male] %>
-        </div>
-        <div class="col-2">
-          <%= f.radio_button :sex, EndUser.sexes.key(1) %>
-          <%= f.label :sex, EndUser.sexes_i18n[:female] %>
-        </div>
-        <div class="col-3">
-          <%= f.radio_button :sex, EndUser.sexes.key(2) %>
-          <%= f.label :sex, EndUser.sexes_i18n[:not_applicable] %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-5"><%= f.label :email, "メールアドレス" %></div>
-        <div class="col-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
-      </div>
-      <div class="row">
-        <div class="col-5"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></div>
-        <div class="col-3"><%= f.text_field :postal_code %></div>
-      </div>
-      <div class="row">
-        <div class="col-5"><%= f.label :address, "住所" %></div>
-        <div class="col-3"><%= f.text_field :address %></div>
-      </div>
-      <div class="row">
-        <div class="col-5"><%= f.label :telephone_number, "電話番号(ハイフンなし)" %></div>
-        <div class="col-3"><%= f.telephone_field :telephone_number %></div>
-      </div>
-      <div class="row">
-        <div class="col-5"><%= f.label :is_active, "会員ステータス" %></div>
-        <div class="col-3">
-          <%= f.label :is_active_ture, "有効" %>
-          <%= f.radio_button :is_active, true %>
-        </div>
-        <div class="col-3">
-          <%= f.label :is_active_false, "退会" %>
-          <%= f.radio_button :is_active, false %>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-4 m-3"><%= f.submit "編集完了", class:"btn btn-success" %></div>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <h2 class="row">ユーザー情報編集</h2>
-  <div class="row justify-content-center p-0 m-5">
+<div class="container bg-white mt-md-5">
+  <h2>ユーザー情報編集</h2>
+  <h4 class="row justify-content-center">ユーザー基本情報</h4>
+  <div class="row justify-content-center">
     <%= form_with model: @end_user, url: admin_end_user_path, method: :patch, class:"registration_form" do |f| %>
-     <div class="row py-2 justify-content-center">
-        <div class="col-md-2"><%= f.label :user_name, "ユーザー名" %></div>
-        <div class="col-md-auto ml-md-5"><%= f.text_field :user_name %></div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-2"><%= f.label :sex, "性別" %></div>
-        <div class="col-md-auto ml-md-5">
+      <div class="row py-2 justify-content-center">
+        <div class="col-md-3"><%= f.label :user_name, "ユーザー名" %></div>
+        <div class="col-md-5 ml-md-5"><%= f.text_field :user_name %></div>
+        <div class="w-100 py-md-1"></div>
+        <div class="col-md-3"><%= f.label :sex, "性別" %></div>
+        <div class="col-md-5 ml-md-5">
           <%= f.radio_button :sex, EndUser.sexes.key(0) %>
           <%= f.label :sex, EndUser.sexes_i18n[:male] %>
           <%= f.radio_button :sex, EndUser.sexes.key(1) %>
@@ -82,61 +16,53 @@
           <%= f.radio_button :sex, EndUser.sexes.key(2) %>
           <%= f.label :sex, EndUser.sexes_i18n[:not_applicable] %>
         </div>
+        <div class="w-100 py-md-1"></div>
+        <div class="col-md-3"><%= f.label :introduction, "自己紹介" %></div>
+        <div class="col-md-5 ml-md-5"><%= f.text_area :introduction, class:"form-control"%></div>
       </div>
-      <div class="row justify-content-center my-md-2">
-        <div class="col-md-auto"><%= f.label :introduction, "自己紹介" %></div>
-        <div class="w-100"></div>
-        <div class="col-md-10"><%= f.text_area :introduction, class:"form-control"%></div>
-      </div>
-      
+
+      <h4 class="row justify-content-center pt-md-3">ユーザー個人情報</h4>
       <div class="row justify-content-center">
         <div class="col-md-3">氏名</div>
-        <div class="col-md-auto ml-md-5">
+        <div class="col-md-5 ml-md-5">
           (姓)<%= f.text_field :last_name %>
           (名)<%= f.text_field :first_name %>
         </div>
-      </div>
-      
-      <div class="row justify-content-center">
+        <div class="w-100 py-md-1"></div>
         <div class="col-md-3">フリガナ</div>
-        <div class="col-md-auto ml-md-5">
-          (セイ)<%= f.text_field :last_name_kana %>
-          (メイ)<%= f.text_field :first_name_kana %>
+        <div class="col-md-5 ml-md-5">
+          (ｾｲ)<%= f.text_field :last_name_kana %>
+          (ﾒｲ)<%= f.text_field :first_name_kana %>
         </div>
-      </div>
-      
-      <div class="row justify-content-center">
+        <div class="w-100 py-md-1"></div>
         <div class="col-md-3"><%= f.label :email, "メールアドレス" %></div>
-        <div class="col-md-auto ml-md-5"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
-      </div>
-      
-      <div class="row justify-content-center">
+        <div class="col-md-5 ml-md-5"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+        <div class="w-100 py-md-1"></div>
         <div class="col-md-3"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></div>
-        <div class="col-md-auto ml-md-5"><%= f.text_field :postal_code %></div>
-      </div>
-      
-      <div class="row justify-content-center">
+        <div class="col-md-5 ml-md-5"><%= f.text_field :postal_code %></div>
+        <div class="w-100 py-md-1"></div>
         <div class="col-md-3"><%= f.label :address, "住所" %></div>
-        <div class="col-md-auto ml-md-5"><%= f.text_field :address %></div>
-      </div>
-      
-      <div class="row justify-content-center">
+        <div class="col-md-5 ml-md-5"><%= f.text_field :address %></div>
+        <div class="w-100 py-md-1"></div>
         <div class="col-md-3"><%= f.label :telephone_number, "電話番号(ハイフンなし)" %></div>
-        <div class="col-md-auto ml-md-5"><%= f.telephone_field :telephone_number %></div>
-      </div>
-      
-      <div class="row justify-content-center">
+        <div class="col-md-5 ml-md-5"><%= f.telephone_field :telephone_number %></div>
+        <div class="w-100 py-md-1"></div>
         <div class="col-md-3"><%= f.label :is_active, "会員ステータス" %></div>
-        <div class="col-md-auto ml-md-5">
+        <div class="col-md-5 ml-md-5">
           <%= f.label :is_active_ture, "有効" %>
           <%= f.radio_button :is_active, true %>
           <%= f.label :is_active_false, "退会" %>
           <%= f.radio_button :is_active, false %>
         </div>
       </div>
-      
-      <div class="row justify-content-center">
-        <div class="col-md-auto m-3"><%= f.submit "編集完了", class:"btn btn-success" %></div>
+
+      <div class="row justify-content-center py-md-4">
+        <div class="col-md-auto mx-md-1">
+          <%= f.submit "編集完了", class:"btn btn-success" %>
+        </div>
+        <div class="col-md-auto mx-md-1">
+          <%= link_to "編集を止める", admin_end_user_path(@end_user.id), class:"btn btn-primary" %>
+        </div>
       </div>
     <% end %>
   </div>

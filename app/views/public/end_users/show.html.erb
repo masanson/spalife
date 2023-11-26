@@ -1,5 +1,9 @@
 <div class="container bg-white">
-    <h2 class="row pb-md-3">マイページ</h2>
+    <% if @end_user == current_end_user %>
+      <h2 class="row pb-md-3">マイページ</h2>
+    <% else %>
+      <h2 class="row pb-md-3">ユーザーページ</h2>
+    <% end %>
     <div class="row m-nd-2 end_user_item justify-content-around">
        <div class="col-md-auto">
          <%= image_tag @end_user.get_user_image(300, 300) %>
@@ -14,8 +18,6 @@
          <div class="row end_user_item_intro border rounded border-dark">
            <%= @end_user.introduction %>
          </div>
-          <% if @end_user == current_end_user %>
-          <% end %>
        </div>
     </div>
 
