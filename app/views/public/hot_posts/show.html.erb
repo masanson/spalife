@@ -12,7 +12,7 @@
       </div>
       
       <% if @hot_post.hot_post_image.attached? %>
-        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
+        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, nil) %></div>
       <% end %>
       <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
       <div class="d-block post_item__body2">
@@ -54,7 +54,9 @@
         <% @comments.each do |comment| %>
           <div class="col-md-auto comment_item">
             <div class="d-block my-1 border-top border-dark">
-              <%= comment.end_user.user_name %>
+              <%= link_to public_end_user_path(comment.end_user.id), class:"text-dark" do %>
+                <%= comment.end_user.user_name %>
+              <% end %>
               <%= comment.created_at.strftime('%Y/%m/%d') %>
               <% if comment.end_user == current_end_user %>
                 <%= link_to "削除する", public_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
