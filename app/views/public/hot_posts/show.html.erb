@@ -12,7 +12,7 @@
       </div>
       
       <% if @hot_post.hot_post_image.attached? %>
-        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, nil) %></div>
+        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
       <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
       <div class="d-block post_item__body2">

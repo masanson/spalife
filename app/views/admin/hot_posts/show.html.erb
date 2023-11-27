@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row mt-md-3 pb-md-5 bg-white">
-    <div class="col-md-7 post_item">
+  <div class="row mt-md-3 pb-md-5">
+    <div class="col-md-7 m-1 post_item bg-white">
       <div class="row py-md-2 pl-md-1 post_item__head justify-content-between">
         <h3 class="col-md-auto" style="margin-bottom: 0px;"><%= @hot_post.title %></h3>
         <p class="col-md-auto" style="margin-bottom: 0px;">
@@ -10,9 +10,9 @@
           <% end %>
         </p>
       </div>
-      
+
       <% if @hot_post.hot_post_image.attached? %>
-        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, nil) %></div>
+        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
       <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
       <p class="d-block post_item__body2">ジャンル：<%= @hot_post.genre.name %></p>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-4 m-1 bg-white">
       <div class="row justify-content-center">
         <h5 class="col-md-7">コメント一覧</h5>
       </div>

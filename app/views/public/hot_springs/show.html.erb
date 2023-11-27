@@ -4,8 +4,8 @@
     <div class="col-md-auto spring_item">
       <h3 class="row p-2 spring_item__head" style="margin-bottom: 0px;"><%= @hot_spring.name %></h3>
       <div class="w-100"></div>
-      <div class="row">
-        <div class="col-md-auto spring_item__image"><%= image_tag  @hot_spring.get_hot_spring_image(300, nil) %></div>
+      <div class="row justify-content-around">
+        <div class="col-md-auto spring_item__image"><%= image_tag  @hot_spring.get_hot_spring_image(300, 300) %></div>
         <p class="col-md-auto mx-2 spring_item__body border rounded border-dark"><%= @hot_spring.introduction %></p>
       </div>
       <div class="row my-2">

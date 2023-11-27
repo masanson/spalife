@@ -8,6 +8,7 @@ class Admin::HotPostsController < ApplicationController
   def show
     @hot_post = HotPost.find(params[:id])
     @hot_spring = @hot_post.hot_spring_id
+    @end_user = @hot_post.end_user
     @comments =@hot_post.comments.page(params[:page]).per(4).order(created_at: :desc)
   end
 

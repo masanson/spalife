@@ -45,4 +45,4 @@
   - Font Free (https://fontfree.me/)
 
 - 写真素材作成として以下を使用
-  - morguefile (https://morguefile.com/)
+  - ぱくたそ (https://www.pakutaso.com/)

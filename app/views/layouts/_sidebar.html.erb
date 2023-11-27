@@ -7,9 +7,9 @@
   <div class="collapse h-100" id="navbarToggleExternalContent">
     <div class="bg-dark sidebar_field h-100">
     <%= link_to root_path do%>
-      <h2 class="listings_header col">SPALIFE</h2>
+      <div class="d-flex align-items-center col-md justify-content-center p-0"><%= image_tag "spalife_logo.png", height: 50 %></div>
     <% end %>
-    <ul class="channels_list p-md-2", style="list-style: none;">
+    <ul class="p-md-1", style="list-style: none;">
       <% if admin_signed_in? %>
         <li class="col py-1"><%= link_to "会員一覧", admin_top_path, class:"nav-link #{active_if('admin/top')} btn btn-info" %></li>
         <li class="col py-1"><%= link_to "投稿一覧", admin_hot_posts_path, class:"nav-link #{active_if('admin/hot_posts')} btn btn-info" %></li>

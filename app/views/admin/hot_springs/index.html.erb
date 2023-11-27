@@ -7,7 +7,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="m-md-2 new_spring_form border rounded">
+  <div class="m-md-2 px-2 new_spring_form border rounded">
   <h3>新規温泉地作成フォーム</h3>
     <%= form_with model: @hot_spring, url: admin_hot_springs_path, method: :post do |f| %>
       <div class="row justify-content-center py-1">
@@ -50,7 +50,7 @@
     <% end %>
   </div>
 
-  <div class="search_spring border rounded">
+  <div class="px-2 search_spring border rounded">
     <h3>温泉地検索</h3>
     <%= form_with url: admin_hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
       <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
@@ -58,10 +58,10 @@
       <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
     <% end %>
   </div>
-  <div class="row mt-3 justify-content-between">
+  <div class="row my-3 bg-white p-2">
     <h3 class="col-md-auto">温泉地一覧</h3>
-  </div>
-  <div class="col-md-auto">
+    <div class="w-100"></div>
+    <div class="col-md">
     <table class="table table_spring table-hover table-inverse">
       <thead class="table_spring_head">
         <tr>
@@ -84,6 +84,6 @@
         </tbody>
       <% end %>
     </table>
+    <div class="row justify-content-center"><%= paginate @hot_springs %></div>
   </div>
-  <div class="row justify-content-center"><%= paginate @hot_springs %></div>
 </div>
