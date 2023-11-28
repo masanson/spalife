@@ -11,6 +11,15 @@ ja:
         title: 'タイトル'
         body: '本文'
         genre: 'ジャンル'
+      genre:
+        name: 'ジャンル名'
+      hot_spring:
+        name: '温泉名'
+        introduction: '温泉紹介文'
+        postal_code: '郵便番号'
+        address: '住所'
+        telephone_number: '電話番号'
+        access: '経路情報'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -27,7 +36,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -53,7 +62,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

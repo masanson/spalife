@@ -6,8 +6,14 @@
   </nav>
   <div class="collapse h-100" id="navbarToggleExternalContent">
     <div class="bg-dark sidebar_field h-100">
-    <%= link_to root_path do%>
-      <div class="d-flex align-items-center col-md justify-content-center p-0"><%= image_tag "spalife_logo.png", height: 50 %></div>
+    <% if admin_signed_in? %>
+      <%= link_to admin_top_path do%>
+        <div class="d-flex align-items-center col-md justify-content-center p-0"><%= image_tag "spalife_logo.png", height: 50 %></div>
+      <% end %>
+    <% else %>
+      <%= link_to root_path do%>
+        <div class="d-flex align-items-center col-md justify-content-center p-0"><%= image_tag "spalife_logo.png", height: 50 %></div>
+      <% end %>
     <% end %>
     <ul class="p-md-1", style="list-style: none;">
       <% if admin_signed_in? %>

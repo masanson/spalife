@@ -17,15 +17,17 @@
       <div class="col-md p-md-0">
         <header class="header">
           <div class="row justify-content-center" >
-            <h1 class="m-0">
-              <%= link_to root_path do%>
-                <%= image_tag "spalife_logo.png", height: 50 %>
-              <% end %>
-            </h1>
-            <p class="d-flex align-items-center justify-content-center m-0">
-              <%= flash[:notice] %>
-              <%= flash.now[:alert] %>
-            </p>
+              <div class="m-0">
+                <% if admin_signed_in? %>
+                  <%= link_to admin_top_path do%>
+                    <%= image_tag "spalife_logo.png", height: 50 %>
+                  <% end %>
+                <% else %>
+                  <%= link_to root_path do%>
+                    <%= image_tag "spalife_logo.png", height: 50 %>
+                  <% end %>
+                <% end %>
+              </div>
           </div>
         </header>
 

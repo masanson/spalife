@@ -1,12 +1,23 @@
 <div class="container">
-  <div class="row d-flex flex-column">
-    <% if @hot_spring.errors.any? %>
-      <p class="p-0"><%= @hot_spring.errors.count %>件のエラーが発生しました。</p>
-      <% @hot_spring.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="row justify-content-around">
+    <div class="col-md-auto">
+      <p class="row">
+        <%= flash[:notice] %>
+      </p>
+      <p class="row">
+        <%= flash.now[:alert] %>
+      </p>
+    </div>
+    <div class="col-md-auto">
+      <% if @hot_spring.errors.any? %>
+        <p class="p-0"><%= @hot_spring.errors.count %>件のエラーが発生しました。</p>
+        <% @hot_spring.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
+  
   <div class="m-md-2 px-2 new_spring_form border rounded">
   <h3>新規温泉地作成フォーム</h3>
     <%= form_with model: @hot_spring, url: admin_hot_springs_path, method: :post do |f| %>
