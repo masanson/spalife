@@ -1,13 +1,23 @@
 <div class="container ger-container">
-  <div class="row d-flex flex-column">
-    <% if @genre.errors.any? %>
-      <p class="p-0"><%= @genre.errors.count %>件のエラーが発生しました。</p>
-      <% @genre.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="row justify-content-around">
+    <div class="col-md-auto">
+      <p class="row">
+        <%= flash[:notice] %>
+      </p>
+      <p class="row">
+        <%= flash.now[:alert] %>
+      </p>
+    </div>
+    <div class="col-md-auto">
+      <% if @genre.errors.any? %>
+        <p class="p-0"><%= @genre.errors.count %>件のエラーが発生しました。</p>
+        <% @genre.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-  
+
   <div class="edit_genre_form border rounded">
     <h3 class="py-1">ジャンル編集フォーム</h3>
     <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>

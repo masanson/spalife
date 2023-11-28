@@ -11,7 +11,17 @@ class EndUser < ApplicationRecord
   has_many :genres, through: :hot_posts
   
   enum sex: { male: 0, female: 1, not_applicable: 2 }
-  
+
+  validates :last_name, presence: { message: "が無記入です。" }
+  validates :first_name, presence: { message: "が無記入です。" }
+  validates :last_name_kana, presence: { message: "が無記入です。" }
+  validates :first_name_kana, presence: { message: "が無記入です。" }
+  validates :user_name, presence: { message: "が無記入です。" }
+  validates :sex, presence: { message: "が設定されてません。" }
+  validates :postal_code, presence: { message: "が無記入です。" }
+  validates :address, presence: { message: "が無記入です。" }
+  validates :telephone_number, presence: { message: "が無記入です。" }
+
   has_one_attached :user_image
   
   def name

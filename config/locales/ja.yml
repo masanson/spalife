@@ -7,6 +7,18 @@ ja:
         not_applicable: "その他"
   activerecord:
     attributes:
+      end_user:
+        last_name: '姓'
+        first_name: '名'
+        last_name_kana: 'セイ'
+        first_name_kana: 'メイ'
+        user_name: 'ユーザー名'
+        sex: '性別'
+        postal_code: '郵便番号'
+        address: '住所'
+        telephone_number: '電話番号'
+        email: 'メールアドレス'
+        password: 'パスワード'
       hot_post:
         title: 'タイトル'
         body: '本文'
