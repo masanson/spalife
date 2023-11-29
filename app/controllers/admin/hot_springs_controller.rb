@@ -44,7 +44,7 @@ class Admin::HotSpringsController < ApplicationController
   def destroy
     @hot_spring = HotSpring.find(params[:id])
     if @hot_spring.destroy
-      flash[:notice] = "温泉情報を削除しました。"
+      flash[:notice] = "温泉が閉鎖しました。"
       redirect_to admin_hot_springs_path
     else
       flash.now[:alert] = "削除が失敗しました。"

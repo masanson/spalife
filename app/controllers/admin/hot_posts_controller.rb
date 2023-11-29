@@ -20,7 +20,7 @@ class Admin::HotPostsController < ApplicationController
     @hot_post = HotPost.find(params[:id])
     if @hot_post.update(hot_post_params)
       flash[:notice] = "管理者権限で投稿の更新されました"
-      redirect_tadmin_hot_post_path(@hot_post.id)
+      redirect_to admin_hot_post_path(@hot_post.id)
     else
       flash.now[:alert] = "投稿の更新が失敗しました。"
       render :edit
