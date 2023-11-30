@@ -30,7 +30,7 @@
           <%= link_to public_notifications_path, class:"notification-icon nav-link #{active_if('public/notifications')} btn btn-info" do %>
             <% if current_end_user.passive_notifications.where(checked: false).exists? %>
               <i class="notification-icon__image fa-solid fa-clipboard" style="color: #ffa500;"></i>
-              <span class="notification-icon__text"><%= current_end_user.passive_notifications.where(checked: false).count %></span>
+              <span class="notification-icon__text" style="color: #ffffff;"><%= current_end_user.passive_notifications.where(checked: false).count %></span>
             <% end %>
             <span class="text-white">通知一覧</span>
           <% end %>
