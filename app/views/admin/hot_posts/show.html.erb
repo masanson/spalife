@@ -39,7 +39,7 @@
                 <%= comment.end_user.user_name %>
               <% end %>
               <%= comment.created_at.strftime('%Y/%m/%d') %>
-              <%= link_to "削除する", admin_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+              <%= link_to "削除する", admin_hot_post_comment_path(comment.hot_post, comment), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
             </div>
             <div class="d-block my-1 border-bottom border-dark comment_item_body">
               <%= comment.content %>

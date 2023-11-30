@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :validate_user, only: [:destroy]
+
   def create
     @comment = Comment.new(comment_params)
     @hot_post = @comment.hot_post
@@ -12,9 +14,8 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    @hot_post = HotPost.find_by(params[:hot_post_id])
-    @comment = Comment.find_by(params[:id])
-    @comment.destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
     redirect_to request.referer
   end
 
@@ -22,5 +23,12 @@ class Public::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content, :end_user_id, :hot_post_id)
+  end
+
+  def validate_user
+    comment = Comment.find(params[:id])
+    if current_end_user.id != comment.end_user.id
+      redirect_to request.referer
+    end
   end
 end

@@ -10,7 +10,7 @@
           <% end %>
         </p>
       </div>
-      
+
       <% if @hot_post.hot_post_image.attached? %>
         <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
@@ -59,7 +59,7 @@
               <% end %>
               <%= comment.created_at.strftime('%Y/%m/%d') %>
               <% if comment.end_user == current_end_user %>
-                <%= link_to "削除する", public_hot_post_comment_path(comment.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+                <%= link_to "削除する", public_hot_post_comment_path(comment.hot_post, comment), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
               <% end%>
             </div>
             <div class="d-block my-1 border-bottom border-dark comment_item_body">
