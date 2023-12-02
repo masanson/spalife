@@ -54,7 +54,7 @@ class Public::HotPostsController < ApplicationController
         redirect_path = public_end_user_path(@end_user.id)
       else
         notice_message = "投稿を公開しました！"
-        redirect_path = public_hot_post_path(@hot_post.id)
+        redirect_path = public_end_user_path(@end_user.id)
       end
       flash[:notice] = notice_message
       redirect_to redirect_path
