@@ -23,6 +23,8 @@ ja:
         title: 'タイトル'
         body: '本文'
         genre: 'ジャンル'
+      comment:
+        content: 'コメント'
       genre:
         name: 'ジャンル名'
       hot_spring:

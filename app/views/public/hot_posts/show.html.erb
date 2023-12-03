@@ -1,4 +1,16 @@
 <div class="container">
+  <p class="row">
+    <%= flash[:notice] %>
+    <%= flash.now[:alert] %>
+  </p>
+  <div class="row d-flex flex-column">
+    <% if @comment.errors.any? %>
+      <p class="p-0"><%= @comment.errors.count %>件のエラーが発生しました。</p>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <% end %>
+  </div>
   <div class="row mt-md-3 pb-md-5 bg-white">
     <div class="col-md-7 post_item">
       <div class="row py-md-2 pl-md-1 post_item__head justify-content-between">

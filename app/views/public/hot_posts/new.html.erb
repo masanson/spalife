@@ -1,4 +1,5 @@
 <div class="container">
+  <p class="row"><%= flash.now[:alert] %></p>
   <div class="row d-flex flex-column">
     <% if @hot_post.errors.any? %>
       <p class="p-0"><%= @hot_post.errors.count %>件のエラーが発生しました。</p>

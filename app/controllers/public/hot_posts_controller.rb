@@ -1,5 +1,5 @@
 class Public::HotPostsController < ApplicationController
-  before_action :validate_user, only: [:create, :destroy, :update]
+  before_action :validate_user, only: [:destroy, :update]
   
   def index
     @hot_posts = HotPost.published.order(created_at: :desc).page(params[:page]).per(8)
