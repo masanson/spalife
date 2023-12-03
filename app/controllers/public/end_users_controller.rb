@@ -1,4 +1,6 @@
 class Public::EndUsersController < ApplicationController
+  before_action :validate_user, only: [:update, :update_withdrawal]
+  
   def show
     @end_user =EndUser.find(params[:id])
     @hot_posts = @end_user.hot_posts
@@ -46,5 +48,12 @@ class Public::EndUsersController < ApplicationController
   
   def end_user_params
     params.require(:end_user).permit(:user_image, :last_name, :first_name, :last_name_kana, :first_name_kana, :user_name, :sex, :email, :postal_code, :address, :telephone_number, :introduction)
+  end
+  
+  def validate_user
+    @end_user =EndUser.find(params[:id])
+    if current_end_user.id != @end_user.id
+      redirect_to request.referer
+    end
   end
 end

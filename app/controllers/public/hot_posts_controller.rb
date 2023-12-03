@@ -1,4 +1,6 @@
 class Public::HotPostsController < ApplicationController
+  before_action :validate_user, only: [:create, :destroy, :update]
+  
   def index
     @hot_posts = HotPost.published.order(created_at: :desc).page(params[:page]).per(8)
     @hot_posts = @hot_posts.where(genre_id: params[:genre_id]) if params[:genre_id].present?
@@ -77,5 +79,12 @@ class Public::HotPostsController < ApplicationController
 
   def hot_post_params
     params.require(:hot_post).permit(:hot_post_image, :title, :body, :status, :end_user_id, :genre_id, :hot_spring_id)
+  end
+  
+  def validate_user
+    @hot_post = HotPost.find(params[:id])
+    if current_end_user.id != @hot_post.end_user.id
+      redirect_to request.referer
+    end
   end
 end

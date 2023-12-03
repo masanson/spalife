@@ -1,4 +1,6 @@
 class Admin::HotPostsController < ApplicationController
+  before_action :validate_admin, only: [:update, :destroy]
+  
   def index
     @hot_posts = HotPost.published.order(created_at: :desc).page(params[:page]).per(8)
     @hot_posts = @hot_posts.where(genre_id: params[:genre_id]) if params[:genre_id].present?
@@ -38,5 +40,12 @@ class Admin::HotPostsController < ApplicationController
   
   def hot_post_params
     params.require(:hot_post).permit(:hot_post_image, :title, :body, :end_user_id, :genre_id, :hot_spring_id)
+  end
+  
+  def validate_admin
+    @hot_post = HotPost.find(params[:id])
+    if not admin_signed_in?
+      redirect_to request.referer
+    end
   end
 end

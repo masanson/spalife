@@ -1,4 +1,6 @@
 class Admin::HotSpringsController < ApplicationController
+  before_action :validate_admin, only: [:create, :update, :destroy]
+  
   def index
     @hot_springs = HotSpring.order(created_at: :desc).page(params[:page]).per(5)
     @hot_springs = @hot_springs.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
@@ -57,5 +59,12 @@ class Admin::HotSpringsController < ApplicationController
   
   def hot_spring_params
     params.require(:hot_spring).permit(:hot_spring_image, :name, :introduction, :postal_code, :address, :telephone_number, :access, :prefecture_id)
+  end
+  
+  def validate_admin
+    @hot_spring = HotSpring.find(params[:id])
+    if not admin_signed_in?
+      redirect_to request.referer
+    end
   end
 end

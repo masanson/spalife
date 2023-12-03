@@ -1,4 +1,6 @@
 class Admin::GenresController < ApplicationController
+  before_action :validate_admin, only: [:create, :update]
+  
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
@@ -35,5 +37,12 @@ class Admin::GenresController < ApplicationController
   
   def genre_params
     params.require(:genre).permit(:name)
+  end
+  
+  def validate_admin
+    @genre = Genre.find(params[:id])
+    if not admin_signed_in?
+      redirect_to request.referer
+    end
   end
 end
