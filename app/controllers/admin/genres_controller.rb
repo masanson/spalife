@@ -40,7 +40,6 @@ class Admin::GenresController < ApplicationController
   end
   
   def validate_admin
-    @genre = Genre.find(params[:id])
     if not admin_signed_in?
       redirect_to request.referer
     end
