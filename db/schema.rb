@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2023_11_14_115846) do
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "introduction", default: "よろしくお願いします。"
+    t.text "introduction"
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
