@@ -1,7 +1,3 @@
-<p class="row">
-  <%= flash[:notice] %>
-  <%= flash.now[:alert] %>
-</p>
 <div class="row d-flex flex-column">
   <% if @comment.errors.any? %>
     <p class="p-0"><%= @comment.errors.count %>件のエラーが発生しました。</p>

@@ -20,7 +20,10 @@
 - 自分が教えたい温泉の情報を投稿し共有する時
 ​
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1ar3Ghtv72zDUBged2JlSzP7eqyk8224wTouFNGcSZB8/edit?usp=sharing
+- ER図：https://drive.google.com/file/d/1hWsYigk-grzYEFt5lDKK2okHF4Y-Yd_H/view?usp=sharing
+- 画面遷移図：https://drive.google.com/file/d/1G2AailMVg-gJRIRoKnncQiKEt03ddRW-/view?usp=sharing
+- ワイヤーフレーム：https://drive.google.com/file/d/1504eJzsiFixfBmk7ASB7pEjz1cuCPTcT/view?usp=sharing
 ​
 ## 実装機能リスト
 - https://docs.google.com/spreadsheets/d/1MV5c7m1U9HmHB_SD5y4FWfgBjrNt957ezQNzIIth8ik/edit?usp=sharing

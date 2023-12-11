@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.find_or_create_by!(email: "awsedrftg153@example.com") do |admin|
-  admin.password = "awsedrftg153"
+  admin.password = ENV['ADMIN_KEY']
 end
 
 genre1 = Genre.find_or_create_by!(name: "その他") do |genre|
@@ -65,7 +65,7 @@ end_user1 = EndUser.find_or_create_by!(email: "enduser1@example.com") do |end_us
   end_user.postal_code = "3681254"
   end_user.address = "岐阜県関市西欠ノ下411-2"
   end_user.telephone_number = "0835126348"
-  end_user.password = "spalife1enduser"
+  end_user.password = ENV['USER_KEY1']
   end_user.user_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-enduser1.jpg"), filename:"sample-enduser1.jpg")
 end
 
@@ -80,7 +80,7 @@ end_user2 = EndUser.find_or_create_by!(email: "enduser2@example.com") do |end_us
   end_user.postal_code = "4256897"
   end_user.address = "鳥取県鳥取市気高町宿715-20"
   end_user.telephone_number = "0245368954"
-  end_user.password = "spalife2enduser"
+  end_user.password = ENV['USER_KEY2']
   end_user.user_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-enduser2.jpg"), filename:"sample-enduser2.jpg")
 end
 
@@ -95,11 +95,11 @@ end_user3 = EndUser.find_or_create_by!(email: "enduser3@example.com") do |end_us
   end_user.postal_code = "3458265"
   end_user.address = "石川県能美郡川北町上先出486-5"
   end_user.telephone_number = "04715632846"
-  end_user.password = "spalife3enduser"
+  end_user.password = ENV['USER_KEY3']
   end_user.user_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-enduser3.jpg"), filename:"sample-enduser3.jpg")
 end
 
-HotPost.find_or_create_by!(title: "○○温泉レビュー") do |hot_post|
+hot_post1 = HotPost.find_or_create_by!(title: "○○温泉レビュー") do |hot_post|
   hot_post.title = "○○温泉レビュー"
   hot_post.body = "足湯が気持ち良かった。"
   hot_post.end_user = end_user1
@@ -131,4 +131,16 @@ HotPost.find_or_create_by!(title: "温泉レビュー下書き") do |hot_post|
   hot_post.status = 1
   hot_post.end_user = end_user1
   hot_post.genre = genre1
+end
+
+Comment.find_or_create_by!(id: 1) do |comment|
+  comment.content = "足湯気持ちよかったですよ！"
+  comment.hot_post = hot_post1
+  comment.end_user = end_user2
+end
+
+Comment.find_or_create_by!(id: 2) do |comment|
+  comment.content = "ここ露天風呂も良かったですよ！"
+  comment.hot_post = hot_post1
+  comment.end_user = end_user3
 end

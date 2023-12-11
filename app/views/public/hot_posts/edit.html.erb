@@ -48,8 +48,9 @@
       </div>
     </div>
 
-    <div class="row justify-content-center py-md-2">
+    <div class="row justify-content-around py-md-2">
       <%= f.submit '編集完了', class:"btn btn-success" %>
+      <%= link_to "編集を止める", public_hot_post_path(@hot_post.id), class:"btn btn-primary" %>
     </div>
     <% end %>
   </div>
