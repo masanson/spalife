@@ -62,7 +62,6 @@ class Admin::HotSpringsController < ApplicationController
   end
   
   def validate_admin
-    @hot_spring = HotSpring.find(params[:id])
     if not admin_signed_in?
       redirect_to request.referer
     end

@@ -1,53 +1,51 @@
-<div class="container">
-  <div class="row mt-md-3 pb-md-5">
-    <div class="col-md-7 m-1 post_item bg-white">
-      <div class="row py-md-2 pl-md-1 post_item__head justify-content-between">
-        <h3 class="col-md-auto" style="margin-bottom: 0px;"><%= @hot_post.title %></h3>
-        <p class="col-md-auto" style="margin-bottom: 0px;">
-          投稿者：
-          <%= link_to admin_end_user_path(@end_user.id), class:"text-dark text-align-center" do %>
-            <%=@end_user.user_name%>
-          <% end %>
+<div class="row mt-md-3 pb-md-5">
+  <div class="col-md-7 m-1 post_item bg-white">
+    <div class="row py-md-2 pl-md-1 post_item__head justify-content-between">
+      <h3 class="col-md-auto" style="margin-bottom: 0px;"><%= @hot_post.title %></h3>
+      <p class="col-md-auto" style="margin-bottom: 0px;">
+        投稿者：
+        <%= link_to admin_end_user_path(@end_user.id), class:"text-dark text-align-center" do %>
+          <%=@end_user.user_name%>
+        <% end %>
+      </p>
+    </div>
+
+    <% if @hot_post.hot_post_image.attached? %>
+      <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
+    <% end %>
+    <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
+    <p class="d-block post_item__body2">ジャンル：<%= @hot_post.genre.name %></p>
+      <% if @hot_post.hot_spring_id.present? %>
+        <p class="d-block post_item__body2">
+          温泉地：<%= link_to admin_hot_spring_path(@hot_spring) do %><%= @hot_post.hot_spring.name %><% end %>
         </p>
-      </div>
-
-      <% if @hot_post.hot_post_image.attached? %>
-        <div class="row post_item__image d-flex justify-content-around"><%= image_tag @hot_post.get_hot_post_image(300, 300) %></div>
       <% end %>
-      <p class="d-block p-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
-      <p class="d-block post_item__body2">ジャンル：<%= @hot_post.genre.name %></p>
-        <% if @hot_post.hot_spring_id.present? %>
-          <p class="d-block post_item__body2">
-            温泉地：<%= link_to admin_hot_spring_path(@hot_spring) do %><%= @hot_post.hot_spring.name %><% end %>
-          </p>
-        <% end %>
-      <div class="d-flex justify-content-around">
-        <%= link_to "編集する", edit_admin_hot_post_path(@hot_post.id), class:"btn btn-success" %>
-        <%= link_to "削除する", admin_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
-      </div>
+    <div class="d-flex justify-content-around">
+      <%= link_to "編集する", edit_admin_hot_post_path(@hot_post.id), class:"btn btn-success" %>
+      <%= link_to "削除する", admin_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
     </div>
+  </div>
 
-    <div class="col-md-4 m-1 bg-white">
-      <div class="row justify-content-center">
-        <h5 class="col-md-7">コメント一覧</h5>
-      </div>
-      <div class="row justify-content-center">
-        <% @comments.each do |comment| %>
-          <div class="col-md-auto comment_item">
-            <div class="d-block my-1 border-top border-dark">
-              <%= link_to admin_end_user_path(comment.end_user.id), class:"text-dark" do %>
-                <%= comment.end_user.user_name %>
-              <% end %>
-              <%= comment.created_at.strftime('%Y/%m/%d') %>
-              <%= link_to "削除する", admin_hot_post_comment_path(comment.hot_post, comment), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
-            </div>
-            <div class="d-block my-1 border-bottom border-dark comment_item_body">
-              <%= comment.content %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="row justify-content-center"><%= paginate @comments %></div>
+  <div class="col-md-4 m-1 bg-white">
+    <div class="row justify-content-center">
+      <h5 class="col-md-7">コメント一覧</h5>
     </div>
+    <div class="row justify-content-center">
+      <% @comments.each do |comment| %>
+        <div class="col-md-auto comment_item">
+          <div class="d-block my-1 border-top border-dark">
+            <%= link_to admin_end_user_path(comment.end_user.id), class:"text-dark" do %>
+              <%= comment.end_user.user_name %>
+            <% end %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+            <%= link_to "削除する", admin_hot_post_comment_path(comment.hot_post, comment), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+          </div>
+          <div class="d-block my-1 border-bottom border-dark comment_item_body">
+            <%= comment.content %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="row justify-content-center"><%= paginate @comments %></div>
   </div>
 </div>

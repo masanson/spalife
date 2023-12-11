@@ -1,46 +1,44 @@
-<div class="container">
-  <div class="row justify-content-center mt-md-5">
-    <div class="col-md-8 m-my-2">
-      <div class="row m-md-5">
-        <p>あなたの知ってるいい湯を、伝えてみませんか？</p></br>
-        <p>SPALIFE</p></br>
-        <p></p></br>
-        <p>※未ログインでも投稿の閲覧は出来ます。温泉情報の新規投稿、投稿にコメントやいいねする場合は、</p></br>
-        <p>ログインする必要があります。</p>
-      </div>
-      <% if not end_user_signed_in? %>
-        <div class="row p-md-3 bg-white border rounded border-success m-0">
-          <div class="row w-100 justify-content-center">
-            <h5 class="col-md-4">アカウント未登録</h5>
-            <div class="col-md-4"><%= link_to "新規作成", new_end_user_registration_path %></div>
-          </div>
-          <div class="row w-100 justify-content-center">
-            <h5 class="col-md-4">アカウント登録済</h5>
-            <div class="col-md-4"><%= link_to "ログイン", new_end_user_session_path %></div>
-          </div>
-        </div>
-      <% end %>
-      <% if end_user_signed_in? %>
-        <h1>新着投稿</h1>
-        <div class="row">
-          <% @hot_posts.each do |hot_post| %>
-          <div class="col-md-3 p-2">
-            <div>
-              <%= link_to public_hot_post_path(hot_post.id) do%>
-                <%= hot_post.title %>
-              <% end %>
-            </div>
-            <div>
-              <%= link_to public_end_user_path(hot_post.end_user.id) do%>
-                <%= hot_post.end_user.user_name %>
-              <% end %>
-            </div>
-            <div><%= hot_post.genre.name %></div>
-          </div>
-          <% end %>
-          <%= link_to "投稿一覧へ", public_hot_posts_path %>
-        </div>
-      <% end %>
+<div class="row justify-content-center mt-md-5">
+  <div class="col-md-8 m-my-2">
+    <div class="row m-md-5">
+      <p>あなたの知ってるいい湯を、伝えてみませんか？</p></br>
+      <p>SPALIFE</p></br>
+      <p></p></br>
+      <p>※未ログインでも投稿の閲覧は出来ます。温泉情報の新規投稿、投稿にコメントやいいねする場合は、</p></br>
+      <p>ログインする必要があります。</p>
     </div>
+    <% if not end_user_signed_in? %>
+      <div class="row p-md-3 bg-white border rounded border-success m-0">
+        <div class="row w-100 justify-content-center">
+          <h5 class="col-md-4">アカウント未登録</h5>
+          <div class="col-md-4"><%= link_to "新規作成", new_end_user_registration_path %></div>
+        </div>
+        <div class="row w-100 justify-content-center">
+          <h5 class="col-md-4">アカウント登録済</h5>
+          <div class="col-md-4"><%= link_to "ログイン", new_end_user_session_path %></div>
+        </div>
+      </div>
+    <% end %>
+    <% if end_user_signed_in? %>
+      <h1>新着投稿</h1>
+      <div class="row">
+        <% @hot_posts.each do |hot_post| %>
+        <div class="col-md-3 p-2">
+          <div>
+            <%= link_to public_hot_post_path(hot_post.id) do%>
+              <%= hot_post.title %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to public_end_user_path(hot_post.end_user.id) do%>
+              <%= hot_post.end_user.user_name %>
+            <% end %>
+          </div>
+          <div><%= hot_post.genre.name %></div>
+        </div>
+        <% end %>
+        <%= link_to "投稿一覧へ", public_hot_posts_path %>
+      </div>
+    <% end %>
   </div>
 </div>

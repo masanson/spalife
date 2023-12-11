@@ -1,89 +1,87 @@
-<div class="container">
-  <div class="row">
-    <h2 class="d-block p-2 spring_item__head" style="margin-bottom: 0px;">温泉地詳細</h2>
-    <div class="col-md-auto spring_item">
-      <h3 class="row p-2 spring_item__head" style="margin-bottom: 0px;"><%= @hot_spring.name %></h3>
-      <div class="w-100"></div>
-      <div class="row justify-content-around">
-        <div class="col-md-auto spring_item__image"><%= image_tag  @hot_spring.get_hot_spring_image(300, 300) %></div>
-        <p class="col-md-auto mx-2 spring_item__body border rounded border-dark"><%= @hot_spring.introduction %></p>
-      </div>
+<div class="row">
+  <h2 class="d-block p-2 spring_item__head" style="margin-bottom: 0px;">温泉地詳細</h2>
+  <div class="col-md-auto spring_item">
+    <h3 class="row p-2 spring_item__head" style="margin-bottom: 0px;"><%= @hot_spring.name %></h3>
+    <div class="w-100"></div>
+    <div class="row justify-content-around">
+      <div class="col-md-auto spring_item__image"><%= image_tag  @hot_spring.get_hot_spring_image(300, 300) %></div>
+      <p class="col-md-auto mx-2 spring_item__body border rounded border-dark"><%= @hot_spring.introduction %></p>
+    </div>
 
-      <div class="row my-2">
-        <h2 class="d-block p-2 spring_item__head" style="margin-bottom: 0px;">温泉情報</h3>
+    <div class="row my-2">
+      <h2 class="d-block p-2 spring_item__head" style="margin-bottom: 0px;">温泉情報</h3>
 
-        <div class="col-md-auto mx-2" id='map'></div>
-        <style>
-          #map{
-            width: 350px;
-            height: 200px;
-          }
-        </style>
+      <div class="col-md-auto mx-2" id='map'></div>
+      <style>
+        #map{
+          width: 350px;
+          height: 200px;
+        }
+      </style>
 
-        <script>
-          console.log(<%= @latlng %>)
+      <script>
+        console.log(<%= @latlng %>)
 
-          function initMap() {
-            const myLatLng = { lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %> };
-            const map = new google.maps.Map(document.getElementById("map"), {
-              zoom: 13,
-              center: myLatLng,
-            });
+        function initMap() {
+          const myLatLng = { lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %> };
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: myLatLng,
+          });
 
-            new google.maps.Marker({
-              position: myLatLng,
-              map,
-              title: "<%= @hot_spring.name %>",
-            });
-          }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer></script>
+          new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: "<%= @hot_spring.name %>",
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer></script>
 
-        <div class="col-md-auto border rounded border-dark w-50 h-50">
-          <p>住所：<%= @hot_spring.address_full %></p>
-          <div class="w-100"></div>
-          <p>郵便番号：〒 <%= @hot_spring.postal_code %></p>
-          <div class="w-100"></div>
-          <p>電話番号：<%= @hot_spring.telephone_number %></p>
-          <div class="w-100"></div>
-          <p>アクセス：<%= @hot_spring.access %></p>
-        </div>
-      </div>
-
-
-      <div class="row my-3 justify-content-around">
-        <%= link_to "編集する", edit_admin_hot_spring_path(@hot_spring.id), class:"btn btn-success" %>
-        <%= link_to "削除する", admin_hot_spring_path(@hot_spring.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+      <div class="col-md-auto border rounded border-dark w-50 h-50">
+        <p>住所：<%= @hot_spring.address_full %></p>
+        <div class="w-100"></div>
+        <p>郵便番号：〒 <%= @hot_spring.postal_code %></p>
+        <div class="w-100"></div>
+        <p>電話番号：<%= @hot_spring.telephone_number %></p>
+        <div class="w-100"></div>
+        <p>アクセス：<%= @hot_spring.access %></p>
       </div>
     </div>
 
-    <div class="col-md-3 spring_post">
-      <h5 class="row justify-content-center">温泉に関する投稿</h5>
-      <div class="row justify-content-center">
-        <% if @hot_posts.exists? %>
-        <table class="spring_table table-hover table-inverse">
-            <thead class="spring_table_head">
+
+    <div class="row my-3 justify-content-around">
+      <%= link_to "編集する", edit_admin_hot_spring_path(@hot_spring.id), class:"btn btn-success" %>
+      <%= link_to "削除する", admin_hot_spring_path(@hot_spring.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+    </div>
+  </div>
+
+  <div class="col-md-3 spring_post">
+    <h5 class="row justify-content-center">温泉に関する投稿</h5>
+    <div class="row justify-content-center">
+      <% if @hot_posts.exists? %>
+      <table class="spring_table table-hover table-inverse">
+          <thead class="spring_table_head">
+            <tr>
+              <th>投稿タイトル</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @hot_posts.each do |hot_post| %>
+            <tbody>
               <tr>
-                <th>投稿タイトル</th>
-                <th></th>
+                <td>
+                  <%= link_to admin_hot_post_path(hot_post.id) do %>
+                    <%= hot_post.title %>
+                  <% end %>
+                </td>
+                <td><%= hot_post.created_at.strftime('%Y/%m/%d') %></td>
               </tr>
-            </thead>
-            <% @hot_posts.each do |hot_post| %>
-              <tbody>
-                <tr>
-                  <td>
-                    <%= link_to admin_hot_post_path(hot_post.id) do %>
-                      <%= hot_post.title %>
-                    <% end %>
-                  </td>
-                  <td><%= hot_post.created_at.strftime('%Y/%m/%d') %></td>
-                </tr>
-              </tbody>
-            <% end %>
-          </table>
+            </tbody>
           <% end %>
-      </div>
-      <div class="row justify-content-center"><%= paginate @hot_posts %></div>
+        </table>
+        <% end %>
     </div>
+    <div class="row justify-content-center"><%= paginate @hot_posts %></div>
   </div>
 </div>

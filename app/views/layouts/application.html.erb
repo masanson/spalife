@@ -31,7 +31,21 @@
           </div>
         </header>
 
-        <main class="main"><%= yield %></main>
+        <main class="main">
+          <div class="container">
+            <div class="row mt-md-2 justify-content-center">
+              <div class="col-md-auto">
+                <p class="row">
+                  <%= flash[:notice] %>
+                </p>
+                <p class="row">
+                  <%= flash.now[:alert] %>
+                </p>
+              </div>
+            </div>
+            <%= yield %>
+          </div>
+        </main>
 
       </div>
     </div>

@@ -1,3 +1,16 @@
+<div class="row justify-content-center">
+  <% if @end_user.errors.any? %>
+    <div class="col-md-auto">
+      <p class="p-0"><%= @end_user.errors.count %>件のエラーが発生しました。</p>
+    </div>
+    <div class="col-md-auto">
+      <% @end_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
 <div class="container bg-white mt-md-5">
   <h2>マイページ情報編集</h2>
   <h4 class="row justify-content-center">ユーザー基本情報</h4>

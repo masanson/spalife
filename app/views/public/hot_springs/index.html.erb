@@ -1,38 +1,36 @@
-<div class="container">
-  <div class="search_spring border rounded">
-    <h3>温泉地検索</h3>
-    <%= form_with url: public_hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
-      <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
-      <div class="col-md-auto">都道府県 <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: '選択してください' }, { class:"ser-form-control genre_id" } %></div>
-      <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
-    <% end %>
-  </div>
-  <div class="row mt-3 justify-content-between">
-    <h3 class="col-md-auto">温泉地一覧</h3>
-  </div>
-  <div class="col-md-auto">
-    <table class="table table_spring table-hover table-inverse">
-      <thead class="table_spring_head">
-        <tr>
-          <th scope="col-md">都道府県</th>
-          <th scope="col-md">温泉地名</th>
-          <th scope="col-md"></th>
-        </tr>
-      </thead>
-      <% @hot_springs.each do |hot_spring| %>
-        <tbody class="table_spring_body">
-          <tr scope="row">
-            <td><%= hot_spring.prefecture.name %></td>
-            <td>
-              <%= link_to public_hot_spring_path(hot_spring.id) do %>
-                <%= hot_spring.name %>
-              <% end %>
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
-      <% end %>
-    </table>
-  </div>
-  <div class="row justify-content-center"><%= paginate @hot_springs %></div>
+<div class="search_spring border rounded">
+  <h3>温泉地検索</h3>
+  <%= form_with url: public_hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
+    <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
+    <div class="col-md-auto">都道府県 <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: '選択してください' }, { class:"ser-form-control genre_id" } %></div>
+    <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
+  <% end %>
 </div>
+<div class="row mt-3 justify-content-between">
+  <h3 class="col-md-auto">温泉地一覧</h3>
+</div>
+<div class="col-md-auto">
+  <table class="table table_spring table-hover table-inverse">
+    <thead class="table_spring_head">
+      <tr>
+        <th scope="col-md">都道府県</th>
+        <th scope="col-md">温泉地名</th>
+        <th scope="col-md"></th>
+      </tr>
+    </thead>
+    <% @hot_springs.each do |hot_spring| %>
+      <tbody class="table_spring_body">
+        <tr scope="row">
+          <td><%= hot_spring.prefecture.name %></td>
+          <td>
+            <%= link_to public_hot_spring_path(hot_spring.id) do %>
+              <%= hot_spring.name %>
+            <% end %>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+<div class="row justify-content-center"><%= paginate @hot_springs %></div>

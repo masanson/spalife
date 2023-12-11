@@ -1,56 +1,54 @@
-<div class="container">
-  <div class="row d-flex flex-column">
-    <% if @hot_post.errors.any? %>
-      <p class="p-0"><%= @hot_post.errors.count %>件のエラーが発生しました。</p>
-      <% @hot_post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+<div class="row d-flex flex-column">
+  <% if @hot_post.errors.any? %>
+    <p class="p-0"><%= @hot_post.errors.count %>件のエラーが発生しました。</p>
+    <% @hot_post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
+  <% end %>
+</div>
+<div class="bg-white mt-md-5">
+  <h3 class="pl-md-2 pt-md-2">投稿編集</h3>
+  <%= form_with model: @hot_post, url: admin_hot_post_path, method: :patch do |f| %>
+  <div class="row justify-content-center py-md-2">
+    <div class="col-md-3">タイトル</div>
+    <div class="col-md-6"><%= f.text_field :title %></div>
   </div>
-  <div class="bg-white mt-md-5">
-    <h3 class="pl-md-2 pt-md-2">投稿編集</h3>
-    <%= form_with model: @hot_post, url: admin_hot_post_path, method: :patch do |f| %>
-    <div class="row justify-content-center py-md-2">
-      <div class="col-md-3">タイトル</div>
-      <div class="col-md-6"><%= f.text_field :title %></div>
-    </div>
-    <div class="row justify-content-center py-md-3">
-      <div class="col-md-3">本文</div>
-      <div class="col-md-6"><%= f.text_area :body, class:"form-control" %></div>
-    </div>
-    <div class="row justify-content-center py-md-2">
-      <div class="col-md-3">ジャンル</div>
-      <div class="col-md-6">
-        <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, { class:"form-control genre_id" } %>
-      </div>
-    </div>
-    <div class="row justify-content-center py-md-2">
-      <div class="col-md-3">投稿に関連する温泉地</div>
-      <div class="col-md-6"><%= f.collection_select :hot_spring_id, HotSpring.all, :id, :name, { include_blank: "無し" }, { class:"form-control hot_spring_id" } %></div>
-    </div>
-    <div class="row justify-content-center py-md-2">
-      <div class="col-md-3">画像</div>
-      <div class="col-md-6"><%= f.file_field :hot_post_image, placeholder: "hot_post_image", accept: "image/*", class:"form-control-file" %></div>
-    </div>
-
-    <div class="row justify-content-center py-md-2">
-      <div class="col-md-2">
-        <%= f.radio_button :status, HotPost.statuses.key(0) %>
-        <%= f.label :status, "公開" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.radio_button :status, HotPost.statuses.key(1) %>
-        <%= f.label :status, "下書き保存" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.radio_button :status, HotPost.statuses.key(2) %>
-        <%= f.label :status, "非公開" %>
-      </div>
-    </div>
-
-    <div class="row justify-content-center py-md-2">
-      <%= f.submit '編集完了', class:"btn btn-success" %>
-    </div>
-    <% end %>
+  <div class="row justify-content-center py-md-3">
+    <div class="col-md-3">本文</div>
+    <div class="col-md-6"><%= f.text_area :body, class:"form-control" %></div>
   </div>
+  <div class="row justify-content-center py-md-2">
+    <div class="col-md-3">ジャンル</div>
+    <div class="col-md-6">
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, { class:"form-control genre_id" } %>
+    </div>
+  </div>
+  <div class="row justify-content-center py-md-2">
+    <div class="col-md-3">投稿に関連する温泉地</div>
+    <div class="col-md-6"><%= f.collection_select :hot_spring_id, HotSpring.all, :id, :name, { include_blank: "無し" }, { class:"form-control hot_spring_id" } %></div>
+  </div>
+  <div class="row justify-content-center py-md-2">
+    <div class="col-md-3">画像</div>
+    <div class="col-md-6"><%= f.file_field :hot_post_image, placeholder: "hot_post_image", accept: "image/*", class:"form-control-file" %></div>
+  </div>
+
+  <div class="row justify-content-center py-md-2">
+    <div class="col-md-2">
+      <%= f.radio_button :status, HotPost.statuses.key(0) %>
+      <%= f.label :status, "公開" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.radio_button :status, HotPost.statuses.key(1) %>
+      <%= f.label :status, "下書き保存" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.radio_button :status, HotPost.statuses.key(2) %>
+      <%= f.label :status, "非公開" %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center py-md-2">
+    <%= f.submit '編集完了', class:"btn btn-success" %>
+  </div>
+  <% end %>
 </div>

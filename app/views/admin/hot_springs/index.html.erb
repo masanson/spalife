@@ -1,100 +1,92 @@
-<div class="container">
-  <div class="row justify-content-around">
+<div class="row justify-content-center">
+  <% if @hot_spring.errors.any? %>
     <div class="col-md-auto">
-      <p class="row">
-        <%= flash[:notice] %>
-      </p>
-      <p class="row">
-        <%= flash.now[:alert] %>
-      </p>
+      <p class="p-0"><%= @hot_spring.errors.count %>件のエラーが発生しました。</p>
     </div>
     <div class="col-md-auto">
-      <% if @hot_spring.errors.any? %>
-        <p class="p-0"><%= @hot_spring.errors.count %>件のエラーが発生しました。</p>
-        <% @hot_spring.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+      <% @hot_spring.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
     </div>
-  </div>
-  
-  <div class="m-md-2 px-2 new_spring_form border rounded">
-  <h3>新規温泉地作成フォーム</h3>
-    <%= form_with model: @hot_spring, url: admin_hot_springs_path, method: :post do |f| %>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">温泉名</div>
-        <div class="col-md-6"><%= f.text_field :name %></div>
-      </div>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">本文</div>
-        <div class="col-md-6"><%= f.text_area :introduction, class:"form-control" %></div>
-      </div>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">住所(県名)</div>
-        <div class="col-md-6">
-          <%= f.select :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name), class:"form-control prefecture_id" %>
-        </div>
-      </div>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">住所(市町村以降)</div>
-        <div class="col-md-6"><%= f.text_field :address %></div>
-      </div>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">郵便番号</div>
-        <div class="col-md-6"><%= f.text_field :postal_code %></div>
-      </div>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">電話番号</div>
-        <div class="col-md-6"><%= f.text_field :telephone_number %></div>
-      </div>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">アクセス</div>
-        <div class="col-md-6"><%= f.text_field :access %></div>
-      </div>
-      <div class="row justify-content-center py-1">
-        <div class="col-md-3">画像</div>
-        <div class="col-md-6"><%= f.file_field :hot_spring_image, placeholder: "hot_spring_image", accept: "image/*", class:"form-control-file" %></div>
-      </div>
-      <div class="row justify-content-center py-2">
-        <%= f.submit '新規作成', class:"btn btn-success" %>
-      </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>
 
-  <div class="px-2 search_spring border rounded">
-    <h3>温泉地検索</h3>
-    <%= form_with url: admin_hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
-      <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
-      <div class="col-md-auto">都道府県 <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: '選択してください' }, { class:"ser-form-control genre_id" } %></div>
-      <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
-    <% end %>
-  </div>
-  <div class="row my-3 bg-white p-2">
-    <h3 class="col-md-auto">温泉地一覧</h3>
-    <div class="w-100"></div>
-    <div class="col-md">
-    <table class="table table_spring table-hover table-inverse">
-      <thead class="table_spring_head">
-        <tr>
-          <th scope="col-md">都道府県</th>
-          <th scope="col-md">温泉地名</th>
-          <th scope="col-md"></th>
+<div class="m-md-2 px-2 new_spring_form border rounded">
+<h3>新規温泉地作成フォーム</h3>
+  <%= form_with model: @hot_spring, url: admin_hot_springs_path, method: :post do |f| %>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">温泉名</div>
+      <div class="col-md-6"><%= f.text_field :name %></div>
+    </div>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">本文</div>
+      <div class="col-md-6"><%= f.text_area :introduction, class:"form-control" %></div>
+    </div>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">住所(県名)</div>
+      <div class="col-md-6">
+        <%= f.select :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name), class:"form-control prefecture_id" %>
+      </div>
+    </div>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">住所(市町村以降)</div>
+      <div class="col-md-6"><%= f.text_field :address %></div>
+    </div>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">郵便番号</div>
+      <div class="col-md-6"><%= f.text_field :postal_code %></div>
+    </div>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">電話番号</div>
+      <div class="col-md-6"><%= f.text_field :telephone_number %></div>
+    </div>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">アクセス</div>
+      <div class="col-md-6"><%= f.text_field :access %></div>
+    </div>
+    <div class="row justify-content-center py-1">
+      <div class="col-md-3">画像</div>
+      <div class="col-md-6"><%= f.file_field :hot_spring_image, placeholder: "hot_spring_image", accept: "image/*", class:"form-control-file" %></div>
+    </div>
+    <div class="row justify-content-center py-2">
+      <%= f.submit '新規作成', class:"btn btn-success" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="px-2 search_spring border rounded">
+  <h3>温泉地検索</h3>
+  <%= form_with url: admin_hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
+    <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
+    <div class="col-md-auto">都道府県 <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: '選択してください' }, { class:"ser-form-control genre_id" } %></div>
+    <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
+  <% end %>
+</div>
+<div class="row my-3 bg-white p-2">
+  <h3 class="col-md-auto">温泉地一覧</h3>
+  <div class="w-100"></div>
+  <div class="col-md">
+  <table class="table table_spring table-hover table-inverse">
+    <thead class="table_spring_head">
+      <tr>
+        <th scope="col-md">都道府県</th>
+        <th scope="col-md">温泉地名</th>
+        <th scope="col-md"></th>
+      </tr>
+    </thead>
+    <% @hot_springs.each do |hot_spring| %>
+      <tbody class="table_spring_body">
+        <tr scope="row">
+          <td><%= hot_spring.prefecture.name %></td>
+          <td>
+            <%= link_to admin_hot_spring_path(hot_spring.id) do %>
+              <%= hot_spring.name %>
+            <% end %>
+          </td>
+          <td><%= link_to "削除する", admin_hot_spring_path(hot_spring.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></td>
         </tr>
-      </thead>
-      <% @hot_springs.each do |hot_spring| %>
-        <tbody class="table_spring_body">
-          <tr scope="row">
-            <td><%= hot_spring.prefecture.name %></td>
-            <td>
-              <%= link_to admin_hot_spring_path(hot_spring.id) do %>
-                <%= hot_spring.name %>
-              <% end %>
-            </td>
-            <td><%= link_to "削除する", admin_hot_spring_path(hot_spring.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %></td>
-          </tr>
-        </tbody>
-      <% end %>
-    </table>
-    <div class="row justify-content-center"><%= paginate @hot_springs %></div>
-  </div>
+      </tbody>
+    <% end %>
+  </table>
+  <div class="row justify-content-center"><%= paginate @hot_springs %></div>
 </div>
