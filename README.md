@@ -21,6 +21,7 @@
 ​
 ## 設計書
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1ar3Ghtv72zDUBged2JlSzP7eqyk8224wTouFNGcSZB8/edit?usp=sharing
+- 詳細設計：https://docs.google.com/spreadsheets/d/1xgSpuZV3QdSgcA6Dgzh2xPGkvqMIk0mXgc_KaLgXPPs/edit?usp=sharing
 - ER図：https://drive.google.com/file/d/1hWsYigk-grzYEFt5lDKK2okHF4Y-Yd_H/view?usp=sharing
 - 画面遷移図：https://drive.google.com/file/d/1G2AailMVg-gJRIRoKnncQiKEt03ddRW-/view?usp=sharing
 - ワイヤーフレーム：https://drive.google.com/file/d/1504eJzsiFixfBmk7ASB7pEjz1cuCPTcT/view?usp=sharing
