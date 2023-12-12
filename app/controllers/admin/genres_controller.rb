@@ -14,7 +14,7 @@ class Admin::GenresController < ApplicationController
   end
   
   def index
-    @genres = Genre.order(genre_id: :desc).page(params[:page]).per(5)
+    @genres = Genre.order(id: :desc).page(params[:page]).per(5)
     @genre = Genre.new
   end
 
