@@ -35,8 +35,8 @@ class Public::CommentsController < ApplicationController
   end
 
   def validate_user
-    comment = Comment.find(params[:id])
-    if current_end_user.id != comment.end_user.id
+    @comment = Comment.find(params[:id])
+    if current_end_user.id != @comment.end_user.id
       redirect_to request.referer
     end
   end
