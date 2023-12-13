@@ -34,8 +34,8 @@ class Public::EndUsersController < ApplicationController
   def update_withdrawal
     @end_user =EndUser.find(params[:id])
     if @end_user.update(is_active: false)
-      flash[:notice] = "退会手続きが完了いたしました。"
       reset_session
+      flash[:notice] = "退会手続きが完了いたしました。"
       redirect_to root_path
     else
       flash.now[:alert] = "退会手続きが失敗しました。"
