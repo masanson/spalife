@@ -2,8 +2,8 @@ class Admin::CommentsController < ApplicationController
   before_action :validate_admin, only: [:destroy]
   
   def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
     redirect_to request.referer
   end
   
@@ -14,7 +14,7 @@ class Admin::CommentsController < ApplicationController
   end
   
   def validate_admin
-    comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
     if not admin_signed_in?
       redirect_to request.referer
     end

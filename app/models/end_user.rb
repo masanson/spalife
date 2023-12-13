@@ -9,7 +9,7 @@ class EndUser < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :genres, through: :hot_posts
-  
+
   enum sex: { male: 0, female: 1, not_applicable: 2 }
 
   validates :last_name, presence: { message: "が無記入です。" }
@@ -23,15 +23,15 @@ class EndUser < ApplicationRecord
   validates :telephone_number, presence: { message: "が無記入です。" }
 
   has_one_attached :user_image
-  
+
   def name
     last_name + ' ' + first_name
   end
-  
+
   def name_kana
     last_name_kana + ' ' + firstt_name_kana
   end
-  
+
   def is_active_status
     if is_active == true
       "有効"
@@ -39,7 +39,23 @@ class EndUser < ApplicationRecord
       "退会"
     end
   end
-  
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |end_user|
+      end_user.password = ENV['GUEST_KEY']
+      end_user.last_name = "山田"
+      end_user.first_name = "太郎"
+      end_user.last_name_kana = "ヤマダ"
+      end_user.first_name_kana = "タロウ"
+      end_user.user_name = "ゲスト"
+      end_user.sex = 0
+      end_user.postal_code = "1234567"
+      end_user.address = "東京都八王子市泉町"
+      end_user.telephone_number = "123456789"
+      end_user.is_active = true
+    end
+  end
+
   def get_user_image(width, height)
     unless user_image.attached?
       file_path = Rails.root.join('app/assets/images/user_default_image.jpg')

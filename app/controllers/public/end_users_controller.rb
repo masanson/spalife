@@ -1,5 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :validate_user, only: [:update, :update_withdrawal]
+  before_action :ensure_normal_user, only: [:edit, :update, :withdrawal, :update_withdrawal]
   
   def show
     @end_user =EndUser.find(params[:id])
@@ -53,6 +54,13 @@ class Public::EndUsersController < ApplicationController
   def validate_user
     @end_user =EndUser.find(params[:id])
     if current_end_user.id != @end_user.id
+      redirect_to request.referer
+    end
+  end
+  
+  def ensure_normal_user
+    if current_end_user.email == 'guest@example.com'
+      flash[:notice] = "ゲストユーザーはこの機能を制限されてます。"
       redirect_to request.referer
     end
   end

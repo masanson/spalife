@@ -19,6 +19,13 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def guest_sign_in
+    end_user = EndUser.guest
+    sign_in end_user
+    flash[:notice] = "ゲストユーザーとしてログインしました。"
+    redirect_to root_path
+  end
+
   protected
 
   def end_user_state

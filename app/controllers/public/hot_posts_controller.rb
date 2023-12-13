@@ -1,5 +1,6 @@
 class Public::HotPostsController < ApplicationController
   before_action :validate_user, only: [:destroy, :update]
+  before_action :ensure_normal_user, only: [:new, :create, :edit, :update, :destroy]
   
   def index
     @hot_posts = HotPost.published.order(created_at: :desc).page(params[:page]).per(8)
@@ -84,6 +85,13 @@ class Public::HotPostsController < ApplicationController
   def validate_user
     @hot_post = HotPost.find(params[:id])
     if current_end_user.id != @hot_post.end_user.id
+      redirect_to request.referer
+    end
+  end
+  
+  def ensure_normal_user
+    if current_end_user.email == 'guest@example.com'
+      flash[:notice] = "ゲストユーザーはこの機能を制限されてます。"
       redirect_to request.referer
     end
   end

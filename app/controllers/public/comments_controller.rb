@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :validate_user, only: [:destroy]
+  before_action :ensure_normal_user, only: [:create, :destroy]
 
   def create
     @comment = Comment.new(comment_params)
@@ -37,6 +38,13 @@ class Public::CommentsController < ApplicationController
   def validate_user
     @comment = Comment.find(params[:id])
     if current_end_user.id != @comment.end_user.id
+      redirect_to request.referer
+    end
+  end
+  
+  def ensure_normal_user
+    if current_end_user.email == 'guest@example.com'
+      flash[:notice] = "ゲストユーザーはこの機能を制限されてます。"
       redirect_to request.referer
     end
   end

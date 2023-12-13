@@ -25,6 +25,7 @@
 - ER図：https://drive.google.com/file/d/1hWsYigk-grzYEFt5lDKK2okHF4Y-Yd_H/view?usp=sharing
 - 画面遷移図：https://drive.google.com/file/d/1G2AailMVg-gJRIRoKnncQiKEt03ddRW-/view?usp=sharing
 - ワイヤーフレーム：https://drive.google.com/file/d/1504eJzsiFixfBmk7ASB7pEjz1cuCPTcT/view?usp=sharing
+- テスト仕様書：https://docs.google.com/spreadsheets/d/1wBG0O62MPHvlBDLUyLfs1w3jw35DtCtpa-AmuRTfVyY/edit?usp=sharing
 ​
 ## 実装機能リスト
 - https://docs.google.com/spreadsheets/d/1MV5c7m1U9HmHB_SD5y4FWfgBjrNt957ezQNzIIth8ik/edit?usp=sharing
