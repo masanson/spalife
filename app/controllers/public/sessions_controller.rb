@@ -26,6 +26,7 @@ class Public::SessionsController < Devise::SessionsController
     return if !@end_user
     if @end_user.valid_password?(params[:end_user][:password])
       if @end_user.is_active == false
+        flash[:notice] = "この会員アカウントは退会済みです。再び新規登録をしてください。"
         redirect_to new_end_user_registration_path
       end
     end
