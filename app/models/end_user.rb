@@ -48,7 +48,7 @@ class EndUser < ApplicationRecord
       end_user.last_name_kana = "ヤマダ"
       end_user.first_name_kana = "タロウ"
       end_user.user_name = "ゲスト"
-      end_user.sex = 0
+      end_user.sex = 2
       end_user.postal_code = "1234567"
       end_user.address = "東京都八王子市泉町"
       end_user.telephone_number = "123456789"
