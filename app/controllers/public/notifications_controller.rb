@@ -9,7 +9,7 @@ class Public::NotificationsController < ApplicationController
   
   def ensure_normal_user
     if current_end_user.email == 'guest@example.com'
-      flash[:notice] = "ゲストユーザーは通知一覧を制限されてます。"
+      flash[:notice] = "ゲストユーザーは通知機能を制限されてます。"
       redirect_to root_path
     end
   end

@@ -91,7 +91,7 @@ class Public::HotPostsController < ApplicationController
   
   def ensure_normal_user
     if current_end_user.email == 'guest@example.com'
-      flash[:notice] = "ゲストユーザーはこの機能を制限されてます。"
+      flash[:notice] = "ゲストユーザーは閲覧以外の投稿機能を制限されてます。"
       redirect_to request.referer
     end
   end
