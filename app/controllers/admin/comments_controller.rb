@@ -3,8 +3,12 @@ class Admin::CommentsController < ApplicationController
   
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to request.referer
+    if @comment.destroy
+      flash[:notice] = "管理者権限でコメントが削除されました。"
+      redirect_to request.referer
+    else
+      flash.now[:alert] = "コメント削除が失敗しました。"
+    end
   end
   
   private

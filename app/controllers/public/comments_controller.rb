@@ -25,7 +25,7 @@ class Public::CommentsController < ApplicationController
       flash[:notice] = "コメントが削除されました。"
       redirect_to request.referer
     else
-      flash.now[:alert] = "コメント作成が失敗しました。"
+      flash.now[:alert] = "コメント削除が失敗しました。"
     end
   end
 

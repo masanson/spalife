@@ -19,7 +19,7 @@ class Admin::EndUsersController < ApplicationController
   def update
     @end_user = EndUser.find(params[:id])
     if @end_user.update(end_user_params)
-      flash[:notice] = "ユーザー情報が更新されました。"
+      flash[:notice] = "管理者権限でユーザー情報が更新されました。"
       redirect_to admin_end_user_path(@end_user.id)
     else
       flash.now[:alert] = "ユーザー情報の更新が失敗しました。"
