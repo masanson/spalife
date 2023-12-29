@@ -6,6 +6,8 @@ ja:
         female: "女性"
         not_applicable: "その他"
   activerecord:
+    models:
+      end_user: '会員'
     attributes:
       end_user:
         last_name: '姓'
