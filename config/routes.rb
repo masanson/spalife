@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
+
   devise_scope :end_user do
     post 'end_users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -15,11 +15,11 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   namespace :public do
     resources :hot_posts do
       resource :favorites, only: [:create, :destroy]
-      resources :comments, only: [:create, :destroy] 
+      resources :comments, only: [:create, :destroy]
     end
     resources :notifications, only: [:index]
     resources :hot_springs, only: [:index, :show]
@@ -30,11 +30,11 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   namespace :admin do
     get '' => 'homes#top', as: 'top'
     resources :end_users, only: [:show, :edit, :update]
-    resources :hot_springs, only: [:index, :show, :create, :edit, :update, :destroy] 
+    resources :hot_springs, only: [:index, :show, :create, :edit, :update, :destroy]
     resources :hot_posts, only: [:index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:destroy]
     end

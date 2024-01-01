@@ -23,15 +23,15 @@
         <div class="col-md-3"><%= f.label :sex, "性別" %></div>
         <div class="col-md-auto">
           <%= f.radio_button :sex, EndUser.sexes.key(0) %>
-          <%= f.label :sex, EndUser.sexes_i18n[:male] %>
+          <%= f.label :sex, EndUser.sexes_i18n[:male], value: EndUser.sexes.key(0) %>
         </div>
         <div class="col-md-auto">
           <%= f.radio_button :sex, EndUser.sexes.key(1) %>
-          <%= f.label :sex, EndUser.sexes_i18n[:female] %>
+          <%= f.label :sex, EndUser.sexes_i18n[:female], value: EndUser.sexes.key(1) %>
         </div>
         <div class="col-md-auto">
           <%= f.radio_button :sex, EndUser.sexes.key(2) %>
-          <%= f.label :sex, EndUser.sexes_i18n[:not_applicable] %>
+          <%= f.label :sex, EndUser.sexes_i18n[:not_applicable], value: EndUser.sexes.key(2) %>
         </div>
       </div>
       <div class="row regist_item_row">
