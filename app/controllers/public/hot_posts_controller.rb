@@ -43,6 +43,10 @@ class Public::HotPostsController < ApplicationController
 
   def edit
     @hot_post = HotPost.find(params[:id])
+    unless @hot_post.end_user.id == current_end_user.id
+      flash[:notice] = "他の会員の投稿は編集出来ません"
+      redirect_to root_path
+    end
   end
   
   def update
