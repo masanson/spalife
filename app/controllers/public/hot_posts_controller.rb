@@ -1,7 +1,8 @@
 class Public::HotPostsController < ApplicationController
   before_action :validate_user, only: [:destroy, :update]
+  before_action :draft_unpublished_post_check, only: [:show]
   before_action :ensure_normal_user, only: [:new, :create, :edit, :update, :destroy]
-  
+
   def index
     @hot_posts = HotPost.published.order(created_at: :desc).page(params[:page]).per(8)
     @hot_posts = @hot_posts.where(genre_id: params[:genre_id]) if params[:genre_id].present?
@@ -48,7 +49,7 @@ class Public::HotPostsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   def update
     @end_user = current_end_user
     @hot_post = HotPost.find(params[:id])
@@ -85,18 +86,26 @@ class Public::HotPostsController < ApplicationController
   def hot_post_params
     params.require(:hot_post).permit(:hot_post_image, :title, :body, :status, :end_user_id, :genre_id, :hot_spring_id)
   end
-  
+
   def validate_user
     @hot_post = HotPost.find(params[:id])
     if current_end_user.id != @hot_post.end_user.id
       redirect_to request.referer
     end
   end
-  
+
   def ensure_normal_user
     if current_end_user.email == 'guest@example.com'
       flash[:notice] = "ゲストユーザーは閲覧以外の投稿機能を制限されてます。"
       redirect_to request.referer
+    end
+  end
+
+  def draft_unpublished_post_check
+    @hot_post = HotPost.find(params[:id])
+    if @hot_post.status != "published" && @hot_post.end_user.id != current_end_user.id
+      flash[:notice] = "他の会員の下書き/非公開の投稿は編集出来ません"
+      redirect_to root_path
     end
   end
 end
