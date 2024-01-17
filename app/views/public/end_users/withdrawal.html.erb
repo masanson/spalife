@@ -3,7 +3,7 @@
   <p class="d-block">退会すると会員登録情報や投稿の編集や閲覧ができなくなります。</p></br>
   <p class="d-block">退会する場合は、「退会する」をクリックしてください。</p>
 </div>
-<%= form_with model: @end_user, url: update_withdrawal_public_end_user_path, method: :patch, class:"row justify-content-center" do |f| %>
-  <div class="col-md-auto p-3"><%= link_to "退会しない", public_end_user_path(@end_user.id), class:"btn btn-primary" %></div>
+<%= form_with model: @end_user, url: update_withdrawal_end_user_path, method: :patch, class:"row justify-content-center" do |f| %>
+  <div class="col-md-auto p-3"><%= link_to "退会しない", end_user_path(@end_user.id), class:"btn btn-primary" %></div>
   <div class="col-md-auto p-3"><%= f.submit "退会する", class:"btn btn-danger", "data-confirm" => "本当に退会しますか?" %></div>
 <% end %>

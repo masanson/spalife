@@ -1,6 +1,6 @@
 <div class="search_spring border rounded">
   <h3>温泉地検索</h3>
-  <%= form_with url: public_hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
+  <%= form_with url: hot_springs_path, method: :get, local: true, class:"row justify-content-around py-2 search_spring_form" do |f| %>
     <div class="col-md-auto">キーワード <%= f.text_field :search, class:"ser-form-control" %></div>
     <div class="col-md-auto">都道府県 <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: '選択してください' }, { class:"ser-form-control genre_id" } %></div>
     <div class="col-md-auto"><%= f.submit '投稿検索', name: nil, class:"btn btn-success" %></div>
@@ -23,7 +23,7 @@
         <tr scope="row">
           <td><%= hot_spring.prefecture.name %></td>
           <td>
-            <%= link_to public_hot_spring_path(hot_spring.id) do %>
+            <%= link_to hot_spring_path(hot_spring.id) do %>
               <%= hot_spring.name %>
             <% end %>
           </td>

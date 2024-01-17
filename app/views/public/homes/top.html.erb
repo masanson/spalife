@@ -25,19 +25,19 @@
         <% @hot_posts.each do |hot_post| %>
         <div class="col-md-3 p-2">
           <div>
-            <%= link_to public_hot_post_path(hot_post.id) do%>
+            <%= link_to hot_post_path(hot_post.id) do%>
               <%= hot_post.title %>
             <% end %>
           </div>
           <div>
-            <%= link_to public_end_user_path(hot_post.end_user.id) do%>
+            <%= link_to end_user_path(hot_post.end_user.id) do%>
               <%= hot_post.end_user.user_name %>
             <% end %>
           </div>
           <div><%= hot_post.genre.name %></div>
         </div>
         <% end %>
-        <%= link_to "投稿一覧へ", public_hot_posts_path %>
+        <%= link_to "投稿一覧へ", hot_posts_path %>
       </div>
     <% end %>
   </div>

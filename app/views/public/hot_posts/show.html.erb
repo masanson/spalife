@@ -12,7 +12,7 @@
       <h3 class="col-md-auto" style="margin-bottom: 0px;"><%= @hot_post.title %></h3>
       <p class="col-md-auto" style="margin-bottom: 0px;">
         投稿者：
-        <%= link_to public_end_user_path(@end_user.id), class:"text-dark text-align-center" do %>
+        <%= link_to end_user_path(@end_user.id), class:"text-dark text-align-center" do %>
           <%=@end_user.user_name%>
         <% end %>
       </p>
@@ -24,11 +24,11 @@
     <p class="row m-md-2 post_item__body border rounded border-dark"><%= @hot_post.body %></p>
     <div class="d-block post_item__body2">
       <% if @hot_post.favorited?(current_end_user) %>
-        <%= link_to public_hot_post_favorites_path(@hot_post.id), method: :delete do %>
+        <%= link_to hot_post_favorites_path(@hot_post.id), method: :delete do %>
           <span style="color:red;">♥<%= @hot_post.favorites.count %></span>
         <% end%>
       <% else %>
-        <%= link_to public_hot_post_favorites_path(@hot_post.id), method: :post do %>
+        <%= link_to hot_post_favorites_path(@hot_post.id), method: :post do %>
           <span>♥<%= @hot_post.favorites.count %></span>
         <% end%>
       <% end %>
@@ -36,13 +36,13 @@
     <p class="d-block post_item__body2">ジャンル：<%= @hot_post.genre.name %></p>
     <% if @hot_post.hot_spring_id.present? %>
       <p class="d-block post_item__body2">
-        温泉地：<%= link_to public_hot_spring_path(@hot_spring) do %><%= @hot_post.hot_spring.name %><% end %>
+        温泉地：<%= link_to hot_spring_path(@hot_spring) do %><%= @hot_post.hot_spring.name %><% end %>
       </p>
     <% end %>
     <div class="d-flex justify-content-around">
       <% if @end_user == current_end_user %>
-        <%= link_to "編集する", edit_public_hot_post_path(@hot_post.id), class:"btn btn-success" %>
-        <%= link_to "削除する", public_hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+        <%= link_to "編集する", edit_hot_post_path(@hot_post.id), class:"btn btn-success" %>
+        <%= link_to "削除する", hot_post_path(@hot_post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
       <% end %>
     </div>
   </div>
@@ -50,7 +50,7 @@
   <div class="col-md-5">
     <div class="row justify-content-center">
       <h5 class="col-md-7">コメントフォーム</h5>
-      <%= form_with model: [@hot_post, @comment], url: public_hot_post_comments_path(@hot_post.id) do |f| %>
+      <%= form_with model: [@hot_post, @comment], url: hot_post_comments_path(@hot_post.id) do |f| %>
         <div class="col-md-auto py-2"><%= f.text_area :content, class:"form-control comment_content" %></div>
         <%= f.hidden_field :hot_post_id, :value => @hot_post.id %>
         <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
@@ -61,12 +61,12 @@
       <% @comments.each do |comment| %>
         <div class="col-md-auto comment_item">
           <div class="d-block my-1 border-top border-dark">
-            <%= link_to public_end_user_path(comment.end_user.id), class:"text-dark" do %>
+            <%= link_to end_user_path(comment.end_user.id), class:"text-dark" do %>
               <%= comment.end_user.user_name %>
             <% end %>
             <%= comment.created_at.strftime('%Y/%m/%d') %>
             <% if comment.end_user == current_end_user %>
-              <%= link_to "削除する", public_hot_post_comment_path(comment.hot_post, comment), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
+              <%= link_to "削除する", hot_post_comment_path(comment.hot_post, comment), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に消しますか?" %>
             <% end%>
           </div>
           <div class="d-block my-1 border-bottom border-dark comment_item_body">

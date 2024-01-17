@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  namespace :public do
+  scope module: :public do
     resources :hot_posts do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="w-100"></div>
-    <div class="row justify-content-center py-2"><%= link_to "マイページ編集", edit_public_end_user_path, class:"btn btn-success" %></div>
+    <div class="row justify-content-center py-2"><%= link_to "マイページ編集", edit_end_user_path, class:"btn btn-success" %></div>
   <% end %>
   <div class="row justify-content-center">
     <div class="col-md-11 py-md-2">
@@ -63,7 +63,7 @@
             <% @favorite_posts.each do |favorite_post| %>
               <div class="row my-1 border border-dark rounded justify-content-center">
                 <div class="col-md-3 ">
-                  <%= link_to public_hot_post_path(favorite_post.id) do %>
+                  <%= link_to hot_post_path(favorite_post.id) do %>
                     <%= favorite_post.title %>
                   <% end %>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="col-md-4">
                   <p class="m-0">
                     投稿者：
-                    <%= link_to public_end_user_path(favorite_post.end_user.id) do %>
+                    <%= link_to end_user_path(favorite_post.end_user.id) do %>
                       <%= favorite_post.end_user.user_name %>
                     <% end %>
                   </p>
@@ -86,7 +86,7 @@
             <% @published_posts.each do |published_post| %>
               <div class="row my-1 border border-dark rounded justify-content-center">
                 <div class="col-md-3 ">
-                  <%= link_to public_hot_post_path(published_post.id) do %>
+                  <%= link_to hot_post_path(published_post.id) do %>
                     <%= published_post.title %>
                   <% end %>
                 </div>
@@ -103,7 +103,7 @@
             <% @draft_posts.each do |draft_post| %>
               <div class="row my-1 border border-dark rounded justify-content-center">
                 <div class="col-md-3 ">
-                  <%= link_to public_hot_post_path(draft_post.id) do %>
+                  <%= link_to hot_post_path(draft_post.id) do %>
                     <%= draft_post.title %>
                   <% end %>
                 </div>
@@ -119,7 +119,7 @@
             <% @unpublished_posts.each do |unpublished_post| %>
               <div class="row my-1 border border-dark rounded justify-content-center">
                 <div class="col-md-3 table-hover">
-                  <%= link_to public_hot_post_path(unpublished_post.id) do %>
+                  <%= link_to hot_post_path(unpublished_post.id) do %>
                     <%= unpublished_post.title %>
                   <% end %>
                 </div>

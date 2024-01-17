@@ -3,20 +3,20 @@
 <div class="col-7 mx-auto bg-white">
   <div class="form-inline">
     <span>
-      <%= link_to public_end_user_path(visitor) do %>
+      <%= link_to end_user_path(visitor) do %>
         <strong><%= visitor.user_name %></strong>
       <% end %>
       <%= 'さんが' %>
       <% case notification.action %>
       <% when 'favorite' then %>
-        <%= link_to 'あなたの投稿', public_hot_post_path(notification.hot_post_id), style:"font-weight: bold;"%>
+        <%= link_to 'あなたの投稿', hot_post_path(notification.hot_post_id), style:"font-weight: bold;"%>
         <%= "にいいねしました" %>
       <% when 'comment' then %>
         <% if notification.hot_post.end_user_id == visited.id %>
-          <%= link_to 'あなたの投稿', public_hot_post_path(notification.hot_post_id), style:"font-weight: bold;"%>
+          <%= link_to 'あなたの投稿', hot_post_path(notification.hot_post_id), style:"font-weight: bold;"%>
         <% else %>
           <span>
-            <%= link_to public_hot_post_path(visitor) do %>
+            <%= link_to hot_post_path(visitor) do %>
               <strong><%= visitor.user_name + 'さんの投稿' %></strong>
             <% end %>
           </span>
