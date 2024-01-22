@@ -12,11 +12,11 @@ class EndUser < ApplicationRecord
 
   enum sex: { male: 0, female: 1, not_applicable: 2 }
 
-  validates :last_name, presence: { message: "が無記入です。" }
-  validates :first_name, presence: { message: "が無記入です。" }
-  validates :last_name_kana, presence: { message: "が無記入です。" }
-  validates :first_name_kana, presence: { message: "が無記入です。" }
-  validates :user_name, presence: { message: "が無記入です。" }
+  validates :last_name, presence: { message: "が無記入です。" }, length: { maximum: 5 }
+  validates :first_name, presence: { message: "が無記入です。" }, length: { maximum: 5 }
+  validates :last_name_kana, presence: { message: "が無記入です。" }, length: { maximum: 10 }
+  validates :first_name_kana, presence: { message: "が無記入です。" }, length: { maximum: 10 }
+  validates :user_name, presence: { message: "が無記入です。" }, length: { maximum: 10 }
   validates :sex, presence: { message: "が設定されてません。" }
   validates :postal_code, presence: { message: "が無記入です。" }
   validates :address, presence: { message: "が無記入です。" }
