@@ -12,6 +12,7 @@ class EndUser < ApplicationRecord
 
   enum sex: { male: 0, female: 1, not_applicable: 2 }
 
+  validates :email, presence: { message: "が無記入です。" }, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, }
   validates :last_name, presence: { message: "が無記入です。" }, length: { maximum: 5 }
   validates :first_name, presence: { message: "が無記入です。" }, length: { maximum: 5 }
   validates :last_name_kana, presence: { message: "が無記入です。" }, length: { maximum: 10 }
