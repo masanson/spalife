@@ -6,8 +6,8 @@ class HotPost < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :title, presence: { message: "が無記入です。" }
-  validates :body, presence: { message: "が無記入です。" }
+  validates :title, presence: { message: "が無記入です。" }, length: { maximum: 50 }
+  validates :body, presence: { message: "が無記入です。" }, length: { maximum: 200 }
   validates :status, presence: { message: "投稿状態が設定されておりません。" }
 
   enum status: { published: 0, draft: 1, unpublished: 2 }
