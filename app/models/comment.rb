@@ -3,5 +3,5 @@ class Comment < ApplicationRecord
   belongs_to :end_user
   belongs_to :hot_post
   
-  validates :content, presence: { message: "が無記入です。" }
+  validates :content, presence: { message: "が無記入です。" },length: { maximum: 200 }
 end
