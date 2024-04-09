@@ -38,7 +38,7 @@ hot_spring2 = HotSpring.find_or_create_by!(name: "XX旅館") do |hot_spring|
   hot_spring.introduction = "綺麗な景色が見れます。"
   hot_spring.postal_code = "4258362"
   hot_spring.prefecture_id = 15
-  hot_spring.address = "新潟市東区月見町990-4"
+  hot_spring.address = "新潟市"
   hot_spring.telephone_number = "3428695210"
   hot_spring.access = "新潟駅から車で30分。"
 end
