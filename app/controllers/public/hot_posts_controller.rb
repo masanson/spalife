@@ -28,13 +28,13 @@ class Public::HotPostsController < ApplicationController
     if @hot_post.save
       if @hot_post.status == "draft"
         flash[:notice] = "下書きが保存されました。"
-        redirect_to public_end_user_path(@end_user.id)
+        redirect_to end_user_path(@end_user.id)
       elsif @hot_post.status == "unpublished"
         flash[:notice] = "非公開の投稿を作成しました。"
-        redirect_to public_end_user_path(@end_user.id)
+        redirect_to end_user_path(@end_user.id)
       else
         flash[:notice] = "投稿が成功しました！"
-        redirect_to public_hot_post_path(@hot_post.id)
+        redirect_to hot_post_path(@hot_post.id)
       end
     else
       flash.now[:alert] = "投稿・保存が失敗しました。"
@@ -56,13 +56,13 @@ class Public::HotPostsController < ApplicationController
     if @hot_post.update(hot_post_params)
       if @hot_post.status =="draft"
         notice_message = "下書きが保存されました。"
-        redirect_path = public_end_user_path(@end_user.id)
+        redirect_path = end_user_path(@end_user.id)
       elsif @hot_post.status == "unpublished"
         notice_message = "投稿を非公開にしました。"
-        redirect_path = public_end_user_path(@end_user.id)
+        redirect_path = end_user_path(@end_user.id)
       else
         notice_message = "投稿が公開されました！"
-        redirect_path = public_hot_post_path(@hot_post.id)
+        redirect_path = hot_post_path(@hot_post.id)
       end
       flash[:notice] = notice_message
       redirect_to redirect_path
@@ -77,7 +77,7 @@ class Public::HotPostsController < ApplicationController
     if @hot_post.destroy
       flash[:notice] = "投稿を削除しました。"
       @end_user = @hot_post.end_user
-      redirect_to public_end_user_path(@end_user.id)
+      redirect_to end_user_path(@end_user.id)
     end
   end
 
